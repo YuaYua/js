@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 260px;
+				height: 260px;
+				background-image: -webkit-linear-gradient(top, sandybrown, saddlebrown, salmon);
+				border-radius: 50%;
+				position: relative;
+			}
+			
+			#clock {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: 240px;
+				height: 240px;
+				background-color: white;
+				box-shadow: 0 5px 10px darkgray inset;
+				border-radius: 50%;
+			}
+			
+			#number {
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			#number>div {
+				position: absolute;
+				/*text-align: center;*/
+				top: 112px;
+				left: 10px;
+				width: 220px;
+				height: 12px;
+			}
+			
+			#number>div>span {
+				display: block;
+				/*transform: rotate(30deg);*/
+				height: 12px;
+				width: 12px;
+			}
+			
+			#hour {
+				width: 8px;
+				height: 80px;
+				background-color:#30A1C6;
+				left: 118px;
+				
+				/*transform: rotate(50deg);*/
+			}
+			
+			#minute {
+				width: 6px;
+				height: 100px;
+				background-color: red;
+				left: 119px;
+				
+				/*transform: rotate(180deg);*/
+			}
+			
+			#second {
+				width: 4px;
+				height: 110px;
+				background-color: #2CA241;
+				left: 120px;
+				
+				/*transform: rotate(90deg);*/
+			}
+			#needle{
+				position: absolute;
+				z-index: 10;
+			}
+			#needle>div{
+				opacity: 0.7;
+				position: absolute;
+				bottom: 120px;
+				transform-origin: bottom;
+			}
+			#show {
+				width: 80px;
+				height: 30px;
+				background-color: cornsilk;
+				text-align: center;
+				line-height: 30px;
+				position: absolute;
+				bottom: 70px;
+				left: 80px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="clock">
+				<div id="number">
+					<div class="num1" style="transform: rotate(120deg);"><span style="transform: rotate(-120deg);">1</span></div>
+					<div class="num2" style="transform: rotate(150deg);"><span style="transform: rotate(-150deg);">2</span></div>
+					<div class="num3" style="transform: rotate(180deg);"><span style="transform: rotate(-180deg);">3</span></div>
+					<div class="num4" style="transform: rotate(210deg);"><span style="transform: rotate(-210deg);">4</span></div>
+					<div class="num5" style="transform: rotate(240deg);"><span style="transform: rotate(-240deg);">5</span></div>
+					<div class="num6" style="transform: rotate(270deg);"><span style="transform: rotate(-270deg);">6</span></div>
+					<div class="num7 " style="transform: rotate(300deg);"><span style="transform: rotate(-300deg); ">7</span></div>
+					<div class="num8 " style="transform: rotate(330deg);"><span style="transform: rotate(-330deg); ">8</span></div>
+					<div class="num9 " style="transform: rotate(0deg); "><span>9</span></div>
+					<div class="num10 " style="transform: rotate(30deg);"><span style="transform: rotate(-30deg); ">10</span></div>
+					<div class="num11 " style="transform: rotate(60deg);"><span style="transform: rotate(-60deg); ">11</span></div>
+					<div class="num12 " style="transform: rotate(90deg);"><span style="transform: rotate(-90deg); ">12</span></div>
+				</div>
+				<div id="needle">
+					<div id="hour"></div>
+					<div id="minute"></div>
+					<div id="second"></div>
+				</div>
+				<div id="show"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var hour = document.getElementById('hour');
+		var minute = document.getElementById('minute');
+		var second = document.getElementById('second');
+		var show = document.getElementById('show');
+
+		function changeClock() {
+			var nowTime = new Date();
+			var nowSecond = nowTime.getSeconds();
+			var nowHour = nowTime.getHours();
+			var nowMinute = nowTime.getMinutes();
+			//秒针转
+			second.style.transform = 'rotate(' + (nowSecond * 6) + 'deg)';
+			///分针转
+			//根据秒针
+			//秒针1秒6°，分针60秒6度
+			var secDeg = nowSecond / 60 * 6;
+			minute.style.transform = 'rotate(' + (secDeg + nowMinute * 6) + 'deg)';
+			//时针转
+			//根据分针
+			//分针1分6度，时针60分30度
+			var minDeg = nowMinute / 60 * 30
+			hour.style.transform = 'rotate(' + (nowHour * 30 + minDeg) + 'deg)'
+			show.innerText = nowHour + ':' + nowMinute + ':' + nowSecond;
+		}
+		setInterval(changeClock, 30);
+	</script>
+
+</html>

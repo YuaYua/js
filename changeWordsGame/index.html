@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>选字游戏</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-size: 24px;
+			}
+			
+			#box {
+				width: 500px;
+				height: 700px;
+				background-color: gainsboro;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+			
+			#head {
+				width: 460px;
+				height: 50px;
+				/*background-color: red;*/
+				padding: 0 20px;
+				line-height: 50px;
+			}
+			
+			#time {
+				float: left;
+			}
+			
+			#score {
+				float: right;
+			}
+			
+			#main {
+				width: 100%;
+				height: 350px;
+				/*background-color: gold;*/
+				font-size: 200px;
+				line-height: 350px;
+				text-align: center;
+			}
+			
+			#prompt {
+				width: 80%;
+				height: 100px;
+				/*background-color: beige;*/
+				margin: 0 10%;
+			}
+			
+			#bottom>div {
+				float: left;
+				width: 20%;
+				height: 200px;
+				text-align: center;
+				line-height: 200px;
+				font-size: 80px;
+				/*background-color: cadetblue;*/
+			}
+			#fail{
+				width: 300px;
+				height: 281px;
+				position: absolute;
+				top:250px;
+				left: 50%;
+				margin-left: -50px;
+				visibility: hidden;
+				background-image: url(img/JInx5.png);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="fail"></div>
+		<div id="box">
+			<div id="head">
+				<div id="time">
+					所剩时间:20s
+				</div>
+				<div id="score">
+					积分：0
+				</div>
+			</div>
+			<div id="main">
+				黑
+			</div>
+			<div id="prompt">
+				根据上面的字的颜色从下面选择正确的字,选择正确自动开始
+			</div>
+			<div id="bottom">
+				<div id="font1">红</div>
+				<div id="font2">绿</div>
+				<div id="font3">黑</div>
+				<div id="font4">蓝</div>
+				<div id="font5">黄</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var words = ['红', '绿', '黑', '蓝', '黄'];
+		var colors = ['red', 'green', 'black', 'blue', 'yellow'];
+		var colorIndex = 0;
+		//随机数
+		function random(min, max) {
+			return parseInt(Math.random() * (max - min + 1) + min);
+		}
+		//		var test=random();
+		//		console.log(test);
+		//随机数不重复
+		function randomNoRep() {
+			var arr = [];
+			while(arr.length < 5) {
+				var temp = random(0, 4);
+				if(arr.indexOf(temp) == -1) {
+					arr.push(temp);
+				}
+			}
+			return arr;
+		}
+		var main = document.getElementById("main");
+		var bottom = document.querySelectorAll("#bottom>div");
+		//		console.log(bottom);
+		//变化
+		function change() {
+			//中间字变化
+			var wordIndex = random(0, 4);
+			colorIndex = random(0, 4);
+			main.innerHTML = words[wordIndex];
+			main.style.color = colors[colorIndex];
+//			console.log(colorIndex);
+			//底部字变化
+			var bottomWordIndex = randomNoRep();
+			var bottomColorIndex = randomNoRep();
+			for(var i = 0; i < bottom.length; i++) {
+				bottom[i].innerHTML = words[bottomWordIndex[i]];
+				bottom[i].style.color = colors[bottomColorIndex[i]];
+				bottom[i].index = bottomWordIndex[i];
+//				console.log(bottom[i].index);
+			}
+		}
+		//		console.log(main);
+		//		console.log(bottom);
+		change();
+
+		//		console.log(bottom.length);
+		//判断匹配
+		var score = 0;
+		var count = 20;
+		var isplay=false;
+		var timeDiv = document.getElementById('time');
+		var scoreDiv = document.getElementById('score');
+		var prompt = document.getElementById('prompt');
+		for(var i = 0; i < bottom.length; i++) {
+			bottom[i].onclick = function() {
+//				console.log(colorIndex);
+//				console.log(this.index);
+				if(colorIndex == this.index && count != 0) {
+					isplay=true;
+					score++;
+					change();
+					scoreDiv.innerHTML = "分数：" + score;
+					prompt.style.visibility = 'hidden';
+					isplay=true;
+				}
+			}
+		}		
+		//定时器
+		var fail=document.getElementById('fail');
+		var timer;
+		timer=setInterval(function(){
+			if(isplay){
+				count--;
+				timeDiv.innerHTML="所剩时间:"+count+"s";
+				if(count<=0){
+					isplay=false;
+					fail.style.visibility='visible';
+				}
+			}
+		},1000)
+	</script>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 320px;
+				height: 480px;
+				margin: 50px auto;
+				position: relative;
+				cursor: url(img/guo.cur),pointer;
+			}
+			
+			
+			#start,
+			#end {
+				width: 320px;
+				height: 480px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+			#startGame,
+			#gameOver {
+				color: royalblue;
+				font-size: 30px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -15px;
+				margin-left: -60px;
+			}
+			
+			#content {
+				width: 320px;
+				height: 480px;
+				background: url(img/game_bg.jpg);
+			}
+			
+			#content img {
+				position: absolute;
+			}
+			
+			#content img:nth-child(1) {
+				top: 160px;
+				left: 16px;
+			}
+			
+			#content img:nth-child(2) {
+				left: 96px;
+				top: 115px;
+			}
+			
+			#content img:nth-child(3) {
+				right: 28px;
+				top: 145px;
+			}
+			
+			#content img:nth-child(4) {
+				left: 17px;
+				top: 221px;
+			}
+			
+			#content img:nth-child(5) {
+				left: 105px;
+				top: 193px;
+			}
+			
+			#content img:nth-child(6) {
+				right: 12px;
+				bottom: 167px;
+			}
+			
+			#content img:nth-child(7) {
+				left: 30px;
+				bottom: 85px;
+			}
+			
+			#content img:nth-child(8) {
+				left: 120px;
+				bottom: 105px;
+			}
+			
+			#content img:nth-child(9) {
+				right: 4px;
+				bottom: 83px;
+			}
+			
+			#progressBar {
+				position: absolute;
+				top: 66px;
+				left: 63px;
+				width: 180px;
+				height: 16px;
+				border-radius: 7px;
+			}
+			
+			#end {
+				display: none;
+			}
+			
+			#gameOver {
+				color: red;
+			}
+			
+			#score {
+				position: absolute;
+				top: 13px;
+				left: 57px;
+				color: white;
+				font-size: 1.2em;
+			}
+			#rules{
+				position: absolute;
+				bottom: 0;
+				text-align: center;
+				width: 100%;
+				font-size: 20px;
+				background-color: coral;
+			}
+			#rules>p{
+				font-size: 16px;
+				height: 20px;	
+				display: none;
+			}
+			#rules:hover p{
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="start">
+				<button id="startGame">开始游戏</button>
+				<div id="rules">
+					游戏规则
+					<p>打中灰太狼加十分，打中小灰灰减十分</p>
+				</div>
+				
+			</div>
+			<p id="score">0</p>
+			<!--进度条progressBar-->
+			<img src="img/progress.png" id="progressBar" />
+			<div id="content">
+				<!--狼出现的坑-->
+				<img src="" alt="" />
+				<img src="" alt="" />
+				<img src="" alt="" />
+				<img src="" alt="" />
+				<img src="" alt="" />
+				<img src="" alt="" />
+				<img src="" alt="" />
+				<img src="" alt="" />
+				<img src="" alt="" />
+			</div>
+			<div id="end">
+				<p id="gameOver">时间到啦！</p>
+				<!--<p id="restart">重新开始吧！</p>-->
+			</div>
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var start = document.getElementById("start");
+		var startGame = document.getElementById('startGame');
+		var progressBar = document.getElementById("progressBar")
+		var content = document.getElementById("content");
+		var imgs = content.getElementsByTagName('img');
+		var end = document.getElementById("end");
+		var gameOver = document.getElementById("gameOver");
+		var score = document.getElementById("score");
+		var wrap=document.getElementById('wrap');
+//		wrap.onmouseenter=function(){
+//			wrap.style.cursor='url(img/guo.cur)'
+//		}
+		//随机数
+		function random(a, b) {
+			return parseInt(Math.random() * (b - a + 1) + a);
+		}
+
+		//start
+		//①开始菜单消失
+		//②进度条变少
+		function cutPro() {
+			//进度条减少-->减宽
+			//设长度，定时器来减
+			//最后会改变形状？？？
+			var progressWidth = 180;
+			var timer1 = setInterval(function() {
+				progressWidth--;
+				progressBar.style.width = progressWidth + 'px';
+				if(progressWidth == 0) {
+					clearInterval(timer1);
+					//进度条为零，结束游戏
+					var timeout = setTimeout(function() {
+						clearTimeout(timeout);
+						clearInterval(timer2);
+					}, 1);
+					end.style.display = 'block';
+						//点击结束界面，回到开始界面
+						end.onclick = function() {
+						end.style.display = 'none';
+						start.style.display = 'block';
+						scoreCount = 0;
+						score.innerText = scoreCount;
+						
+						}
+//					end.style.display = 'block';
+//					//点击结束界面，回到开始界面
+//					end.onclick = function() {
+//						end.style.display = 'none';
+//						start.style.display = 'block';
+//						scoreCount = 0;
+//						score.innerText = scoreCount;
+//					}
+//					clearInterval(timer2);
+				}
+			}, 100);
+		}
+
+		//③img事件：随机出狼，点击事件
+		//imgArr:获得图片名的字母  元素控制概率
+		////概率：h:75%  x:25%
+		var imgArr = ['x', 'h', 'h', 'h'];
+		//图片随机出现的位置
+		var timer2;
+		//积分
+		var scoreCount = 0;
+		//图片出现
+		var imgAppear;
+		//图片消失
+		var imgDisappear;
+		//点击图片
+		var hit;
+		//随机出狼
+		function wolf(num){
+			var imgNum = 0;
+			var imgNum1 = 5;
+			var imgStyle = imgArr[random(0, 3)];
+			//图片出现
+			imgAppear = setInterval(function() {
+				imgs[num].src = 'img/' + imgStyle + imgNum + '.png';
+				imgNum++;
+				if(imgNum == 5) {
+					clearInterval(imgAppear);
+					//图片消失
+					imgDisappear = setInterval(function() {
+						imgNum1--;
+						imgs[num].src = 'img/' + imgStyle + imgNum1 + '.png';
+						if(imgNum1 == 0) {
+							clearInterval(imgDisappear);
+							imgs[num].src = '';
+						}
+					}, 100);
+				}
+			}, 100);
+			hitImg(imgStyle,num);
+		}
+		//图片点击事件
+		function hitImg(imgStyle,num){
+			//点击图片
+			for(var i = 0; i < imgs.length; i++) {
+				imgs[i].index = i;
+				imgs[i].onclick = function() {
+					//点击后会出现图片6-9
+					var imgHitBig = 5;
+					if(this.index == num) {
+						clearInterval(imgAppear);
+						clearInterval(imgDisappear);
+						this.src = '';
+						clearInterval(hit);
+						hit = setInterval(function() {
+							imgHitBig++;
+							imgs[num].src = 'img/' + imgStyle + imgHitBig + '.png';
+							if(imgHitBig == 9) {
+								clearInterval(hit);
+								imgs[num].src = '';
+							}
+						}, 100)
+					}
+					//判断得分
+					if(imgStyle == 'h') {
+						scoreCount += 10;
+					} else {
+						scoreCount -= 10;
+					}
+						score.innerHTML = scoreCount;
+					}
+				}
+		}
+		function imgEvent() {
+			timer2 = setInterval(function() {
+				var num = 0;
+				num = random(0, 8);
+				wolf(num);
+			}, 1000);
+		}
+
+		
+
+		startGame.onclick = function() {
+			start.style.display = 'none';
+			cutPro();
+			//img出现
+			imgEvent();
+
+		}
+	</script>
+
+</html>
