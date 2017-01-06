@@ -1,0 +1,417 @@
+.pageFour {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	overflow: hidden;
+	left: 0;
+	margin: auto;
+}
+.pageFour>img{
+	display: block;
+}
+
+#wop {
+	width: 100%;
+	text-align: center;
+	color: white;
+	z-index: 9;
+	letter-spacing: 5px;
+	position: absolute;
+	top: 33%;
+	font: bold 20px/25px "微软雅黑";
+}
+
+#wop span:nth-child(1) {
+	opacity: 1;
+	transition: all 1.75s ease-in 0s;
+	-webkit-transition: all 1.75s ease-in 0s;
+	position: absolute;
+	top: 0;
+	left: 42%;
+	margin-left: -85px;
+}
+
+#wop span:nth-child(2) {
+	opacity: 1;
+	transition: all 1.75s ease-in 0s;
+	-webkit-transition: all 1.75s ease-in 0s;
+	position: absolute;
+	top: 0;
+	left: 25px;
+	/*margin-left: -85px;*/
+}
+
+#circle {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	-webkit-animation: cricle 2.5s linear;
+	-webkit-transform: scale(0.059);
+}
+
+#circle img {
+	width: 100%;
+}
+
+.wwrop {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	background: url(../img/pointlight.png) no-repeat;
+	background-position: 50px 50px;
+	background-size: 80% 80%;
+	-webkit-transform: scale(0);
+	-webkit-transition: all 2s linear 1s;
+	z-index: 2;
+}
+
+/*.wwrop1 {
+	-webkit-transform: scale(1);
+	background-size: 115% 107%;
+}*/
+
+.wwrop div {
+	position: absolute;
+	border-radius: 50%;
+	z-index: 9;
+}
+
+.wwrop div:nth-child(1) {
+	left: 45%;
+	top: 45%;
+	width: 17.96875%;
+	height: 115px;
+	background: url(../img/liuyong.png) no-repeat;
+	background-size: 100% 100%;
+	-webkit-transform: scale(0);
+}
+
+.wwrop div:nth-child(2) {
+	left: 45%;
+	top: 45%;
+	width: 21.09375%;
+	height: 135px;
+	background: url(../img/gy.png) no-repeat;
+	background-size: 100% 100%;
+	-webkit-transform: scale(0);
+}
+
+.wwrop div:nth-child(3) {
+	left: 45%;
+	top: 45%;
+	width: 20.46875%;
+	height: 131px;
+	background: url(../img/aluo.png) no-repeat;
+	background-size: 100% 100%;
+	-webkit-transform: scale(0);
+}
+
+.wwrop div:nth-child(4) {
+	left: 45%;
+	top: 45%;
+	width: 24.21875%;
+	height: 155px;
+	background: url(../img/shenxiaohui.png) no-repeat;
+	background-size: 100% 100%;
+	-webkit-transform: scale(0);
+}
+
+.wwrop div:nth-child(5) {
+	left: 45%;
+	top: 45%;
+	width: 21.25%;
+	height: 136px;
+	background: url(../img/madong.png) no-repeat;
+	background-size: 100% 100%;
+	-webkit-transform: scale(0);
+}
+
+.wwrop div:nth-child(6) {
+	left: 45%;
+	top: 45%;
+	width: 17.96875%;
+	height: 115px;
+	background: url(../img/wangzhuang.png) no-repeat;
+	background-size: 100% 100%;
+	-webkit-transform: scale(0);
+}
+
+.wwrop div:nth-child(7) {
+	left: 45%;
+	top: 45%;
+	width: 19.53125%;
+	height: 125px;
+	background: url(../img/wqg.png) no-repeat;
+	background-size: 100% 100%;
+	-webkit-transform: scale(0);
+}
+
+.wwrop div:nth-child(8) {
+	left: 45%;
+	top: 45%;
+	width: 19.53125%;
+	height: 125px;
+	background: url(../img/wxf.png) no-repeat;
+	background-size: 100% 100%;
+	-webkit-transform: scale(0);
+}
+
+.wwrop div:nth-child(9) {
+	left: 81%;
+	top: 8%;
+	width: 10px;
+	height: 85px;
+	/*background:Aquamarine;*/
+	opacity: 0.55;
+}
+
+.wwrop div:nth-child(10) {
+	left: 63.5%;
+	top: 73.1%;
+	width: 10px;
+	height: 57px;
+}
+
+.wwrop div:nth-child(11) {
+	left: 11%;
+	top: 1.5%;
+	width: 5px;
+	height: 55px;
+	/*background:LightSlateBlue;*/
+	opacity: 0.6;
+}
+
+.wwrop div:nth-child(12) {
+	left: 42%;
+	top: 31%;
+	width: 5px;
+	height: 115px;
+}
+
+.wwrop div:nth-child(13) {
+	left: 23.5%;
+	top: 87.5%;
+	width: 10px;
+	height: 115px;
+}
+
+.wwrop div:nth-child(14) {
+	left: 85.5%;
+	top: 83.5%;
+	width: 10px;
+	height: 25px;
+}
+
+.wwrop div:nth-child(15) {
+	left: 20%;
+	top: 72.5%;
+	width: 5px;
+	height: 35px;
+}
+
+.wwrop div:nth-child(16) {
+	left: 8.6%;
+	top: 36.9%;
+	width: 5px;
+	height: 5px;
+}
+
+.wwrop div:nth-child(17) {
+	left: 30%;
+	top: 38.5%;
+	width: 5px;
+	height: 25px;
+}
+
+.wwrop div:nth-child(18) {
+	left: 68%;
+	top: 51.2%;
+	width: 5px;
+	height: 35px;
+}
+
+.wwrop div:nth-child(19) {
+	left: 54%;
+	top: 29.5%;
+	width: 10px;
+	height: 45px;
+}
+
+.wwrop div:nth-child(20) {
+	left: 59.5%;
+	top: 6.5%;
+	width: 10px;
+	height: 25px;
+}
+
+.wwrop div:nth-child(21) {
+	left: 8%;
+	top: 56.2%;
+	width: 10px;
+	height: 95px;
+}
+
+.wwrop div:nth-child(22) {
+	left: 94%;
+	top: 22.5%;
+	width: 7.03125%;
+	height: 45px;
+}
+
+.wwrop div:nth-child(23) {
+	left: 69.5%;
+	top: 39.6%;
+	width: 5px;
+	height: 66px;
+}
+
+.wwrop p {
+	position: absolute;
+	bottom: 13%;
+	left: 35%;
+	-webkit-transition: all 2s linear;
+	opacity: 0;
+	width: 35%;
+	z-index: 13;
+}
+
+#line {
+	position: absolute;
+	width: 9%;
+	height: 4.8%;
+	top: 50%;
+	left: 50%;
+	margin-left: -4.5%;
+	margin-top: -5.7%;
+}
+
+#line li {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform-origin: left;
+	height: 1px;
+	opacity: 0.7;
+}
+
+#line p {
+	float: right;
+	width: 0%;
+	height: 100%;
+	background: gold;
+	-webkit-transition: all 1.5s;
+}
+
+#wplayer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	-webkit-transform: scale(0);
+	overflow: hidden;
+	-webkit-transition: all 1s ease-in-out;
+}
+#x{
+	position: absolute;
+	left: 5%;
+	top: 8%;
+	z-index: 9999;
+	opacity: 0;
+	transition: 0.5s;
+	width: 15%;
+}
+#winner{
+	position: relative;
+	width: 1000%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+#winner li {
+	width: 10%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	position: relative;
+}
+
+#winner li div {
+	width: 100%;
+	color: white;
+	position: absolute;
+	top: 30%;
+	text-align: center;
+}
+
+#winner li img {
+	display: block;
+	padding: 0;
+	width: 50%;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+#winner li div h4 {
+	font-size: 25px;
+	font-weight: normal;
+	line-height: 60px;
+}
+
+#winner li div p {
+	font-size: 15px;
+}
+#left {
+	position: absolute;
+	width: 4%;
+	left: 3%;
+	top: 41%;
+	z-index: 999;
+	display: none;
+}
+
+#right {
+	position: absolute;
+	width: 4%;
+	right: 3%;
+	top: 41%;
+	z-index: 999;
+	display: none;
+}
+#left2 {
+	position: absolute;
+	width: 10%;
+	height: 10%;
+	left: 1%;
+	top: 48%;
+	z-index: 9999;
+	display: none;
+}
+
+#right2 {
+	position: absolute;
+	width: 10%;
+	height: 10%;
+	right: 1%;
+	top: 48%;
+	z-index: 9999;
+	display: none;
+}
+@media screen and (max-height:1000px) {
+	#left {
+		position: absolute;
+		width: 5%;
+		left: 2%;
+		top: 49%;
+		z-index: 999;
+	}
+	#right {
+		position: absolute;
+		width: 5%;
+		right: 2%;
+		top: 49%;
+		z-index: 999;
+	}
+}

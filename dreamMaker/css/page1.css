@@ -1,0 +1,326 @@
+.pageOne {
+	width: 100%;
+	height: 100%;
+	max-width: 414px;
+	left: 0;
+	position: absolute;
+	overflow: hidden;
+	/*background-color: cadetblue;*/
+}
+
+.pageOne img {
+	width: 100%;
+	position: absolute;
+}
+
+.pa {
+	position: absolute;
+}
+
+.star {
+	width: 100%;
+	height: 100%;
+}
+
+.star img {
+	position: absolute;
+}
+
+.star img:nth-child(1) {
+	-webkit-animation: 3s star1 infinite;
+}
+
+.star img:nth-child(2) {
+	-webkit-animation: 3s star2 infinite;
+}
+
+.star img:nth-child(3) {
+	-webkit-animation: 3s star3 infinite;
+}
+
+@-webkit-keyframes star1 {
+	from {
+		-webkit-transform: translate3d(-200px, 250px, 0);
+	}
+	to {
+		-webkit-transform: translate3d(600px, 600px, 0);
+	}
+}
+
+@-webkit-keyframes star2 {
+	from {
+		-webkit-transform: translate3d(600px, 300px, 45px);
+	}
+	to {
+		-webkit-transform: translate3d(-200px, 0px, 45px);
+	}
+}
+
+@-webkit-keyframes star3 {
+	from {
+		-webkit-transform: translate3d(500px, 300px, 0);
+	}
+	to {
+		-webkit-transform: translate3d(-500px, 677px, 0);
+	}
+}
+
+.logo {
+	width: 280px;
+	height: 280px;
+	/*background-color: white;*/
+	top: 10%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.logo img {
+	position: absolute;
+	-webkit-transition: all 1s;
+}
+
+.logo img:nth-child(1) {
+	width: 100%;
+	right: -130%;
+	/*-webkit-animation: 3s img1 1 forwards;*/
+}
+
+.logo2 img:nth-child(1) {
+	width: 100%;
+	right: 0;
+	/*-webkit-animation: 3s img1 1 forwards;*/
+}
+
+.logo img:nth-child(2) {
+	width: 47.56%;
+	left: -170%;
+}
+
+.logo2 img:nth-child(2) {
+	width: 47.56%;
+	left: 0;
+}
+
+.logo img:nth-child(3) {
+	width: 99%;
+	top: 300%;
+}
+
+.logo2 img:nth-child(3) {
+	width: 99%;
+	top: 41.72%;
+}
+
+.logo img:nth-child(4) {
+	width: 72.41%;
+	top: 300%;
+	left: 300px;
+}
+
+.logo2 img:nth-child(4) {
+	width: 72.41%;
+	top: 61.5%;
+	left: 27.5%;
+}
+
+.logo img:nth-child(5) {
+	width: 25%;
+	top: -120%;
+	left: 300px;
+}
+
+.logo2 img:nth-child(5) {
+	width: 25%;
+	left: 22.5%;
+	top: 22.5%;
+}
+
+.logo img:nth-child(6) {
+	width: 27.5%;
+	top: -150%;
+	left: 120px;
+	-webkit-animation: 3s img6 1 forwards;
+}
+
+.logo2 img:nth-child(6) {
+	width: 27.5%;
+	left: 38.5%;
+	top: 0;
+}
+
+.logo img:nth-child(7) {
+	width: 21%;
+	top: -120%;
+	left: 300px;
+}
+
+.logo2 img:nth-child(7) {
+	width: 21%;
+	left: 0;
+	top: 37%;
+}
+
+.logo img:nth-child(8) {
+	width: 12.2%;
+	top: -120%;
+	left: 300px;
+}
+
+.logo2 img:nth-child(8) {
+	width: 12.2%;
+	left: 53.159%;
+	top: 0;
+}
+
+.logo img:nth-child(9) {
+	width: 8%;
+	top: -150%;
+	left: 120px;
+}
+
+.logo img:nth-child(9) {
+	width: 8%;
+	left: 120px;
+	top: -150px;
+}
+
+.logo2 img:nth-child(9) {
+	width: 8%;
+	left: 26.5%;
+	top: 42.5%;
+}
+
+.logo .pd {
+	width: 12%;
+	left: 4.5%;
+	top: 41.5%;
+	opacity: 0;
+	-webkit-transform: scale(9) translateX(-70px);
+}
+
+.logo2 .pd2 {
+	opacity: 1;
+	-webkit-transform: scale(1) translateX(0px);
+}
+
+.logo .pr {
+	width: 40%;
+	left: 23%;
+	top: 38.5%;
+	opacity: 0;
+	-webkit-transform: scale(7) translateX(0px);
+}
+
+.logo2 .pr2 {
+	opacity: 1;
+	-webkit-transform: scale(1) translateX(0px);
+}
+
+.logo .pe {
+	width: 13.5%;
+	left: 38.5%;
+	top: 38.5%;
+	opacity: 0;
+	-webkit-transform: scale(9) translateX(40px);
+}
+
+.logo2 .pe2 {
+	opacity: 1;
+	-webkit-transform: scale(1) translateX(0px);
+}
+
+.logo .pm {
+	width: 46%;
+	left: 53%;
+	top: 36.6%;
+	opacity: 0;
+	-webkit-transform: scale(7) translateX(70px);
+}
+
+.logo2 .pm2 {
+	opacity: 1;
+	-webkit-transform: scale(1) translateX(0px);
+}
+
+.logo .word {
+	width: 72%;
+	left: 27.1552%;
+	top: 88.1146%;
+	opacity: 0;
+	-webkit-transform: scale(9) translateX(100px);
+}
+
+.logo2 .word2 {
+	opacity: 1;
+	-webkit-transform: scale(1) translateX(0px);
+}
+
+.page1Title {
+	font: bold 41px/41px "微软雅黑";
+	color: white;
+	text-align: center;
+	top: 71.8%;
+	left: 0;
+	right: 0;
+	margin: auto;
+	display: none;
+	/*opacity: 0;*/
+}
+
+.blueStar {
+	width: 0px;
+	height: 0px;
+	top: 65%;
+	left: -26%;
+	right: 0;
+	margin: auto;
+	-webkit-transition: all 1s;
+}
+
+.blueStar2 {
+	width: 40%;
+}
+
+.pinkStar {
+	width: 0px;
+	height: 0px;
+	top: 100%;
+	right: 0;
+	margin: auto;
+	-webkit-transition: all 1s;
+}
+
+.pinkStar2 {
+	width: 100%;
+	top: 56%;
+}
+
+.slider {
+	position: absolute;
+	top: 95%;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 10%;
+	/*z-index: 11;*/
+	-webkit-animation: 1s slider infinite;
+}
+
+@-webkit-keyframes slider {
+	0% {
+		-webkit-transform: translateY(0px);
+	}
+	25% {
+		-webkit-transform: translateY(10px);
+	}
+	50% {
+		-webkit-transform: translateY(20px);
+	}
+	75% {
+		-webkit-transform: translateY(10px);
+	}
+	100% {
+		-webkit-transform: translateY(0px);
+	}
+}
