@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 343px;
+				height: 480px;
+				margin: 50px auto;
+				background: url(img/bg.jpg);
+				position: relative;
+				overflow: hidden;
+			}
+			/*开始菜单*/
+			
+			.gameMenu {
+				width: 343px;
+				height: 480px;
+				position: relative;
+			}
+			
+			.score {
+				position: absolute;
+				top: 50px;
+				left: 47%;
+				z-index: 1;
+			}
+			
+			.head {
+				position: relative;
+				top: 150px;
+				left: 15%;
+			}
+			
+			.head_bird {
+				width: 40px;
+				height: 26px;
+				background: url(img/bird0.png);
+				position: absolute;
+				left: 188px;
+				top: 10px;
+			}
+			
+			.btns {
+				position: absolute;
+				bottom: 100px;
+				left: 36%;
+			}
+			
+			.head {
+				animation: headMove 500ms ease-in infinite;
+			}
+			
+			.head_bird {
+				animation: headBird 500ms linear infinite;
+			}
+			
+			@keyframes headMove {
+				0% {
+					top: 150px;
+				}
+				50% {
+					top: 130px;
+				}
+				100% {
+					top: 150px;
+				}
+			}
+			
+			@keyframes headBird {
+				0% {
+					background: url(img/bird0.png);
+				}
+				100% {
+					background: url(img/bird1.png);
+				}
+			}
+			/*草地*/
+			
+			.grass {
+				width: 800px;
+				position: absolute;
+				bottom: 41px;
+			}
+			
+			.grass>img {
+				float: left;
+			}
+			/*另一种草地运动*/
+			/*.grass {
+				animation: grassMove 4s linear infinite;
+			}
+			
+			@keyframes grassMove {
+				0%{
+					left: 0;
+				}
+				100% {
+					left: -343px;
+				}
+			}*/
+			
+			#content {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+			}
+			
+			#flyBird {
+				position: absolute;
+				top: 40%;
+				left: 10%;
+			}
+			
+			#pipes {
+				height: 423px;
+				list-style-type: none;
+			}
+			
+			.pipe {
+				width: 60px;
+				height: 423px;
+				position: absolute;
+			}
+			
+			.up_pipe {
+				width: 62px;
+				/*height: 100px;*/
+				background: url(img/up_pipe.png) bottom no-repeat, url(img/up_mod.png) repeat-y;
+				position: absolute;
+				top: 0;
+			}
+			
+			.down_pipe {
+				width: 62px;
+				/*height: 100px;*/
+				background: url(img/down_pipe.png) top no-repeat, url(img/down_mod.png) repeat-y;
+				position: absolute;
+				bottom: 0;
+			}
+			/*结束*/
+			
+			/*#overMenu {
+				/*position: absolute;*/
+				/*top: 110px;*/
+				/*display: none;*/
+			/*}*/
+			#overImg{
+				position: absolute;
+				top: -50px;
+				left: 60px;
+				transition:all 1s cubic-bezier(0.2,-0.5,0.8,1.5);
+			}
+			#message{
+				width: 269px;
+				height: 135px;
+				position: absolute;
+				top: 500px;
+				left: 35px;
+				background: url(img/message.jpg);
+				transition:all 1s cubic-bezier(0.2,-0.5,0.8,1.5);
+			}
+			
+			#nowScore {
+				position: absolute;
+				right: 50px;
+				top: 38px;
+			}
+			
+			#bestScore {
+				position: absolute;
+				right: 50px;
+				top: 90px;
+			}
+			#ok{
+				width: 96px;
+				height: 33px;
+				position: absolute;
+				left: -120px;
+				top: 320px;
+				background: url(img/ok.jpg);
+				transition:all 1s cubic-bezier(0.2,-0.5,0.8,1.5);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<!--开始菜单-->
+			<div id="gameMenu" class="gameMenu">
+				<!--head要动-->
+				<div id="head" class="head">
+					<!--图片-->
+					<img src="img/head.jpg" />
+					<!--鸟（要换）-->
+					<span class="head_bird"></span>
+				</div>
+				<div id="btns" class="btns">
+					<img src="img/start.jpg" id="start" class="start_btns" />
+				</div>
+			</div>
+			<!--分数-->
+			<div id="score" class="score">
+				<img src="img/0.jpg" />
+			</div>
+			<!--草地-->
+			<div id="grass" class="grass">
+				<img src="img/slider.jpg" />
+				<img src="img/slider.jpg" />
+			</div>
+			<!--游戏内容-->
+			<div id="content">
+				<!--飞鸟-->
+				<img src="img/bird0.png" id="flyBird" />
+				<!--管道-->
+				<ul id="pipes">
+					<!--<li class="pipe">
+						<!--上管道-->
+					<!--<div class="up_pipe">-->
+
+					<!--</div>-->
+					<!--下管道-->
+					<!--<div class="down_pipe">-->
+
+					<!--</div>-->
+					<!--</li>-->
+				</ul>
+			</div>
+			<!--结束界面-->
+			<div id='overMenu'>
+				<img id="overImg" src="img/game_over.png" />
+				<div id="message">
+					<span id="nowScore">0</span>
+					<span id="bestScore">0</span>
+				</div>
+
+				<span id="ok"></span>
+			</div>
+
+			<!--音乐-->
+			<!--背景音乐-->
+			<audio id="gameMusic" src="music/game_music.mp3"></audio>
+			<!--点击音乐-->
+			<audio id="bulletMusic" src="music/bullet.mp3"></audio>
+			<!--结束音乐-->
+			<audio id="overMusic" src="music/game_over.mp3"></audio>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//封装函数 通过id获取元素
+		function getId(type) {
+			return document.getElementById(type);
+		}
+		//获取元素
+		var wrap = getId('wrap');
+		var gameMenu = getId('gameMenu');
+		var start = getId('start');
+		var gameMusic = getId('gameMusic');
+		var bulletMusic = getId('bulletMusic');
+		var overMusic = getId('overMusic');
+		var content = getId('content');
+		var flyBird = getId('flyBird');
+		var pipesUl = getId('pipes');
+		var overMenu=getId('overMenu');
+		var overImg=getId('overImg');
+		var message= getId('message');
+		var nowScore= getId('nowScore');
+		var bestScore= getId('bestScore');
+		var ok= getId('ok');
+		var score=getId('score');
+		//封装随机函数
+		function random(min, max) {
+			return parseInt(Math.random() * (max - min + 1) + min);
+		}
+		//为开始按钮绑定点击事件
+		start.onclick = function() {
+				//①开始菜单消失
+				gameMenu.style.display = 'none';
+				//②背景音乐响起
+				gameMusic.play();
+				//loop 属性规定当音频结束后将重新开始播放
+				gameMusic.loop = true;
+				//③小鸟下落
+				flyTimer = setInterval(birdFly, 30);
+				//④点击小鸟飞
+				content.onclick = function() {
+						//点击top-8
+						speed = -8;
+						//点击音效
+						bulletMusic.play();
+					}
+					//⑤生成管道
+				pipesTimer = setInterval(createPipes, 3500);
+				//⑥碰撞检测
+				setInterval(function() {
+					//获取li
+					var lis = pipesUl.getElementsByClassName('pipe');
+					for(var i = 0; i < lis.length; i++) {
+						//					console.log(lis[i].offsetParent.offsetLeft)
+						//当小鸟未通过pipe时判断是否碰撞
+						if(lis[i].offsetLeft + lis[i].offsetWidth > flyBird.offsetLeft) {
+							//						console.log(111);
+							//上管道碰撞检测
+							if(crash(flyBird, lis[i].firstElementChild)) {
+								console.log('撞了上管道');
+								//游戏结束
+								gameOver();
+								
+							}
+							if(crash(flyBird, lis[i].lastElementChild)) {
+								console.log('撞了下管道');
+								//游戏结束
+								gameOver();
+								
+							}
+						}
+					}
+				},15)
+
+			}
+			//草地移动
+		setInterval(grassMove, 30);
+		var grassLeft = 0;
+
+		function grassMove() {
+			grassLeft -= 2;
+			grass.style.left = grassLeft + 'px';
+			if(grassLeft < -343) {
+				grassLeft = 0;
+			}
+		}
+		//③小鸟下落
+		var speed = 0; //记录下落速度
+		var pres = 0; //记录上速度
+		var flyTimer = null;
+
+		function birdFly() {
+			speed += 0.5;
+			//设最大速度为8
+			if(speed > 8) {
+				speed = 8;
+			}
+			var birdTop = flyBird.offsetTop + speed;
+			//小鸟上升和下降分别赋予不同图片
+			if(pres > birdTop) {
+				flyBird.src = 'img/up_bird0.png'
+			} else {
+				flyBird.src = 'img/down_bird0.png'
+			}
+			//当小鸟落到地上时
+			if(birdTop > wrap.clientHeight - flyBird.offsetHeight - 55) {
+				birdTop = wrap.clientHeight - flyBird.offsetHeight - 55;
+				clearInterval(flyTimer);
+				//游戏结束
+				console.log('落地了');
+				gameOver();
+			}
+			//当小鸟到顶上时
+			if(birdTop < 0) {
+				birdTop = 0;
+				clearInterval(flyTimer);
+				//游戏结束
+				console.log('上天了')
+				gameOver();
+				
+			}
+			//修改小鸟的位置
+			flyBird.style.top = birdTop + 'px';
+			//将此时小鸟的高度赋给pres
+			pres = birdTop;
+		}
+		//⑤生成管道
+		var pipesTimer = null;
+
+		function createPipes() {
+			//创建一个管道
+			var li = document.createElement('li');
+			li.className = 'pipe';
+			li.style.left = pipesUl.offsetWidth + 'px';
+			pipesUl.appendChild(li);
+			//随机管子的高度
+			//上管道高度
+			var upHeight = random(50, 250);
+			//下管道高度
+			var downHeight = li.offsetHeight - upHeight - 120;
+
+			//创建上下管道
+			var upPipe = document.createElement('div');
+			var downPipe = document.createElement('div');
+			upPipe.className = 'up_pipe';
+			downPipe.className = 'down_pipe';
+			upPipe.style.height = upHeight + 'px';
+			downPipe.style.height = downHeight + 'px';
+			li.appendChild(upPipe);
+			li.appendChild(downPipe);
+
+			//管道移动
+			//可移动距离
+			var maxX = pipesUl.clientWidth;
+			var pipeMoveTimer = setInterval(function() {
+				maxX--;
+				li.style.left = maxX + 'px';
+				if(maxX < -li.offsetWidth) {
+					clearInterval(pipeMoveTimer);
+					pipesUl.removeChild(li);
+				}
+				//得分
+				if(maxX==0){
+					changeScore();
+				}
+			}, 15);
+		}
+		//得分
+		var num=0;
+		function changeScore(){
+			num++;
+			//清除原来的分数图片
+			score.innerHTML="";
+			//添加新图
+			if(num<10){
+				var img=document.createElement('img');
+				img.src="img/"+num+".jpg";
+				score.appendChild(img);
+			}else{
+				//当得分为两位数以上时
+				//十位上的图
+				score.style.left='160px';
+				var img1=document.createElement('img');
+				img1.src="img/"+parseInt(num/10)+".jpg";
+				score.appendChild(img1);
+				//个位上的图
+				var img2=document.createElement('img');
+				img2.src="img/"+num%10+".jpg";
+				score.appendChild(img2);
+			}
+		}
+		//碰撞检测，撞了返回true否则返回false;
+		function crash(obj1, obj2) {
+			var bool = true;
+			//获取obj1(flyBird)的上下左右边距
+			var birdL = obj1.offsetLeft;
+			var birdT = obj1.offsetTop;
+			var birdR = obj1.offsetLeft + obj1.offsetWidth;
+			var birdB = obj1.offsetTop + obj1.offsetHeight;
+			//			console.log(birdL,birdT,birdR,birdB)
+			//获取obj2(pipe)的上下左右边距
+			var pipeL = obj2.parentElement.offsetLeft; //
+			var pipeT = obj2.offsetTop;
+			var pipeR = obj2.parentElement.offsetLeft + obj2.offsetWidth; //
+			var pipeB = obj2.offsetTop + obj2.offsetHeight;
+			//			console.log(pipeL,pipeT,pipeR,pipeR);
+			if(!(birdB < pipeT || birdL > pipeR || birdT > pipeB || birdR < pipeL)) {
+				bool = true;
+			} else {
+				bool = false;
+			}
+			return bool;
+		}
+		//小鸟挂掉动画
+		function die(){
+			flyBird.style.transition="all 0.5s linear"
+			flyBird.src="img/down_bird1.png"
+			flyBird.style.top='392px'
+		}
+		//游戏结束
+		function gameOver(){
+//			overMenu.style.display='block';
+			overImg.style.top='120px';
+			message.style.top='180px';
+			ok.style.left='118px';
+			//背景音乐停止
+			gameMusic.pause();
+			//结束音乐响起
+			overMusic.play();
+			//小鸟挂掉动画
+			die();
+			//停止所有的计时器 
+			//注: 当网页加载完成后, 创建的计时器的id是递增的, 
+			//只要能拿到最后一个计时器的id, 遍历所有的小于id的计时器, 
+			//依次清除, 即可做到清除所有计时器 
+			var end=setInterval(function(){
+				for(var i=1;i<=end;i++){
+					clearInterval(i);
+				}
+			},1);
+			//显示得分
+			nowScore.innerHTML=num;
+			//获取最好的成绩
+			if(localStorage.bestScore){
+				var best=localStorage.bestScore>num ? localStorage.bestScore:num;
+				bestScore.innerHTML=best;
+				localStorage.bestScore=best;
+			}else{
+				bestScore.innerHTML=num;
+				localStorage.bestScore=num;
+			}
+		}
+		//回到开始界面
+		ok.onclick=function(){
+			location.reload();
+		}
+	</script>
+
+</html>

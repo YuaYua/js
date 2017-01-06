@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#fontBox {
+				width: 420px;
+				height: 540px;
+				background-color: gainsboro;
+				margin: 10px auto;
+				border-radius: 10px;
+				position: relative;
+			}
+			
+			#time {
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				font-size: 1.5em;
+			}
+			
+			#score {
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				font-size: 1.5em;
+			}
+			
+			#title {
+				position: absolute;
+				font-size: 10em;
+				top: 90px;
+				left: 126px;
+			}
+			
+			#tip {
+				width: 340px;
+				position: absolute;
+				top: 270px;
+				left: 50px;
+				font-size: 1.8em;
+			}
+			
+			#text {
+				list-style-type: none;
+				position: absolute;
+				bottom: 80px;
+				left: 10px;
+				font-size: 5em;
+			}
+			
+			#text>li {
+				float: left;
+			}
+			#reset{
+				position: absolute;
+				font-size: 2em;
+				bottom:10px ;
+				left: 50%;
+				margin-left: -65px;
+				border: 1px solid darkkhaki;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="fontBox">
+			<div id="time">剩余时间：10s</div>
+			<div id="score">得分：0</div>
+			<div id="title">红</div>
+			<div id="tip">根据上面的字的颜色从下面选择正确的字,选择正确自动开始</div>
+			<ul id="text">
+				<li>红</li>
+				<li>绿</li>
+				<li>蓝</li>
+				<li>黄</li>
+				<li>黑</li>
+			</ul>
+			<div id="reset" onclick="reStart()">
+				重新开始
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//获得页面可用节点
+		var time = document.querySelector("#time");
+		
+		time.onclick=function(){
+			location.reload();
+		}
+		
+		
+		var score = document.querySelector("#score");
+		var title = document.querySelector("#title");
+		var tip = document.querySelector("#tip");
+		var selects = document.querySelectorAll('#text>li');
+		var isBegin = false;
+
+		//设置相关全局变量
+		var timeNum = 10;
+		var scoreNum = 0;
+		var fontArr = ['红', '绿', '蓝', '黄', '黑'];
+		var colorArr = ['red', 'green', 'blue', 'yellow', 'black'];
+		var colorIndex=undefined;
+		//游戏结束
+		function gameOver() {
+			if(scoreNum < 3) {
+				alert('你是猪吗？');
+			} else if(scoreNum < 5) {
+				alert('哎呦，不错哦！');
+			} else if(scoreNum < 10) {
+				alert("和我就差一丢丢");
+			} else {
+				alert("除了你我们都不配有眼睛！");
+			}
+		}
+		//需要一个能产生随机数[0,4]的函数
+		function randomNum(max) {
+			//max=5时，产生的是[0,4]之间的随机数
+			//parseInt(Math.random()*(max-min+1))+min;
+			return parseInt(Math.random() * max);
+		}
+
+		//设置"问题"字与颜色
+		function setTitle() {
+			//先获取两个随机数
+			var tempFont = randomNum(5);
+			var tempColor = randomNum(5);
+			//设置title节点的 字与颜色
+			title.innerText = fontArr[tempFont];
+			title.style.color = colorArr[tempColor];
+			//保存颜色所在索引
+			colorIndex=tempColor;
+		}
+
+		//需要一个装有不重复的随机数的数组（随机数0~4）
+		function randomArr() {
+			var arr = [];
+			while(arr.length < 5) {
+				//1、拿到随机数
+				var tempNum = randomNum(5);
+				//设置一个Boolean类型数，记录是否重复了
+				var isExsit = false;
+				//2、判断随机数数组中是否包含
+				for(var i = 0; i < arr.length; i++) {
+					if(tempNum == arr[i]) {
+						isExsit = true;
+						//如果匹配到第一个，就没有必要接着比较了
+						break;
+					}
+				}
+				//3、通过存在与否的标记，决定是否添加随机数
+				if(!isExsit) {
+					arr.push(tempNum);
+				}
+			}
+			return arr;
+		}
+		//		console.log(randomArr());
+
+		//设置“答案”字与颜色
+		function setSelects() {
+			//1获得两个随机数组
+			var tempFArr = randomArr();
+			var tempCArr = randomArr();
+			//循环赋值五个 字与颜色
+			for(var i = 0; i < selects.length; i++) {
+				//赋值字
+				selects[i].innerText = fontArr[tempFArr[i]];
+				//赋值颜色
+				selects[i].style.color = colorArr[tempCArr[i]];
+			}
+		}
+
+		var timer = setInterval(function() {
+			if(isBegin) {
+				//时间一秒减一
+				timeNum--;
+				//给页面赋值剩余时间
+				time.innerText = "剩余时间：" + timeNum + "s";
+				//如果时间为零，进行结束游戏相关操作
+				if(timeNum == 0) {
+					//清自身定时器
+					clearInterval(timer);
+					timer = null;
+					//延迟调用游戏结束函数（结束函数中有alert，会使页面卡主）
+					var timeout = setTimeout(function() {
+						//清除一次性定时器
+						clearTimeout(timeout);
+						timeout = null;
+						//游戏状态结束
+						isBegin=false;
+						//调用结束游戏方法
+						gameOver();
+					}, 10);
+				}
+			}
+		}, 1000);
+
+		for(var i=0;i<selects.length;i++){
+			selects[i].onclick=function(){
+				//根据title颜色索引在fontArr数组中找出对应的字
+				//第①条的依据：colorArr和fontArr是一一对应的两个数组
+				//和点击的this.innerText的字对比
+				var titleFont=fontArr[colorIndex];
+				//"题目"颜色对应的字和“答案”的内容匹配上，且时间还有的情况下，才执行以下逻辑
+				if(titleFont==this.innerText && timeNum>0){
+					//让游戏开始
+					isBegin=true;
+					//分数+1
+					scoreNum++;
+					//刷新页面分数
+					score.innerText="得分："+scoreNum;
+					//重置游戏界面
+					initGame();
+				}
+			}
+		}
+		
+		
+
+		function initGame() {
+			setTitle();
+			setSelects();
+		}
+		initGame();
+		function reStart(){
+			scoreNum=0;
+			score.innerText="得分："+scoreNum;
+			timeNum=10;
+			time.innerText = "剩余时间：" + timeNum + "s";
+			initGame();
+			//重置定时器
+			isBegin=false;
+			timer=null;
+		}
+	</script>
+
+</html>

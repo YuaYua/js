@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#main {
+				width: 400px;
+				height: 800px;
+				border: 2px solid darkorchid;
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			#container {
+				width: 100%;
+				height: 800px;
+				position: relative;
+				top: -100px;
+				background-color: white;
+			}
+			
+			.row {
+				width: 100%;
+				height: 200px;
+			}
+			
+			.cell {
+				width: 100px;
+				height: 200px;
+				float: left;
+			}
+			
+			.black {
+				background-color: black;
+			}
+			
+			#score {
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--主体main4*4-->
+		<h1 id="score">0</h1>
+		<div id="main">
+			<div id="container"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	var speed=2;//加速
+		var clock = null; //定时器操作句柄
+		var state = 0 //初始化0，进行中1，暂停2，失败3
+			//初始化
+		function init() {
+			for(var i = 0; i < 4; i++) {
+				crow();
+			}
+
+			$('main').onclick = function(ev) {
+				judge(ev);
+			}
+		}
+
+		function judge(ev) {
+			if(state == 3) {
+				alert('失败者禁入');
+				return;
+			}
+			//事件委托
+			//target 事件属性可返回事件的目标节点（触发该事件的节点），如生成事件的元素、文档或窗口。
+			//判断点击的是不是黑块，不是，就结束游戏，是就将黑块变成白块
+			if(ev.target.className.indexOf('black') == -1) {
+				fail();
+			} else {
+				ev.target.className = 'cell';
+				//最下面一个
+				ev.target.parentNode.pass = 1;
+				score();
+			}
+			ev.target.className = 'cell';
+
+		}
+		//start()启动
+		function start() {
+			clock = window.setInterval('move()', 30);
+		}
+
+		//动画
+		function move() {
+			var con = $('container');
+			//getComputedStyle是一个可以获取当前元素所有最终使用的CSS属性值
+			var top = parseInt(window.getComputedStyle(con, null)['top']);
+
+			if(speed+top>0){//一步走过火
+				top=0;
+			}else{
+				top+=speed;//调节每次下降的速度
+			}
+			con.style.top =top +'px';
+			if(top == 0) {
+				crow();
+				//当添加新的div时top=100px,得恢复
+				con.style.top = '-200px';
+				drow();
+			} else if(top == (-200+speed)) {
+				var rows = con.childNodes;
+				if((rows.length == 5) && (rows[rows.length-1].pass !==1)) {
+					fail();
+				
+				}
+			}
+		}
+
+		//加速
+		
+		function jiasu(){
+			speed+=2;
+			if(speed==20){
+				alert('你的电脑太卡了');
+			}
+		}
+		
+		//第一个没点,失败
+		function fail() {
+			clearInterval(clock);
+			state = 3;
+			alert('游戏结束');
+		}
+
+		//计分
+		function score() {
+			var newscore=parseInt($('score').innerHTML) + 1;
+			$('score').innerHTML = newscore;
+			if(newscore%10==0){
+				jiasu();
+			}
+		}
+
+		//创建div.row
+		function crow() {
+			//调用cdiv函数创建div
+			var row = cdiv("row");
+			var classes = creareSn();
+			var con = $("container");
+			//创建初始的四个
+			for(var i = 0; i < 4; i++) {
+				//appendChild() 方法向节点添加最后一个子节点。
+				row.appendChild(cdiv(classes[i]));
+			}
+			//添加新的div
+			//因为添加div使用的是appendChild在下面添加
+			//需要的是在上面添加使用insertBefore
+			//这时需要判断是否有第一个div即firstChild
+			if(con.firstChild == null) {
+				con.appendChild(row);
+			} else {
+				con.insertBefore(row, con.firstChild);
+			}
+		}
+		//删除最后一行
+		function drow() {
+			var con = $('container');
+			if(con.childNodes.length == 6) {
+				con.removeChild(con.lastChild);
+			}
+		} //创建div,className是其类名
+		function cdiv(className) {
+			var div = document.createElement("div");
+			div.className = className;
+			return div;
+		}
+
+		//返回一个数组，随机其中一个单一。值为'cell black',其他三个皆为cell
+		function creareSn() {
+			var arr = ['cell', 'cell', 'cell', 'cell'];
+			var i = Math.floor(Math.random() * 4);
+			arr[i] = 'cell black';
+			return arr;
+		}
+
+		//按id获取对象
+		function $(id) {
+			return document.getElementById(id);
+		}
+		init();
+		start();
+	</script>
+
+</html>

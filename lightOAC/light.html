@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 500px;
+				height: 500px;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			#box>div {
+				width: 100px;
+				height: 100px;
+				box-sizing: border-box;
+				border: 1px solid cornsilk;
+				background: url(img/close.png);
+				/*background: green;*/
+				float: left;
+			}
+			input{
+				border: none;
+				height: 50px;
+				width: 70px;
+				font-size: 16px;
+				display: block;
+				margin: 50px auto;
+			}
+			#Jinx{
+				position: absolute;
+				top: 107px;
+				left: 50%;
+				margin-left: -150px;
+				display: none;
+				box-shadow:5px 5px 20px #FFF8DC;
+				
+			}
+			/*close==red*/
+			/*open=blue*/
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div id="Jinx">
+			<img src="img/cf76a3d024dcb59a7d80117db347cc52.png" alt="" />
+		</div>
+		<input type="button" name="" id="" value="重置" onclick="clearall()"/>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		//		var light=[];
+		var div = box.getElementsByTagName('div');
+		//成功
+		function cheak(){
+			var win = 1;
+			for(var i = 0; i < 25; i++) {
+				console.log(div[i].style.background);
+				if(div[i].style.background!='url("img/open.png")') {
+//					console.log(div[i]);
+					win = 0;
+				}
+			}
+			console.log(win);
+			if(win == 1) {
+				Jinx.style.display='block';
+			}
+		}
+		//重置
+		function clearall() {
+			for(var i = 0; i < 25; i++) {
+				div[i].style.background = 'url(img/close.png)';
+			}
+			Jinx.style.display='none';
+		}
+		for(var i = 0; i < 25; i++) {
+			//			div.index=light.length;
+			//			console.log(div.index);
+			//			light.push(div[div.index]);
+			//			console.log(light.length);
+			//			console.log(light);
+			div[i].index = i;
+			console.log(div.length);
+			div[i].onclick = function() {
+				//				alert('hh')
+				div[i] = event.target;
+				console.log(div[i]);
+				//				console.log(div[i].index)
+				if(div[i].style.background == 'url("img/open.png")') {
+					div[i].style.background = 'url(img/close.png)';
+				} else {
+					div[i].style.background = 'url(img/open.png)';
+				}
+				if(div[i].index >= 5) {
+					var toplight = div[div[i].index - 5];
+					toplight.style.background = toplight.style.background == 'url("img/open.png")' ? 'url(img/close.png)' : 'url(img/open.png)';
+				}
+				if(div[i].index + 5 <div.length) {
+					var bottomlight = div[div[i].index + 5];
+					bottomlight.style.background = bottomlight.style.background == 'url("img/open.png")' ? 'url(img/close.png)' : 'url(img/open.png)';
+				}
+				if(div[i].index % 5 != 0) {
+					var leftlight = div[div[i].index - 1];
+					console.log(leftlight);
+					leftlight.style.background = leftlight.style.background == 'url("img/open.png")' ? 'url(img/close.png)' : 'url(img/open.png)';
+				}
+				if(div[i].index % 5 != 4) {
+					var rightlight = div[div[i].index + 1];
+					rightlight.style.background = rightlight.style.background == 'url("img/open.png")' ? 'url(img/close.png)' : 'url(img/open.png)';
+				}
+				cheak();
+			}
+		}
+	</script>
+
+</html>
