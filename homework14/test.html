@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 800px;
+				height: 600px;
+				border: 5px solid black;
+				position: relative;
+			}
+			
+			.move {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				border-radius: 50%;
+			}
+			
+			.move1 {
+				top: 0;
+				left: 0;
+				background-color: aqua;
+			}
+			
+			.move2 {
+				top: 200px;
+				left: 100px;
+				background-color: palevioletred;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="move move1">
+
+			</div>
+			<div class="move move2">
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap = document.getElementById('wrap');
+		var moves = wrap.querySelectorAll('div');
+		//获得可移动的最大距离
+		var maxX = wrap.clientWidth - moves[0].offsetWidth;
+		var maxY = wrap.clientHeight - moves[0].offsetHeight;
+		var osTop = [];
+		var osLeft = [];
+		console.log(osTop, osLeft)
+			//运动速率
+		var speed = 10;
+		var timer = null;
+		var ttb = [];
+		var ltr = [];
+		for(var i = 0; i < moves.length; i++) {
+			//获取moves[i] 的初始位置
+			osTop[i] = moves[i].offsetTop;
+			osLeft[i] = moves[i].offsetLeft;
+			ttb[i] = true;
+			ltr[i] = true;
+
+			//			设move[1]为目标
+			wrap.onmouseenter = function() {
+				//				console.log(moves)
+				timer = setInterval(function() {
+					for(var j = 0; j < moves.length; j++) {
+//						console.log(j)
+
+						if(ttb[j]) {
+							osTop[j] += speed;
+							moves[j].style.top = osTop[j] + 'px';
+							if(osTop[j] >= maxY) {
+								ttb[j] = false;
+							}
+						} else {
+							osTop[j] -= speed;
+							moves[j].style.top = osTop[j] + 'px';
+							if(osTop[j] == 0) {
+								ttb[j] = true;
+							}
+						}
+						if(ltr[j]) {
+							osLeft[j] += speed;
+							moves[j].style.left = osLeft[j] + 'px';
+							if(osLeft[j] >= maxX) {
+								ltr[j] = false;
+							}
+						} else {
+							osLeft[j] -= speed;
+							moves[j].style.left = osLeft[j] + 'px';
+							if(osLeft[j] <= 0) {
+								ltr[j] = true;
+							}
+						}
+					}
+				}, 30)
+			}
+			wrap.onmouseleave = function() {
+				clearInterval(timer);
+			}
+		}
+	</script>
+
+</html>

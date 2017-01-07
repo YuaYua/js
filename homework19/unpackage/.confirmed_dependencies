@@ -1,0 +1,30 @@
+{
+	"index.html": {
+		"resources": [
+			"pinch.html",
+			"pinch1.html"
+		],
+		"refer": [
+			"pinch.html",
+			"pinch1.html"
+		]
+	},
+	"pinch.html": {
+		"resources": [
+			"js/hammer.min.js",
+			"index.html"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"pinch1.html": {
+		"resources": [
+			"js/hammer.min.js",
+			"index.html"
+		],
+		"refer": [
+			"index.html"
+		]
+	}
+}

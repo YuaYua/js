@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+			}
+			
+			td {
+				height: 60px;
+			}
+			
+			input {
+				/*高怎么没起作用*/
+				width: 90px;
+				height: 50px;
+				font-size: 35px;
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table border="1" align="center" bgcolor="antiquewhite">
+			<tr>
+				<td colspan="4">
+					<input type="text" name="" id="show" value="" style="height: 35px;width:380px;background-color: gainsboro;" />
+				</td>
+
+			</tr>
+			<tr>
+				<td>
+					<input type="button" name="" id="show" value="1" onclick="num(this)" />
+				</td>
+				<td><input type="button" name="" id="" value="2" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="3" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="+" onclick="calcu(this)" /></td>
+			</tr>
+			<tr>
+				<td><input type="button" name="" id="" value="4" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="5" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="6" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="-" onclick="calcu(this)" /></td>
+			</tr>
+			<tr>
+				<td><input type="button" name="" id="" value="7" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="8" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="9" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="*" onclick="calcu(this)" /></td>
+			</tr>
+			<tr>
+				<td><input type="button" name="" id="" value="0" onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="." onclick="num(this)" /></td>
+				<td><input type="button" name="" id="" value="%" onclick="calcu(this)" /></td>
+				<td><input type="button" name="" id="" value="/" onclick="calcu(this)" /></td>
+			</tr>
+			<tr>
+				<td><input type="button" name="" id="" value="C" onclick="cle()" /></td>
+				<td><input type="button" name="" id="" value="<——" onclick="back()" /></td>
+
+				<td colspan="2"><input type="button" name="" id="" value="=" onclick="equ()" style="width: 190px;height: 50px;" /></td>
+
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript">
+		var result; //保存输入框的值
+		var operator;//保存运算符
+		var isequal = false;//判断是否输入等号
+		//输出框
+		function num(n) {
+			var txt = document.getElementById('show');
+			if(isequal) {
+				txt.value = ""; //已进行过计算清空输出框
+				isequal = false;
+			}
+			
+			//判断是否输入小数点，若输入则不许再输
+			//indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+			if(txt.value.indexOf('.') > -1 && n.value == ".")
+				return false;
+			txt.value += n.value;//将控件值传给输出狂
+			console.log(txt);
+		}
+		//退格
+		function back() {
+			var txt = document.getElementById('show');
+			//substring() 方法用于提取字符串中介于两个指定下标之间的字符。
+			txt.value = txt.value.substring(0, txt.value.length - 1);
+		}
+		//清空
+		function cle() {
+			document.getElementById('show').value = "";
+			result = "";
+			operator = "";
+		}
+		//+ - * /  %
+		function calcu(fuhao) {
+			operator = fuhao.value;
+			var txt = document.getElementById('show');
+			if(txt.value == "") //判断输入框是否有数字，没有则不能输入符号
+				return false;
+			result = txt.value;//将数字保存到result,等待计算
+			txt.value = "";
+		}
+		//计算
+		function equ() {
+			var opValue;
+			var sourseValue = parseFloat(result);
+			var txt = document.getElementById('show');
+			if(operator == "*")
+				opValue = sourseValue * parseFloat(txt.value);
+			else if(operator == "/")
+				opValue = sourseValue / parseFloat(txt.value);
+			else if(operator == "+")
+				opValue = sourseValue + parseFloat(txt.value);
+			else if(operator == "-")
+				opValue = sourseValue - parseFloat(txt.value);
+			else if(operator == "%")
+				opValue = sourseValue % parseFloat(txt.value);
+			txt.value = opValue;
+			isequal = true;
+			result = "";
+			opValue = "";
+		}
+	</script>
+
+</html>

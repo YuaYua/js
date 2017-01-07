@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新浪微博</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-size: 12px;
+			}
+			
+			#main {
+				width: 620px;
+				height: 170px;
+				border: 1px solid #E4E4E4;
+				border-radius: 5px;
+				position: relative;
+				margin: 30px auto;
+			}
+			
+			#top {
+				position: absolute;
+				width: 600px;
+				color: #FEA584;
+				top: 5px;
+				left: 10px;
+			}
+			
+			#top>img {
+				width: 32px;
+				height: 32px;
+				line-height: 32px;
+				float: left;
+			}
+			
+			#top>span {
+				display: block;
+				height: 32px;
+				line-height: 32px;
+				float: right;
+				margin-right: 10px;
+			}
+			
+			#top>a {
+				text-decoration: none;
+				height: 32px;
+				line-height: 32px;
+				color: #FEA584;
+				float: right;
+			}
+			
+			#txtNum {
+				height: 32px;
+				line-height: 32px;
+				float: right;
+				display: none;
+			}
+			
+			#center {
+				position: absolute;
+				left: 10px;
+				top: 42px;
+			}
+			
+			#txt:focus {
+				border-color: #FF8A60;
+			}
+			
+			#txt {
+				width: 600px;
+				height: 80px;
+				resize: none;
+				border: 1px solid #D4D4D4;
+				outline: none;
+			}
+			
+			#bottom {
+				position: absolute;
+				width: 600px;
+				left: 10px;
+				top: 135px;
+			}
+			
+			#bottom>ul {
+				list-style-type: none;
+				float: left;
+			}
+			
+			#bottom>ul>li {
+				float: left;
+				height: 20px;
+				margin-right: 20px;
+			}
+			
+			#bottom>ul>li>img {
+				width: 20px;
+				height: 20px;
+				float: left;
+			}
+			
+			#bottom>ul>li>span {
+				display: block;
+				height: 20px;
+				float: left;
+				margin-left: 5px;
+				line-height: 20px;
+			}
+			
+			#btn {
+				border: none;
+				border-radius: 3px;
+				width: 82px;
+				height: 32px;
+				font-size: 16px;
+				/*float: right;*/
+				position: absolute;
+				right: 0;
+				top: -5px;
+				background-color: #FFCDAB;
+				color: white;
+			}
+			
+			#msgArea {
+				position: relative;
+				top: 182px;
+			}
+			
+			#msgArea li {
+				list-style: none;
+				width: 600px;
+				height: 80px;
+				border: 1px solid #D4D4D4;
+				border-radius: 3px;
+				margin-left: 10px;
+				margin-bottom: 10px;
+				position: relative;
+				top: -140px;
+			}
+			
+			#msgArea li>span {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				cursor: pointer;
+			}
+			
+			/*#msgArea li>p {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+			}*/
+			
+			/*#msgArea li>div:nth-child(2) {
+				position: absolute;
+				top: 30px;
+				left: 10px;
+			}*/
+			
+			/*#msgArea li>div:nth-child(4) {
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<div id="top">
+				<img src="img/xx.png" />
+				<a href="">热门微博</a>
+				<span id="tips">置办年货省省省！红包在手年货无忧！点击领取年货红包</span>
+				<div id="txtNum">还可以输入<span>140</span>个字</div>
+			</div>
+			<div id="center">
+				<textarea id="txt" name="" rows="" cols="" value=""></textarea>
+			</div>
+			<div id="bottom">
+				<ul>
+					<li><img src="img/wb1.png" alt="" /><span>表情</span></li>
+					<li><img src="img/wb2.png" alt="" /><span>图片</span></li>
+					<li><img src="img/wb3.png" alt="" /><span>视频</span></li>
+					<li><img src="img/wb4.png" alt="" /><span>话题</span></li>
+					<li><img src="img/wb5.png" alt="" /><span>文章</span></li>
+				</ul>
+				<input type="button" name="" id="btn" value="发布" />
+			</div>
+			<div id="msgArea">
+
+			</div>
+		</div>
+	</body>
+	<script src="js/tween.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var center1 = document.getElementById('center');
+		var txt = document.getElementById('txt');
+		var top1 = document.getElementById('top');
+		var span = document.getElementById('tips');
+		var hot = top1.getElementsByTagName('a')[0];
+		var txtNum = document.getElementById('txtNum');
+		var txtSpan = txtNum.getElementsByTagName('span')[0];
+		var btn = document.getElementById('btn');
+		var msgArea = document.getElementById('msgArea');
+		//		console.log(tips.innerText)
+		txt.onfocus = function() {
+			//			console.log(tips.innerText)
+			txtNum.style.display = "block"
+			txtNum.style.color = "#D6D6D6";
+			span.style.display = 'none'
+			hot.style.display = 'none';
+		}
+		txt.onblur = function() {
+			txtNum.style.display = 'none';
+			span.style.display = 'block';
+			hot.style.display = 'block';
+		}
+
+		//改变输入字数
+		var maxChars = 140;
+		txt.onkeyup = function() {
+			//定义一个最大字数
+//			var maxChars = 140;
+			//当输入字数大于最大字数进行截断
+			if(txt.value.length > maxChars) {
+				txt.value = txt.value.substring(0, maxChars);
+			}
+			var txtCount = maxChars - txt.value.length;
+			txtSpan.innerHTML = txtCount;
+		}
+
+		//添加留言
+		window.onload = function() {
+				//创建一个列表
+				var Ul = document.createElement('ul');
+				//把列表添加给msgArea
+				msgArea.appendChild(Ul);
+				//点击btn,增加列表项
+				btn.onclick = function() {
+					//获取文本内容
+					var txtValue = txt.value;
+					//创建列表项
+					var Li = document.createElement('li');
+
+					//把文本内容传给列表项
+					Li.innerHTML = "<p>Xx</p>" + "<div></div>" + "<span>×</span>" + "<div></div>";
+					var copyText = Li.getElementsByTagName('div')[0];
+					console.log(copyText)
+					copyText.innerText = txtValue;
+					//获取当前时间
+					var time1 = Li.getElementsByTagName('div')[1];
+					nowTime(time1);
+
+					var Li1 = Ul.getElementsByTagName('li');
+					if(Li1.length > 0) {
+						Ul.insertBefore(Li, Li1[0]);
+						move(Li);
+					} else {
+						Ul.appendChild(Li);
+						move(Li);
+					}
+					txt.value = '';
+					txtSpan.innerHTML=maxChars;
+					var del = Li.getElementsByTagName('span');
+					for(var i = 0; i < del.length; i++) {
+						del[i].onclick = function() {
+							var t = 0;
+							var d = 30;
+							var b = Li.offsetHeight;
+							console.log(b)
+							var end = 0;
+							console.log(end)
+							var change = end-b;
+							var times = setInterval(function(){	
+								t++;
+								Li.style.height = Tween.Linear(t,b,change,d)  + "px" ;	
+								if(t>=d){
+									clearInterval(times);
+									Li.remove();
+								}
+								
+//								Li.innerHTML = "";
+							},30);	
+//							Ul.removeChild(this.parentNode);
+						}
+					}
+				}
+			}
+			//获取当前时间
+		function nowTime(obj) {
+			var nowTime = new Date();
+			var nowYear = nowTime.getFullYear();
+			var nowMonth = nowTime.getMonth() + 1;
+			var nowDay = nowTime.getDate();
+			var nowSecond = nowTime.getSeconds();
+			var nowHour = nowTime.getHours();
+			var nowMinute = nowTime.getMinutes();
+			obj.innerText = nowYear + '年' + nowMonth + '月' + nowDay + '日 ' + nowHour + ':' + nowMinute + ':' + nowSecond + ' 发布';
+		}
+
+		function move(obj) {
+			var b = obj.offsetTop;
+			var end = 0;
+			var c = end - b;
+			//					console.log(end);
+			var t = 0;
+			var d = 150;
+			var timer = setInterval(function() {
+				t++;
+				if(t >= d) {
+					clearInterval(timer);
+				}
+				//Tween后第一个位置规定运动轨迹，第二个位置规定运动曲线
+				obj.style.top = Tween.Elastic.easeOut(t, b, c, d) + 'px';
+			}, 30);
+		}
+	</script>
+
+</html>

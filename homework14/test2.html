@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 800px;
+				height: 600px;
+				border: 5px solid black;
+				position: relative;
+			}
+			
+			.move {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				border-radius: 50%;
+			}
+			
+			.move1 {
+				top: 0;
+				left: 0;
+				background-color: aqua;
+			}
+			
+			.move2 {
+				top: 200px;
+				left: 100px;
+				background-color: palevioletred;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div class="move move1">
+
+			</div>
+			<div class="move move2">
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap = document.getElementById('wrap');
+		var moves = wrap.querySelectorAll('div');
+		//获得可移动的最大距离
+		var maxX = wrap.clientWidth - moves[0].offsetWidth;
+		var maxY = wrap.clientHeight - moves[0].offsetHeight;
+		var osTop = [];
+		var osLeft = [];
+		console.log(osTop, osLeft)
+			//运动速率
+		var speed = 10;
+		var timer = null;
+		var ttb = [];
+		var ltr = [];
+
+		for(var i = 0; i < moves.length; i++) {
+			//获取moves[i] 的初始位置
+			osTop[i] = moves[i].offsetTop;
+			osLeft[i] = moves[i].offsetLeft;
+			ttb[i] = true;
+			ltr[i] = true;
+
+			//			设move[1]为目标
+
+			wrap.onmouseenter = function() {
+				//				console.log(moves)
+				timer = setInterval(function() {
+					for(var j = 0; j < moves.length; j++) {
+
+						if(ttb[j]) {
+							osTop[j] += speed;
+							moves[j].style.top = osTop[j] + 'px';
+							if(osTop[j] >= maxY) {
+								ttb[j] = false;
+							}
+						} else {
+							osTop[j] -= speed;
+							moves[j].style.top = osTop[j] + 'px';
+							if(osTop[j] == 0) {
+								ttb[j] = true;
+							}
+						}
+						if(ltr[j]) {
+							osLeft[j] += speed;
+							moves[j].style.left = osLeft[j] + 'px';
+							if(osLeft[j] >= maxX) {
+								ltr[j] = false;
+							}
+						} else {
+							osLeft[j] -= speed;
+							moves[j].style.left = osLeft[j] + 'px';
+							if(osLeft[j] <= 0) {
+								ltr[j] = true;
+							}
+						}
+
+					}
+					hit()
+				}, 30);
+				
+			}
+		}
+
+		function hit() {
+			
+			var hitX = moves[1].offsetLeft + moves[1].offsetWidth / 2;
+			var hitY = moves[1].offsetTop + moves[1].offsetHeight / 2;
+			var hitR = moves[1].offsetHeight / 2;
+			//
+			var moveX = moves[0].offsetLeft + moves[0].offsetWidth / 2;
+			var moveY = moves[0].offsetTop + moves[0].offsetHeight / 2;
+			var moveR = moves[0].offsetHeight / 2;
+
+			var d = Math.sqrt(Math.pow((hitY - moveY), 2) + Math.pow((hitX - moveX), 2));
+			var boomR = moveR + hitR;
+			if(d <= boomR) {
+				console.log(111)
+				moves[0].style.top = -osTop[0] + 'px';
+				moves[0].style.left = -osLeft[0] + 'px';
+				moves[1].style.top = -osTop[1] + 'px';
+				moves[1].style.left = -osLeft[1] + 'px';
+			}
+		}
+		wrap.onmouseleave = function() {
+			clearInterval(timer);
+		}
+	</script>
+
+</html>

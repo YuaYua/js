@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+
+	</body>
+	<script type="text/javascript">
+		//随机生成[20~90]的3*3数组
+				var a=[[],[],[]];
+				for(var i=0;i<3;i++){
+					for (var j=0;j<3;j++){
+						 a[i][j]=parseInt(Math.random()*71)+20;
+						document.write(a[i][j]+" ");
+					}
+					document.write("<br />")
+				}
+//		var a = [
+//
+//			[68, 70, 59],
+//			[23, 81, 82],
+//			[26, 56, 56]
+//			
+//		];
+		//定义一个find 看是否存在鞍点
+		var find = 0;
+		for(var i = 0; i < 3; i++) {
+			var flag = 1; //定义一个flag 看是否找到鞍点
+			var col = 0; //定义行中最大的 列的下标
+			//找行中最大的
+			for(var j = 1; j < 3; j++) {
+				if(a[i][j] > a[i][col]) {
+					rowMax = a[i][j];
+					col = j;
+				}
+			}
+			console.log(a[i][col]);
+			console.log(col);
+			for(var k = 0; k < 3; k++) {
+				//判断行中有没有和最大的一样的
+				if(a[i][k] == a[i][col]) {
+					col=k;
+					for(var l = 0; l < 3; l++) {
+						
+						//判断是不是列中最小的
+						if(a[l][col] <= a[i][col] && l != i) {
+							flag = 0;
+							break;
+						}
+					}
+					if(flag == 1) {
+						document.write("此数组的鞍点为a[" + i + "]" + "[" + col + "]" + a[i][col]+"<br />");
+						find = 1;
+					}
+				}
+			}
+		}
+		if(!find) {
+			document.write("此数组无鞍点");
+		}
+	</script>
+
+</html>

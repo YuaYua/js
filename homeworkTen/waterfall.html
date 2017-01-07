@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.wrap{
+				margin: 20px auto 0;
+				width: 70%;
+				border:1px solid black;
+				overflow: hidden;
+			}
+			.wrap ul{
+				float: left;
+				width: 24%;
+				margin: 10px 0.5%;
+				list-style: none;
+			}
+			.wrap ul li{
+				font-size: 50px;
+				text-align: center;
+				background-color: plum;
+				margin: 10px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var uls=document.getElementsByTagName('ul');
+		
+		var count=100;//初始个数
+		var num=0;//li的内容
+		//随机数获取列表项的高
+		function random(min,max){
+			return parseInt(Math.random()*(max-min)+min);
+		}
+		//创建li,根据传入的count值创建count个
+		function createLi(count){
+			for(var i=0;i<count;i++){
+				//创建li
+				num++;
+				var li=document.createElement('li');
+				li.innerHTML=num;
+				li.style.height=random(100,300)+'px';
+				//把li 放在ul中，根据ul高度来选择，最短的
+				//创建一个变量记录ul高度最小的ul
+				var ulMinHeight=uls[0];
+				for(var j=0;j<uls.length;j++){
+					if(ulMinHeight.offsetHeight>uls[j].offsetHeight){
+						ulMinHeight=uls[j];
+					}
+				}
+				ulMinHeight.appendChild(li);
+			}
+		}
+		
+		createLi(count);
+		var firstDiv=document.getElementsByClassName('wrap')[0];
+		console.log(firstDiv.offsetHeight)
+		var aa=document.documentElement.clientHeight;
+		console.log(aa);
+		setInterval(function(){
+			//网页被卷去的高： document.body.scrollTop;
+			//当被卷去的高度大于内容的高度时，再添加1个li
+			if(document.body.scrollTop>=firstDiv.offsetHeight-document.documentElement.clientHeight){
+				createLi(1);
+			}
+		},1);
+//		
+	</script>
+</html>

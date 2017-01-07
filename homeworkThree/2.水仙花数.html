@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var num = 0;
+		for(var i = 100; i <= 999; i++) {
+			var a = parseInt(i / 100);
+			//			console.log(a);
+			var b = parseInt(i % 100 / 10);
+			//			console.log(b);
+			var c = i % 100 % 10;
+			//			console.log(c);
+			var sum = Math.pow(a, 3) + Math.pow(b, 3) + Math.pow(c, 3);
+			if(sum == i) {
+				console.log(i);
+				num++;
+			}
+		}
+		alert(num);
+		//
+	</script>
+
+</html>

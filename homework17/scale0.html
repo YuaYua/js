@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script type="text/javascript">
+			window.onload=function(){
+				var btn=document.getElementById('btn');
+				btn.onclick=function(){
+					//返回主页
+					history.go(-1);
+				}
+			}
+			document.addEventListener("plusready",function(){
+				//此页面解除锁定方向，跟随系统旋转屏幕
+				plus.screen.unlockOrientation();
+			})
+		</script>
+		<style type="text/css">
+			#btn{
+				width: 97vw;
+				height: 30px;
+				padding-left: 3vw;
+				font: normal 20px/30px "微软雅黑";
+				background-color: orchid;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+			#box {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 30%;
+				left: 40%;
+				background: red;
+				/*transform-origin:bottom;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">
+			原生缩放
+		</div>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script src="js/touchjs.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box=document.getElementById('box');
+		var disX=0;
+		var disY=0;
+		var dis=0;
+		//得到finger初始位置，判断是放大还是缩小
+		document.ontouchstart=function(ev){
+			if(ev.touches.length==2){
+				var finger0=ev.touches[0];
+				var finger1=ev.touches[1];
+				
+				disX=finger0.clientX-finger1.clientX;
+				disY=finger0.clientY-finger1.clientY;
+				console.log(disX,disY);
+				//初始比例
+				dis=Math.sqrt(Math.pow(disX,2)+Math.pow(disY,2));
+				console.log(dis);
+			}
+		}
+		document.ontouchmove=function(ev){
+			if(ev.touches.length==2){
+				var finger0=ev.touches[0];
+				var finger1=ev.touches[1];
+				disX=finger0.clientX-finger1.clientX;
+				disY=finger0.clientY-finger1.clientY;
+//				console.log(disX,disY);
+				//变化比
+				var disC=Math.sqrt(Math.pow(disX,2)+Math.pow(disY,2));
+				//缩放比
+				var disCC=disC/dis;
+				box.style.transform="scale("+disCC+")"
+			}
+		}
+		document.ontouchend=function(ev){
+			box.style.width=box.offsetWidth+'px';
+			box.style.height=box.offsetHeight+'px';
+		}
+	</script>
+</html>

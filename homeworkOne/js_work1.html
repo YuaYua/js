@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#add1, #c{
+				width: 80px;
+				height: 15px;
+				/*border: 1px solid red;*/
+			}
+			#add1, #c, #la>div, #ab>div{
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="bb" onmouseout="test1()">
+			Enter an amont:<input type="text"  id="id1" value="0" />
+			<br />
+		</div>
+		With tax added:$<div id="add1"  onclick="" ></div>
+		<br />
+		<br />
+		
+		<p>求百分比</p>
+		<div id="cc" onmouseout="test2()">
+			<input type="text" id="a" value="0" />
+			/
+			<input type="text" id="b" value="1" />
+		<br />
+		</div>
+		
+		a/b:<div id="c" ></div>
+		
+		<p>美金</p>
+		<div id="dd" onmouseout="test3()">
+			<input type="text" id="mo" value="0" />
+			<br />
+		</div>
+		
+		<div id="la" >
+			<span>$20 bills:</span>
+			<div id="la20"></div>
+			<br />
+			<span>$10 bills:</span>
+			<div id="la10"></div>
+			<br />
+			<span>$5 bills:</span>
+			<div id="la5"></div>
+			<br />
+			<span>$1 bills:</span>
+			<div id="la1"></div>
+		</div>
+		
+		<p>加减乘除</p>
+		<div id="aa" onmouseout="test()">
+		a=<input type="text" name="a1" id="a1" value="0" />
+		<br /> 
+		b=<input type="text" name="a2" id="a2" value="1" />
+		<br />
+		</div>
+		<div id="ab">
+			a+b=
+			<div id="a3"></div>
+			<br />
+			a-b=
+			<div id="a4"></div>
+			<br />
+			a*b=
+			<div id="a5"></div>
+			<br />
+			a%b=
+			<div id="a6"></div>
+		</div>
+	</body>
+	<script>
+		var a1="   *"+"\n"+"  * *"+'\n'+' * * *'+'\n'+'* * * *';
+		alert(a1);
+		function test1(){
+			var a2=document.getElementById("id1");
+			var a3=document.getElementById("add1");
+			a3.innerHTML= ((a2.value - 0)*(1 + 0.05)).toFixed(2);
+//			alert(a3.innerHTML);
+//			var a4=Math.round(a3.innerHTML*100)/100;
+			//对于没有余数的不能保留小数
+//			alert(a4);			
+		}
+//		var a4=5.000;
+//		alert(a4.toFixed(2));
+		function test2(){
+			var v1=document.getElementById("a");
+			var v2=document.getElementById("b");
+			
+			var v3=document.getElementById("c");
+			v3.innerHTML=((v1.value-0)/(v2.value-0)*100).toFixed(2)+'%';
+		}
+		function test3(){
+			var mm=document.getElementById("dd");
+			var m1=document.getElementById("mo");
+//			var m2=document.getElementById("la");
+			var m3=document.getElementById("la20");
+			m3.innerHTML=Math.floor((mo.value-0)/20);
+			var m4=document.getElementById("la10");
+			m4.innerHTML=Math.floor((mo.value-0)%20/10);
+			var m5=document.getElementById("la5");
+			m5.innerHTML=Math.floor((mo.value-0)%20%10/5);
+			var m6=document.getElementById("la1");
+			m6.innerHTML=Math.floor((mo.value-0)%20%10%5);
+//			
+		}
+		
+		function test(){
+			var ww=document.getElementById("aa");
+			var w1=document.getElementById("a1");
+			var w2=document.getElementById("a2");
+			var w3=document.getElementById("a3");
+			w3.innerHTML=(w1.value-0)+(w2.value-0);
+			var w4=document.getElementById("a4");
+			w4.innerHTML=(w1.value-0)-(w2.value-0);
+			var w5=document.getElementById("a5");
+			w5.innerHTML=(w1.value-0)*(w2.value-0);
+			var w6=document.getElementById("a6");
+			w6.innerHTML=((w1.value-0)%(w2.value-0)).toFixed(2);
+		}
+		
+		
+	</script>
+</html>

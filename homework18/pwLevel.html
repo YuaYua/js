@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			span {
+				display: block;
+				position: absolute;
+				text-align: center;
+				line-height: 20px;
+				top: 6px;
+				left: 220px;
+				width: 50px;
+				height: 20px;
+				border: 1px solid black;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="password" name="pw" id="pw" value="" />&nbsp;&nbsp;&nbsp;密码等级&nbsp;&nbsp;&nbsp;
+		<span id="leTex"></button>
+	</body>
+	<script type="text/javascript">
+		var pw=document.getElementById('pw');
+		var leTex=document.getElementById('leTex');
+		
+		document.onkeyup=function(){
+			var str=pw.value;
+			//等级
+			var level=0;
+			//匹配数字
+			if(/\d/.test(str)){
+//				alert(1);
+				level++;
+			}
+			//匹配小写字母
+			if(/[a-z]/.test(str)){
+//				alert(2);
+				level++;
+			}
+			//匹配大写字母
+			if(/[A-Z]/.test(str)){
+//				alert(3);
+				level++;
+			}
+			//匹配非\w或_
+			if(/\W|_/.test(str)){
+//				alert(4);
+				level++;
+			}
+			if(str.length>=16){
+				level++;
+			}
+			
+			switch(level){
+				case 0:
+				leTex.innerText="";break;
+				case 1:
+				leTex.innerText="很弱";break;
+				case 2:
+				leTex.innerText="弱";break;
+				case 3:
+				leTex.innerText="一般";break;
+				case 4:
+				leTex.innerText="强";break;
+				case 5:
+				leTex.innerText="很强";break;
+			}
+		}
+		
+		
+	</script>
+</html>

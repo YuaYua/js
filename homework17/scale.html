@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script type="text/javascript">
+			window.onload=function(){
+				var btn=document.getElementById('btn');
+				btn.onclick=function(){
+					//返回主页
+					history.go(-1);
+				}
+			}
+			document.addEventListener("plusready",function(){
+				//此页面解除锁定方向，跟随系统旋转屏幕
+				plus.screen.unlockOrientation();
+			})
+		</script>
+		<style type="text/css">
+			#btn{
+				width: 97vw;
+				height: 30px;
+				padding-left: 3vw;
+				font: normal 20px/30px "微软雅黑";
+				background-color: orchid;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+			#box {
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 30%;
+				left: 40%;
+				background: red;
+				/*transform-origin:bottom;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">
+			缩放
+		</div>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script src="js/touchjs.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box=document.getElementById('box');
+		touch.on(box,"pinchout",callback1);
+		function callback1(obj){
+			box.innerText="放大";
+			var pout=obj.scale;
+			box.style.transform="scale("+pout+")"
+		}
+		
+		touch.on(box,"pinchin",callback2);
+		function callback2(obj){
+			box.innerText="缩小";
+			var pin=obj.scale;
+			box.style.transform="scale("+pin+")"
+		}
+	</script>
+</html>

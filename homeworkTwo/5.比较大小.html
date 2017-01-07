@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	
+			<input type="text" name="" id="id1" value="" />
+			<input type="text" name="" id="id2" value="" />
+			<input type="text" name="" id="id3" value="" />
+			<input type="button" name="id4" id="id4" value="开始测试" onclick="mid1()"/>
+		
+	</body>
+	<script type="text/javascript">
+		function mid1(){
+			var a=document.getElementById("id1").value;
+			var b=document.getElementById("id2").value;
+			var c=document.getElementById("id3").value;
+			var d;
+			console.log(a);
+//			if(a>b){
+//				d=a;
+//			}else{
+//				d=b;
+//			}
+//			if(d>c){
+//				alert("最大值为"+d);
+//			}else{
+//				alert("最大值为"+c);
+//			}
+			d=a>b? (a>c? a:c):(b>c? b:c)
+			alert(d);
+			
+//			if(a<b){
+//				d=a;
+//			}else{
+//				d=b;
+//			}
+//			if(d<c){
+//				alert("最小值为"+d);
+//			}else{
+//				alert("最小值为"+c);
+//			}
+			d=a<b? (a<c? a:c):(b<c? b:c);
+			alert(d);
+//			
+			
+			d=a>b?(a<c?a:(b>c?b:c)):(b<c?b:(a>c?a:c));
+			alert("中间值为"+d);
+		
+		}
+		
+		
+		
+		
+		
+	</script>
+	
+</html>

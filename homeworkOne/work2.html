@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#la>div{
+				width: 80px;
+				height: 15px;
+				/*border: 1px solid red;*/
+				display: inline-block;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+		<input type="text" id="mo" value="" />
+		<br />
+		
+		<div id="la" onclick="test2()">
+			<span>$20 bills:</span>
+			<div id="la20"></div>
+			<br />
+			<span>$10 bills:</span>
+			<div id="la10"></div>
+			<br />
+			<span>$5 bills:</span>
+			<div id="la5"></div>
+			<br />
+			<span>$1 bills:</span>
+			<div id="la1"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function test2(){
+			var m1=document.getElementById("mo");
+//			var m2=document.getElementById("la");
+			var m3=document.getElementById("la20");
+			la20.innerHTML=Math.floor((mo.value-0)/20);
+			var m4=document.getElementById("la10");
+			la10.innerHTML=Math.floor((mo.value-0)%20/10);
+			var m5=document.getElementById("la5");
+			la5.innerHTML=Math.floor((mo.value-0)%20%10/5);
+			var m6=document.getElementById("la1");
+			la1.innerHTML=Math.floor((mo.value-0)%20%10%5);
+//			v3.innerHTML=((v1.value-0)/(v2.value-0)*100).toFixed(2)+'%';
+		}
+	</script>
+
+</html>

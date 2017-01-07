@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+	</head>
+
+	<body>
+		<input type="text" name="num1" id="num1" value="" />
+		<select name="" id="se">
+			<option value="+" id="o1">+</option>
+			<option value="-" id="o2">-</option>
+			<option value="*" id="o3">*</option>
+			<option value="/" id="o4">/</option>
+			<option value="%" id="o5">%</option>
+		</select>
+		<input type="text" name="num2" id="num2" value="" />
+		<!--//怎么传到input输出啊！！！-->
+		<input type="text" name="" id="rel" value=""  />
+		<input type="button" name="" id="" value="开始计算" onclick="con1()"/>
+	</body>
+	<script type="text/javascript">
+		function con1() {
+			var n1=parseInt(document.getElementById("num1").value);
+			var s=document.getElementById("se").value;
+			var n2=parseInt(document.getElementById("num2").value);
+			var r=0;
+			switch(s){
+				case "+":
+					r=n1+n2;
+					break;
+				case "-":
+					r=n1-n2;
+					break;
+				case "*":
+					r=n1*n2;
+					break;
+				case "/":
+					r=n1/n2;
+					break;
+				case "%":
+					r=n1%n2;
+					break;
+			}
+//			alert("结果为:"+r);
+//			console.log(r);
+			
+			document.getElementById("rel").value=r;
+		}
+	</script>
+
+</html>

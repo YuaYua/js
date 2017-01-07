@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		a{
+			text-decoration: none;
+			cursor: pointer;
+		}
+		input{
+			outline: 0;
+		}
+		li{
+			list-style: none;
+		}
+		body{
+			background-color: burlywood;
+			font-size: 12px;
+		}
+			#login{
+				width: 295px;
+				height: 460px;
+				position: absolute;
+				top: 50px;
+				left: 50%;
+				margin-left: -150px;
+				background: url(img/login_v4.png) no-repeat;
+				background-position: -323px 0;
+				/*background-color: white;*/
+			}
+			#logHead{
+				width: 100%;
+				height: 50px;
+				position: relative;
+				/*background-color: beige;*/
+			}
+			#logApp, #logEmail{
+				height: 100%;
+				position: relative;
+				top: 10px;
+				font-size: 14px;
+				line-height: 46px;
+				text-align: center; 
+				float: left;
+				cursor: pointer;
+			}
+			#logApp{
+				background: url(img/appcode.png) no-repeat 28px 17px;
+				padding-left: 15px;
+				width: 132px;
+				/*background-color: #EDF7ED;*/
+				
+				
+			}
+			#logEmail{
+				width: 148px;
+			}
+			#emailLogin{
+				display: block;
+				height: 413px;
+				width: 100%;
+				/*background-color: khaki;*/
+				position: relative;
+				top: 50px;
+			}
+			.emailLogin_main{
+				position: absolute;
+				height: 413px;
+				
+			}
+			#login_form{
+				height: 100%;
+				width: 100%;
+				position: relative;
+			}
+			.inputbox{
+				position: absolute;
+				top: 40px;
+				width: 245px;
+				height: 42px;
+				line-height: 42px;
+				margin-left: 25px;
+				border:1px solid darkgray;
+				border-radius: 5px;
+			}
+			/*.inputbox:hover{
+				box-shadow: 0 0 5px rgba(40,195,15,0.5);
+			}*/
+			.inputbox>img{
+				margin-left: 7px;
+				margin-right: 9px;
+				margin-top: 13px;
+				float: left;	
+			}
+			.user, .password{
+				width: 135px;
+				height: 20px;
+				line-height: 20px;
+				padding: 10px 0;
+				position: relative;
+				float: left;
+				/*background-color: fuchsia;*/
+			}
+			.password{
+				width: 205px;
+			}
+			.email1,.pass{
+				width: 100%;
+				height: 22px;
+				border:0;
+				letter-spacing: normal;
+			}
+			.email_name{
+				font-size: 14px;
+				height: 33px;
+				line-height: 33px;
+				display: block;
+				position: absolute;
+				left: 170px;
+				top:5px;
+			}
+			.passwordbox{
+				top:102px;
+			}
+			.unlogin{
+				height: 16px;
+				width: 241px;
+				line-height: 16px;
+				position: absolute;
+				top: 162px;
+				left: 25px;
+				padding: 0;
+				/*background-color: red;*/
+			}
+			.cheak{
+				width: 13px;
+				height: 13px;
+				float: left;
+			}
+			.unlogin_l>span{
+				color: #848585;
+				display: block;
+				float: left;
+				height: 16px;
+				width: 100px;
+				font-size: 12px;
+				position: relative;
+				z-index: 1;
+			}
+			.unlogin_l:hover p{
+				display: block;
+			}
+			.unlogin>a{
+				font-size: 12px;
+				color: #848585;
+				float: right;
+				text-decoration: none;
+			}
+			.unlogin>a:hover{
+				color: black;
+			}
+			.unlogin_l .span1, .unlogin_l input{
+				cursor: pointer;
+			}
+			.unlogin_l input{
+				margin-top: 1px;
+			}
+			.unlogin_l .span1{
+				padding-left: 3px;
+			}
+			.warn{
+				border: 1px solid #DFB86D;
+				border-radius: 5px;
+				color: #DFB86D;
+				background-color: #FFFDE4;
+				font-size: 12px;
+				width: 202px;
+				position: absolute;
+				top: 15px;
+				z-index: 5;
+				display: none;
+			}
+			.loginbtn, .regist{
+				display: block;
+				width: 110px;
+				height: 38px;
+				line-height: 38px;
+				color: white;
+				text-align: center;
+				font-size: 14px;
+				font-weight: 700;
+				background-color: #2CA241;
+				box-shadow:0 2px 5px rgba(0,94,21,.3);
+				position: absolute;
+				top: 185px;
+				left: 25px;
+				border: 1px solid #016D18;
+				border-radius: 5px;
+			}
+			.regist{
+				left: 160px;
+				background-color: #E7F3E2;
+				color: #5C7A5C;
+				border: 1px solid #AAC3AA;
+			}
+			.loginForm{
+				height: 14px;
+				width: 245px;
+				clear: both;
+				/*background-color: red;*/
+				position: absolute;
+				top: 252px;
+				left: 25px;
+			}
+			.loginFormVer{
+				float: left;
+				width: 160px;
+				font-size: 12px;
+				line-height: 14px;
+				color: #848585;
+			}
+			.loginFormSer{
+				float: right;
+				text-align: right;
+				font-size: 12px;
+				line-height: 14px;
+				color: #848585;
+			}
+			.mailApp {
+    				position: absolute;
+    				top: 296px;
+    				left: 25px;
+			}
+			.mailApp_logo{
+				display: block;
+				height: 35px;
+				width: 256px;
+				background-color: red;
+				background: url(img/mailapp_logo_141212.png) no-repeat;
+			}
+			.email_bottom{
+				position: absolute;
+				top: 361px;
+				left: 25px;
+				width: 245px;
+				height: 38px;
+				padding: 0 15px;
+			}
+			#eb_text{
+				line-height: 20px;
+				list-style: none;
+				padding: 0;
+			}
+			#eb_text li{
+    				padding-left: 7px;
+    				height: 20px;
+			}
+			#eb_text li a{
+				color: #9eb89e;
+				font-size: 12px;
+			}
+			#appLogin{
+				display: none;
+				font-size: 16px;
+				color: black;
+				text-align: center;
+				height: 413px;
+				width: 100%;
+				/*background-color: red;*/
+				position: relative;
+				top: 50px;
+			}
+			#appLoginWait{
+				display: block;
+			}
+			#appLoginWait h3{
+				padding-top: 60px;
+				font-weight: normal;
+				line-height: 35px;
+			}
+			#appCode{
+				margin-top: 30px;
+				height: 150px;
+				position: relative;
+			}
+			.appCode_exp{
+				position: absolute;
+				top: -20px;
+				right: 5px;
+				width: 140px;
+				height: 175px;
+				transition:all 0.5s ease-in-out;
+				opacity: 0;
+			}
+			#appCode:hover .appCode_exp{
+				opacity: 1;
+			}
+			#appCodeBox{
+				position: relative;
+				left: 0;
+				width: 100%;
+				transition:all 0.5s ease-in-out;
+			}
+			#appCode:hover #appCodeBox{
+				left: -66px;
+			}
+			.appLogin_h{
+				margin: 5px auto 0;
+				width: 190px;
+				text-align: center;
+				font-size: 12px;
+				line-height: 22px;
+				background: rgba(117, 187, 245, 0.8);
+				color: white;
+				border-radius: 20px;
+			}
+			.appLogin_link{
+				padding-top: 30px;
+				font-size: 13px;
+				line-height: 16px;
+			}
+			.appLogin_link a{
+				display: inline-block;
+				color: #4ea9f6;
+				margin: 0 5px;
+			}
+			
+			.stylebox{
+				display: none;
+				width: 140px;
+				position: absolute;
+				z-index: 10;
+				left: 45px;
+				background-color: white;
+				border: 1px solid #b7c2c9;
+			}
+			.stylebox a{
+				height: 22px;
+				line-height: 22px;
+				width: 140px;
+				display: block;
+				text-indent: 5px;
+			}
+			/*.stylebox a:nth-child(2){
+				color: #5aa869;
+			}*/
+			.stylebox a:hover{
+				background-color: #EFF5EB;
+			}
+			#img2,#img3{
+				visibility: hidden;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div id="login">
+			<div id="logHead">
+				<div id="logApp">
+					二维码登录
+				</div>
+				<div id="logEmail">
+					邮箱账号登录
+				</div>
+				<div id="appLogin">
+					<div id="appLoginWait">
+						<h3>手机扫码 安全防盗</h3>
+					</div>
+					<div id="appCode">
+						<div class="appCode_exp" style="background: url(img/2.png) no-repeat;"></div>
+						<div id="appCodeBox">
+							<img src="img/1.png" alt="" />
+						</div>
+					</div>
+					<p class="appLogin_h">使用 邮箱大师 扫描二维码登录</p>
+					<p class="appLogin_link"><a href="">如何使用</a>|<a href="">下载邮箱大师</a></p>
+				</div>
+				<div id="emailLogin">
+					<div class="emailLogin_main">
+						<form id="login_form">
+							<div class="inputbox" id="inputbox1">
+								<img src="img/头像.png" alt="" />
+								<div class="user">
+									<input type="text" class="email1" name="email" id="email" value="" placeholder="邮箱账号或手机号"/>
+								</div>
+								<span class="email_name">@126.com</span>
+							</div>
+							<div class="inputbox passwordbox" id="inputbox2">
+								<img src="img/密码.png" alt="" />
+								<div class="password">
+									<input type="text" class="pass" name="pass1" id="pass1" value="" placeholder="密码"/>
+									
+								</div>
+							</div>
+							<div class="unlogin">
+								<div class="unlogin_l">
+									<input type="checkbox" class="cheak" name="" id="" value="" />
+									<span class="span1">十天内免登陆
+					
+									</span>
+									<p class="warn">为了您的信息安全，请不要在网吧或公共电脑上使用此功能</p>
+									
+								</div>
+								<a href="">忘记密码？</a>
+							</div>
+							<a class="loginbtn" href="">登&nbsp;&nbsp;录</a>
+							<a class="regist" href="">去注册</a>
+						</form>
+						<div class="loginForm">
+							<div class="loginFormVer">
+								版本：
+								<a href=" " style="color: #959595;" id="styleA">默认版本</a>
+							</div>
+							<div class="stylebox" id="styleBox">
+								<ul>
+									<li id="img1_li"><a  style="color: #5aa869;"><img id="img1" src="img/7B5A7595E0A947984498C7B25B67B25B.jpg" alt="" />默认版本</a></li>
+									<li id="img2_li"><a ><img id="img2" src="img/7B5A7595E0A947984498C7B25B67B25B.jpg" alt="" />网易邮箱6.0版</a></li>
+									<li id="img3_li"><a ><img id="img3" src="img/7B5A7595E0A947984498C7B25B67B25B.jpg" alt="" />网易邮箱6.0简约版</a></li>
+								</ul>
+							</div>
+							<div class="loginFormSer">正使用SSL登录</div>
+						</div>
+						<div class="mailApp">
+							<a href="" class="mailApp_logo"></a>
+						</div>
+						<div class="email_bottom">
+							<ul id="eb_text">
+								<li class="ebt_1"><a href="">10月必买好物TOP推荐</a></li>
+								<li class="ebt_2"><a href="">被子就像他，睡过才知道好！</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var logApp=document.getElementById("logApp");
+		var appLogin=document.getElementById("appLogin");
+		var logEmail=document.getElementById("logEmail");
+		var emailLogin=document.getElementById("emailLogin");
+		var login=document.getElementById("login");
+		logApp.onmouseenter=function(){
+			appLogin.style.display="block";
+			emailLogin.style.display="none";
+			login.style.backgroundPosition="0 0";
+			
+		}
+		logEmail.onmouseenter=function(){
+			appLogin.style.display="none";
+			emailLogin.style.display="block";
+			login.style.backgroundPosition="-323px 0";
+			
+		}
+		var email=document.getElementById("email");
+		var inputbox1=document.getElementById("inputbox1");
+		var pass1=document.getElementById("pass1");
+		var inputbox2=document.getElementById("inputbox2");
+		email.onclick=function(){
+			inputbox1.style.boxShadow=" 0 0 5px rgba(40,195,15,0.5)";
+		}
+		pass1.onclick=function(){
+			inputbox2.style.boxShadow="0 0 5px rgba(40,195,15,0.5)";
+		}
+		//onblur:失去焦点发生的事件
+		email.onblur=function(){
+			inputbox1.style.boxShadow="none";
+		}
+		pass1.onblur=function(){
+			inputbox2.style.boxShadow="none";	
+		}
+		var styleA=document.getElementById("styleA");
+		var stylebox=document.getElementById("styleBox");
+		styleA.onmousedown=function(){
+			stylebox.style.display="block";
+		}
+		stylebox.onmouseleave=function(){
+			stylebox.style.display="none";
+		}
+		var img1_li=document.getElementById("img1_li");
+		var img2_li=document.getElementById("img2_li");
+		var img3_li=document.getElementById("img3_li");
+		var img1=document.getElementById("img1");
+		var img2=document.getElementById("img2");
+		var img3=document.getElementById("img3");
+		img1_li.onclick=function(){
+			img1.style.visibility="visible";
+			img2.style.visibility="hidden";
+			img3.style.visibility="hidden";
+		}
+		img2_li.onclick=function(){
+			img1.style.visibility="hidden";
+			img2.style.visibility="visible";
+			img3.style.visibility="hidden";
+		}
+		img3_li.onclick=function(){
+			img1.style.visibility="hidden";
+			img2.style.visibility="hidden";
+			img3.style.visibility="visible";
+		}
+	</script>
+
+</html>

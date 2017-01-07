@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+				margin: 30px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div name="div" id="div1" onclick=""></div>
+	</body>
+	<script type="text/javascript">
+			var div = document.getElementById("div1");
+			var a=["red","blue","orange","black","green","aqua","bisque"];
+			var b=document.getElementsByTagName("div")[0];
+			var num=0;
+			b.onclick = function(){
+				this.style.backgroundColor=a[num%a.length];
+				num++;
+			}
+			
+	</script>
+</html>
+
+
+
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			a{
+				color: black;
+			}
+			a:hover{
+				color: blue;
+			}
+			#set_nav{
+				display: none;
+				width: 70px;
+				font-size: 12px;
+				border: 1px solid black;
+				position: absolute;
+				z-index: 10;
+			}
+			#set_nav a{
+				display: block;
+				text-align: center;
+				line-height: 26px;
+				text-decoration: none;
+			}
+			#set_nav a:hover{
+				background-color: blue;
+				color: white;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<a id="setup">设置</a>
+		<div id="set_nav">
+			<a href="">搜索设置</a>
+			<a href="">高级搜索</a>
+			<a href="">关闭预测</a>
+			<a href="">搜索历史</a>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var setup=document.getElementById("setup");
+		var set_nav=document.getElementById("set_nav");
+		setup.onmouseenter=function(){
+			set_nav.style.display="block";
+		}
+		set_nav.onmouseleave=function(){
+			set_nav.style.display="none";
+		}
+	</script>
+</html>

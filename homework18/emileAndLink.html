@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			input{
+				width: 200px;
+				height: 20px;
+				font: normal 16px/20px "微软雅黑";
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="" id="ipt" value="" />
+		<button id="btn">检查</button>
+	</body>
+	<script type="text/javascript">
+		var ipt=document.getElementById('ipt');
+		var btn=document.getElementById('btn');
+		btn.onclick=function(){
+			var str=ipt.value;
+			console.log(str)
+			//测试用：982349@qq.com   hfiuwehf_.ss@qq.com   hfi2334ehf@qq.comb
+			//  hfi2334ehf@qq.c   hfi2334ehf@qq.cn
+			var regEma=/^(\w)+(\.\w+)*\@(\w)+(\.\w{2,3})$/;
+			// https://www.nuomi.com/?cid=002540
+			//www.baidu.com //http://可省略最多有一个
+			//http://user.qzone.qq.com/gergrgsd7/infocenter?ptsig=O588wOvOAkFwnudKrPewCsO4vm0d6uyjFt4DHlTY26A_  //主域名后面的字符 特殊字符
+			var regLink=/^((https|http)?:\/\/)?[A-Za-z0-9]+\.(\w+)/;
+			//[\/\=\?\%\-\&\_\~\`\@\[\]\'\:\+\!]*([^<>\"\"])*
+			if(regEma.test(str)){
+				alert("您输入的是一个邮箱号");
+			}else if(regLink.test(str)){
+				alert("您输入的是一个链接");
+			}else{
+				alert("您输入的既不是邮箱也不是链接")
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+			#box{
+				width: 500px;
+				height: 120px;
+				background-color: orange;
+				margin: 30px auto;
+				position: relative;
+				/*overflow: hidden;*/
+			}
+			#stage{
+				list-style-type: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#stage>li{
+				width: 118px;
+				height: 118px;
+				background-color: palegreen;
+				font: bold 50px/120px "微软雅黑";
+				text-align: center;
+				float: left;
+				border: 1px solid darkblue;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<button>←</button>
+		<button>→</button>
+		<div id="box">
+			<ul id="stage">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box=document.querySelector('#box');
+		var stage=document.querySelector('#stage');
+		var btn=document.getElementsByTagName('button');
+		//当之后有js对页面元素重新布局，该选择器不可以监听并更新
+//		var lis=document.querySelectorAll("#stage>li");
+		//当之后有js对页面元素重新布局，该选择器也可以监听并更新
+		var lis=stage.getElementsByTagName('li');
+		//innerHTMl包含子标签和内容，且可以进行加法运算
+		stage.innerHTML+=stage.innerHTML;
+//		var lis=document.querySelectorAll("#stage>li");
+		//根据子元素的实际个数和其可视盒子大小，规定stage的最终宽度
+		stage.style.width=lis[0].offsetWidth*lis.length+"px";
+		//运动速率
+		var speed=2;
+		var maxStep=stage.offsetWidth/2;
+		//获取初始位置
+		var offset=stage.offsetLeft;
+		
+		//运动函数
+		function move(){
+			offset+=speed;
+			if(offset<-maxStep){
+				offset=0;
+			}
+			if(offset>0){
+				offset=-maxStep;
+			}
+			stage.style.left=offset+'px';	
+		}
+		var timer=setInterval(function(){
+			move();
+		},30)
+		btn[0].onclick=function(){
+			speed=-2;
+		}
+		btn[1].onclick=function(){
+			speed=2;
+		}
+	</script>
+</html>

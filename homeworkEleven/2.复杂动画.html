@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>复杂动画</title>
+		<style type="text/css">
+			#div {
+				width: 600px;
+				height: 300px;
+				background-color: red;
+				position: absolute;
+				left: 0;
+				top: 30px;
+			}
+			.run.loop{
+				animation: hh 4s infinite linear;
+			}
+			
+			@-webkit-keyframes hh {
+				10% {
+					left: 50%;
+					margin-left: -300px;
+					margin-top: 0;
+				}
+				20% {
+					left: 50%;
+					margin-left: -300px;
+					margin-top: 200px;
+					border-radius: 0;
+				}
+				30% {
+					left: 50%;
+					margin-left: -300px;
+					margin-top: 200px;
+					border-radius: 50%;
+					background-color: red;
+				}
+				40% {
+					left: 50%;
+					margin-left: -300px;
+					margin-top: 200px;
+					width: 600px;
+					border-radius: 50%;
+					background-color: blue;
+				}
+				50% {
+					left: 50%;
+					margin-left: -150px;
+					margin-top: 200px;
+					background-color: blue;
+					width: 300px;
+					border-radius: 50%;
+					transform: scale(1);
+				}
+				60% {
+					left: 50%;
+					margin-left: -150px;
+					margin-top: 200px;
+					background-color: blue;
+					width: 300px;
+					border-radius: 50%;
+					transform: scale(1.5);
+				}
+				68%{
+					left: 50%;
+					margin-left: -150px;
+					margin-top: 200px;
+					background-color: blue;
+					width: 300px;
+					border-radius: 50%;
+					transform: scale(0.8);
+				}
+				70% {
+					left: 50%;
+					margin-left: -150px;
+					margin-top: 200px;
+					background-color: blue;
+					width: 300px;
+					border-radius: 50%;
+					transform: scale(1.2);
+				}
+				80% {
+					left: 50%;
+					margin-left: -150px;
+					margin-top: 200px;
+					width: 300px;
+					background-color: blue;
+					border-radius: 50%;
+					transform: scale(1);
+				}
+				100% {
+					left: 50%;
+					margin-left: -150px;
+					margin-top: 200px;
+					background-color: blue;
+					width: 300px;
+					border-radius: 50%;
+					transform: scale(1);
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<button>开始</button>
+		<button>停止</button>
+		<div id="div">
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var btns = document.getElementsByTagName('button');
+		var div=document.all.div;
+		var isStart = false;
+		btns[0].onclick = function() {
+//			isStart = true;
+//			div.style.animation="hh 4s paused infinite"
+//			div.onmousemove = function() {
+//				if(isStart) {
+//					div.style.animationPlayState = "running";
+//				}
+//			}
+			console.log('aaa')
+//			div.setAttribute("class","run");
+			div.className='run';
+		}
+		div.onmouseenter=function(){
+//			div.setAttribute('class','run loop');
+			div.className += ' loop';
+		}
+		btns[1].onclick = function() {
+			div.setAttribute('class','');
+//			isStart=false;
+//			div.style.animation="none"
+//			div.style.animationPlayState = "paused";
+		}
+	</script>
+
+</html>

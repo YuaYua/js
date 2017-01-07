@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var num=prompt("请输入行数")
+		//一颗星在左上
+		for(var i=1;i<=num;i++){
+			for (var j=1;j<=2*i-1;j++){
+				document.write("*")
+			}	
+			document.write("<br />");
+		}
+		document.write("<br />");
+		//一颗星在左下
+		for(var i=num;i>=1;--i){
+			for(var j=1;j<=2*i-1;j++){
+				document.write("*");
+			}
+			document.write("<br />");
+		}
+		document.write("<br />");
+		//菱形
+		for(var i=1;i<=num;i++){
+			for(var j=1;j<=num-i;j++){
+				document.write("&nbsp");
+			}
+			for(var k=1;k<=2*i-1;k++){
+				document.write("*");
+			}
+			document.write("<br />");
+		}
+		for(var i=1;i<=num-1;i++){
+			for(var j=1;j<=i;j++){
+				document.write("&nbsp");
+			}
+			for(var k=1;k<=2*num-1-2*i;k++){
+				document.write("*");
+			}
+			document.write("<br />");
+		}
+	</script>
+
+</html>

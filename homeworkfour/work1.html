@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+
+	</body>
+	<script type="text/javascript">
+		var year = parseInt(prompt("请输入年份"));
+		var month = parseInt(prompt("请输入月份"));
+		while(true) {
+			if(month >= 1 && month <= 12) {
+				break;
+			} else {
+				alert("你丫的月份输入有错误！");
+				month = parseInt(prompt("请重新输入月份"));
+			}
+		}
+		//闰年二月加一
+		var feb;
+		if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+			
+			feb = 1;
+		} else {
+			feb = 0;
+		}
+		var day = parseInt(prompt("请输入日期"));
+		while(true) {
+			if(feb == 1&&month==2) {
+				if(day >= 1 && day <= 29) {
+					break;
+				} else {
+					alert("你丫的日期输入有错误！");
+					day = parseInt(prompt("请重新输入日期"));
+				}
+			}
+			if (feb==0&&month==2){
+				if(day >= 1 && day <= 28) {
+					break;
+				} else {
+					alert("你丫的日期输入有错误！");
+					day = parseInt(prompt("请重新输入日期"));
+				}
+			}
+			if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+				if(day >= 1 && day <= 31) {
+					break;
+				} else {
+					alert("你丫的日期输入有错误！");
+					day = parseInt(prompt("请重新输入日期"));
+				}
+			}else{
+				if(day >= 1 && day <= 30) {
+					break;
+				} else {
+					alert("你丫的日期输入有错误！");
+					day = parseInt(prompt("请重新输入日期"));
+				}
+			}
+		}
+
+		var sum;
+
+		switch(month) {
+			case 1:
+				sum = 0;
+				break;
+			case 2:
+				sum = 31;
+				break;
+			case 3:
+				sum = 59;
+				break;
+			case 4:
+				sum = 90;
+				break;
+			case 5:
+				sum = 120;
+				break;
+			case 6:
+				sum = 151;
+				break;
+			case 7:
+				sum = 181;
+				break;
+			case 8:
+				sum = 212;
+				break;
+			case 9:
+				sum = 243;
+				break;
+			case 10:
+				sum = 273;
+				break;
+			case 11:
+				sum = 304;
+				break;
+			case 12:
+				sum = 334;
+				break;
+		}
+		sum = sum + day;
+		if(feb == 1 && month > 2) {
+			//闰年当月份大于2月，总天数要加一
+			sum++;
+		}
+		alert("该日是该年的第" + sum + "天");
+	</script>
+
+</html>

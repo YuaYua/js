@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul {
+				list-style-type: none;
+			}
+			li{
+				color: black;
+			}
+			
+			.menu {
+				width: 180px;
+				height: 280px;
+				background-color: burlywood;
+				border: 1px solid gainsboro;
+				border-radius: 5px;
+				position: relative;
+				/*padding: 10px 10px;*/
+				visibility: hidden;
+			}
+			
+			.menu_list {
+				width: 100%;
+				height: 100%;
+				/*background-color: khaki;*/
+			}
+			
+			.menu_list>li {
+				width: 100%;
+				height: 56px;
+				box-sizing: border-box;
+				border-bottom: 1px solid gainsboro;
+				font: bold 30px/56px "微软雅黑";
+				text-align: center;
+			}
+			
+			.menu1 {
+				visibility: visible;
+			}
+			
+			.hover:hover>div {
+				visibility: visible;
+			}
+			/*第二栏的子列表*/
+			
+			.menu_list2 {
+				width: 180px;
+				height: 184px;
+				background-color: hotpink;
+				border: 1px solid gainsboro;
+				border-radius: 5px;
+				position: absolute;
+				top: 55px;
+				left: 179px;
+				visibility: hidden;
+			}
+			
+			.menu_list2>ul {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.menu_list2>ul>li {
+				width: 100%;
+				height: 46px;
+				box-sizing: border-box;
+				border-bottom: 1px solid gainsboro;
+				font: bold 20px/56px "微软雅黑";
+				text-align: center;
+			}
+			/*2.3栏的子列表*/
+			
+			.menu_list3 {
+				width: 100px;
+				height: 89px;
+				background-color: hotpink;
+				border: 1px solid gainsboro;
+				border-radius: 5px;
+				position: absolute;
+				top: 192px;
+				left: 179px;
+				visibility: hidden;
+			}
+			
+			.menu_list3>ul {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.menu_list3>ul>li {
+				width: 100%;
+				height: 30px;
+				box-sizing: border-box;
+				border-bottom: 1px solid gainsboro;
+				font: bold 15px/30px "微软雅黑";
+				text-align: center;
+			}
+			.hover>span{
+				position: absolute;
+			}
+			li:hover{
+				background-color: blue;
+				color: white;
+			}
+			li:last-child {
+				border-bottom: 0!important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="menu">
+			<ul class="menu_list">
+				<li>第一栏</li>
+				<li class="hover">
+					第二栏<span>▶</span>
+					<div class="menu_list2">
+						<ul>
+							<li>2.1栏</li>
+							<li>2.2栏</li>
+							<li>2.4栏</li>
+							<li class="hover">
+								2.3栏<span>▶</span>
+								<div class="menu_list3">
+									<ul>
+										<li>2.3.1</li>
+										<li>2.3.2</li>
+										<li>2.3.3</li>
+									</ul>
+								</div>
+							</li>
+							
+						</ul>
+					</div>
+				</li>
+				<li>第三栏</li>
+				<li>第四栏</li>
+				<li>第五栏</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+	var divs=document.getElementsByTagName('div');
+		var menu = document.querySelector('.menu');
+		var menu_list2 = document.querySelector('.menu_list2');
+		var menu_list3 = document.querySelector('.menu_list3');
+		//		console.log(menu.offsetWidth,menu.offsetHeight)
+	
+		document.oncontextmenu = function(e) {
+			var ev = e || event;
+
+			var maxWidth = window.innerWidth - menu.offsetWidth;
+			var maxHeight = window.innerHeight - menu.offsetHeight;
+			console.log(window.innerWidth, window.innerHeight + "window");
+			console.log(menu.offsetWidth, menu.offsetHeight + "menu")
+			console.log(maxWidth, maxHeight + "max");
+			
+			console.log(maxWidth+menu_list2.offsetHeight)
+			
+			menu.className += " menu1";
+			menu.style.top = ev.clientY + 'px';
+				menu.style.left = ev.clientX + 'px';
+			console.log(menu.offsetLeft, menu.offsetTop, 'LT')
+				if(menu.offsetLeft >= maxWidth) {
+					menu.style.left = maxWidth + 'px';
+					menu_list2.style.left = -179 + 'px';
+					menu_list3.style.left = -100 + 'px';
+					
+				}else if(menu.offsetLeft >=(window.innerWidth - menu.offsetWidth-menu_list2.offsetWidth-menu_list3.offsetWidth)){
+					menu_list2.style.left = -179 + 'px';
+					menu_list3.style.left = -100 + 'px';
+				}
+				else{
+					menu_list2.style.left = 179 + 'px';
+					menu_list3.style.left = 179 + 'px';
+				}
+				if(menu.offsetTop >= maxHeight) {
+					menu.style.top = maxHeight + 'px';
+					var top3=document.documentElement.clientHeight-menu_list2.offsetTop-menu.offsetTop-menu_list3.offsetHeight;
+					console.log(menu_list2.offsetTop)
+//					menu_list3.style.top=menu_list3.offsetHeight-menu.offsetHeight+'px';
+					menu_list3.style.top=top3+'px';
+				}else if(menu.offsetTop>=(document.documentElement.clientHeight-menu_list2.offsetTop-menu.offsetTop-menu_list3.offsetTop)){
+					var top3=document.documentElement.clientHeight-menu_list2.offsetTop-menu.offsetTop-menu_list3.offsetHeight;
+					menu_list3.style.top=top3+'px';
+				}
+				else{
+					menu_list3.style.top=192+'px'
+				}
+//				menu.style.top = ev.clientY + 'px';
+//				menu.style.left = ev.clientX + 'px';
+			
+
+			return false;
+		}
+		document.onclick = function() {
+			menu.className = "menu";
+		}
+		divs.onmousemove=function(){
+			for(var i=0;i<divs.length;i++){
+				divs[i].style.visibility='visible'
+			}
+		}
+	</script>
+
+</html>

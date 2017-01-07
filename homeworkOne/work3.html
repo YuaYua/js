@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#ab>div{
+				width: 80px;
+				height: 15px;
+				/*border: 1px solid red;*/
+				display: inline-block;
+			}
+			/*#aa{
+				width: 100px;
+				height: 100px;
+			}*/
+
+		</style>
+	</head>
+
+	<body>
+		<p>加减乘除</p>
+		<div id="aa" onmouseout="test()">
+		a=<input type="text" name="a1" id="a1" value="0"/>
+		<br /> 
+		b=<input type="text" name="a2" id="a2" value="1" />
+		</div>
+		<br />
+		<div id="ab">
+			a+b=
+			<div id="a3"></div>
+			<br />
+			a-b=
+			<div id="a4"></div>
+			<br />
+			a*b=
+			<div id="a5"></div>
+			<br />
+			a/b=
+			<div id="a6"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function test(){
+			var ww=document.getElementById("aa")
+			var w1=document.getElementById("a1");
+			var w2=document.getElementById("a2");
+			var w3=document.getElementById("a3");
+			w3.innerHTML=(w1.value-0)+(w2.value-0);
+			var w4=document.getElementById("a4");
+			w4.innerHTML=(w1.value-0)-(w2.value-0);
+			var w5=document.getElementById("a5");
+			w5.innerHTML=(w1.value-0)*(w2.value-0);
+			var w6=document.getElementById("a6");
+			w6.innerHTML=((w1.value-0)/(w2.value-0)).toFixed(2);
+		}
+	</script>
+</html>

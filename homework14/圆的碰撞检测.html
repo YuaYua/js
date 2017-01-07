@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			div {
+				border-radius: 50%;
+				position: absolute;
+				text-align: center;
+			}
+			
+			.move {
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				font: normal 30px/100px "微软雅黑";
+			}
+			
+			.hit {
+				width: 80px;
+				height: 80px;
+				background-color: mediumslateblue;
+				font: normal 30px/80px "微软雅黑";
+				left: 50%;
+				top: 50%;
+			}
+			
+			.hit.ing {
+				background-color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="move">移动</div>
+		<div class="hit">目标</div>
+	</body>
+	<script type="text/javascript">
+		var move = document.querySelector('.move');
+		var hit = document.querySelector('.hit');
+		move.onmousedown = function(e) {
+			var ev = e || event;
+			var disX = ev.clientX - move.offsetLeft;
+			var disY = ev.clientY - move.offsetTop;
+			document.onmousemove = function(e) {
+				var ev = e || event;
+				move.style.left = ev.clientX - disX + 'px';
+				move.style.top = ev.clientY - disY + 'px';
+				//目标的原点（hitX,hitY）,目标半径（hitR）
+				var hitX = hit.offsetLeft + (hit.offsetWidth / 2);
+				var hitY = hit.offsetTop + (hit.offsetHeight / 2);
+				var hitR = hit.offsetHeight / 2;
+
+				//自身的原点(moveX,moveY),自身半径（moveR）
+				var moveX = move.offsetLeft + (move.offsetWidth / 2);
+				var moveY = move.offsetTop + (move.offsetHeight / 2);
+				var moveR = move.offsetHeight / 2;
+				//圆心距   两点间的距离公式：d=√（（x1-x2）²+（y1-y2）²）
+				var d = Math.sqrt(Math.pow((hitY - moveY), 2) + Math.pow((hitX - moveX), 2));
+				//碰撞点圆心距
+				var boomR=moveR+hitR;
+				if(d<=boomR){
+					hit.className+=' ing';
+				}else{
+					hit.className='hit';
+				}
+			}
+			document.onmouseup = function() {
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}
+			return false;
+		}
+	</script>
+
+</html>

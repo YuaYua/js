@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>轮播图</title>
+		<style type="text/css">
+			#wrap {
+				width: 750px;
+				height: 500px;
+				border: 1px solid darkblue;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			#imgDiv {
+				position: absolute;
+				height: 500px;
+				left: 0;
+				top: 0;
+			}
+			
+			img {
+				width: 750px;
+				height: 500px;
+				float: left;
+			}
+			.changeColor{
+				background-color: mediumpurple;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<button id="up">上一步</button>
+			<button id="down">下一步</button>
+		</div>
+		<div id="selectImg">
+			<button id="btn1" class="changeColor">按钮1</button>
+			<button id="btn2">按钮2</button>
+			<button id="btn3">按钮3</button>
+			<button id="btn4">按钮4</button>
+		</div>
+		<div id="wrap">
+			<div id="imgDiv">
+				<img src="img/Jinx1.jpg" alt="" />
+				<img src="img/Jinx5.jpg" alt="" />
+				<img src="img/Jinx3.jpg" alt="" />
+				<img src="img/Jinx4.jpg" alt="" />
+			</div>
+		</div>
+	</body>
+	<script src="js/tween.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var wrap = document.getElementById('wrap');
+		var imgDiv = document.getElementById('imgDiv');
+		var imgs = imgDiv.getElementsByTagName("img");
+		var btn = document.querySelectorAll('#selectImg>button');
+		var up = document.getElementById('up');
+		var down = document.getElementById('down');
+		imgDiv.style.width = imgs[0].offsetWidth * imgs.length + 'px';
+
+		var timer = null;
+		var index = 0;
+
+		function move() {
+			//对应按钮颜色
+			//btn[index].className="changeColor";//会出现都变色情况
+			for(var i=0;i<btn.length;i++){
+				btn[i].className=null;
+			}
+			btn[index].className="changeColor";
+			
+			//①开始位置
+			var b = imgDiv.offsetLeft;
+			//②过渡路径
+			var end = -imgs[0].offsetWidth * index; //结束位置
+//			console.log(end)
+			var c = end - b;
+			//③初始步数
+			var t = 0;
+			//④总步数
+			var d = 50;
+			clearInterval(timer);
+			timer = setInterval(function() {
+				t++;
+				if(t >= d) {
+					clearInterval(timer);
+				}
+				//Tween后第一个位置规定运动轨迹，第二个位置规定运动曲线
+				imgDiv.style.left = Tween.Back.easeOut(t, b, c, d) + 'px';
+			}, 30);
+		}
+		//循播
+		var scollTimer = setInterval(function() {
+			//改变end的值
+			index++;
+			if(index > imgs.length - 1) {
+				index = 0;
+			}
+			move();
+		}, 3000);
+
+		//绑定图片和按钮
+		for(var i = 0; i < btn.length; i++) {
+			btn[i].index = i;
+			btn[i].onclick = function() {
+				index = this.index;
+				move();
+				//停留过短？？？
+				//因为循播
+				resetScoll();
+			}
+		}
+		//解决停留过短
+		function resetScoll() {
+			clearInterval(scollTimer);
+			scollTimer = setInterval(function() {
+				//改变end的值
+				index++;
+				if(index > imgs.length - 1) {
+					index = 0;
+				}
+				move();
+			}, 3000);
+		}
+		//上一张图
+		up.onclick = function() {
+				index--;
+				if(index < 0) {
+					index = imgs.length - 1;
+				}
+				move();
+				resetScoll();
+			}
+			//下一张
+		down.onclick = function() {
+			index++;
+			if(index > imgs.length - 1) {
+				index = 0;
+			}
+			move();
+			resetScoll();
+		}
+	</script>
+
+</html>

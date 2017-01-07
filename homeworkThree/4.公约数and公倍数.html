@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var a = parseInt(prompt("请输入a的值："));
+		var b = parseInt(prompt("请输入b的值："));
+
+		for(var i = a; i > 0; i--) {
+			if(a % i == 0 && b % i == 0) {
+				break;
+			}
+		}
+		console.log("最大公约数为" + i);
+		//最小公倍数：a*b/最大公约数
+		for(var i = a;; i++) {
+			if(i % a == 0 && i % b == 0) {
+				break;
+			}
+		}
+		console.log("最小公倍数为" + i);
+
+		//方法二：比较a b 大小
+		//为了对两个数相差过大的进行优化
+		var min;
+//		if(a > b) {
+//			min = b;
+//		} else {
+//			min = a;
+//		}
+//		for(var i = min; i > 0; i--) {
+//			if(a % i == 0 && b % i == 0) {
+//				break;
+//			}
+//		}
+//		console.log("最大公约数为" + i);
+//		console.log("最小公倍数为" + (a * b) / i);
+
+		//辗转相除for
+		var max;
+		if(a > b) {
+			max = a;
+			min = b;
+		} else {
+			max = b;
+			min = a;
+		}
+//		for(var i = 0; i < 1;) {
+//			var t;
+//			t = max % min;
+//			max = min;
+//			min = t;
+//			if(t == 0) {
+//				i = 1;
+//				console.log("最大公约数为" + max);
+//				console.log("最小公倍数为" + (a * b) / max);
+//			}
+//		}
+		//辗转相除while
+		var t;
+		t = max % min;
+		while(t != 0) {
+			max = min;
+			min = t;
+			t = max % min;
+		}
+		console.log("最大公约数为" + min);
+		console.log("最小公倍数为" + (a * b) / min);
+	</script>
+
+</html>

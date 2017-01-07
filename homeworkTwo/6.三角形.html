@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" name="" id="id1" value="" />
+		<input type="text" name="" id="id2" value="" />
+		<input type="text" name="" id="id3" value="" />
+		<input type="button" name="id4" id="id4" value="开始测试" onclick="mid()" />
+	</body>
+	<script type="text/javascript">
+		function mid() {
+			var a = parseInt(document.getElementById("id1").value);
+			var b = parseInt(document.getElementById("id2").value);
+			var c = parseInt(document.getElementById("id3").value);
+			
+			var sum1, sum2, sum3;
+//			console.log(typeof(a));
+			
+			if(a > 0 && b > 0 && c > 0) {
+				sum1 = a + b; //c
+//				console.log(sum1);
+				sum2 = b + c; //a
+//				console.log(sum2);
+				sum3 = a + c; //b
+//				console.log(sum3);
+				if(sum1 > c && sum2 > a && sum3 > b) {
+					alert("这是一个三角形");
+				} else {
+					alert("这不是一个三角形")
+				}
+			} else {
+				alert("请输入大于零的值");
+			}
+		}
+	</script>
+
+</html>
