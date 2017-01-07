@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				background-color: red;
+				position: absolute;
+				left: 30px;
+				top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+	</body>
+	<script src="js/tween.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var div=document.querySelector("#div");
+		//①开始位置
+		var b=div.offsetLeft;
+		//②过渡路径
+		var end=800;//结束位置
+		var c=end-b;
+		//③初始步数
+		var t=1;
+		//④总步数
+		var d=100;
+		var timer=setInterval(function(){
+			t++;
+			if(t>=d){
+				clearInterval(timer);
+			}
+			//Tween后第一个位置规定运动轨迹，第二个位置规定运动曲线
+			div.style.left=Tween.Back.easeInOut(t,b,c,d)+'px';
+		},10)
+	</script>
+</html>

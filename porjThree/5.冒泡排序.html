@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var arr = [5, 4, 3, 2, 1];
+		var n = arr.length;
+		document.write(arr+"<br />");
+		
+		for(var i = 0; i < n - 1; i++) {
+			for(var j = 0; j < n - i - 1; j++) {
+				if(arr[j] > arr[j + 1]) {
+					var temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+		//sort():排序函数
+		arr.sort();
+		document.write(arr+"<br />");
+	</script>
+
+</html>

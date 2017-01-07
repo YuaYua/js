@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.wrap {
+				width: 300px;
+				height: 200px;
+				border: 10px solid aqua;
+				overflow: hidden;
+				position: relative;
+			}
+			.stage{
+				width: 9999px;
+				height: 200px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			img{
+				float: left;
+			}
+			ul {
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+			}
+			
+			li {
+				margin: 9px;
+				float: left;
+				width: 60px;
+				height: 30px;
+				border: 1px solid cornflowerblue;
+				font: normal 20px/30px "微软雅黑";
+				text-align: center;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="stage">
+				<img src="img/Jinx1.jpg" alt="" />
+				<img src="img/Jinx2.jpg" alt="" />
+				<img src="img/Jinx3.jpg" alt="" />
+				<img src="img/Jinx4.jpg" alt="" />
+			</div>
+		</div>
+		<ul class="ul">
+			<li>第1张</li>
+			<li>第2张</li>
+			<li>第3张</li>
+			<li>第4张</li>
+		</ul>
+	</body>
+	<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function($) {
+			$('li').on('click', function() {
+								console.log($(this).index()*parseInt($("img").css("width")));
+				$('.stage').animate({
+					left: -$(this).index()*$("img").width()
+				})
+			})
+		})
+	</script>
+
+</html>

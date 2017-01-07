@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 50px;
+				height: 50px;
+				border: 1px solid orange;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div1">1</div>
+		<div id="div2">2</div>
+		<div id="div3">3</div>
+		<div id="div4">4</div>
+		<div id="div5">5</div>
+		<div id="div6">6</div>
+		<div id="div7">7</div>
+		<div id="div8">8</div>
+		<div id="div9">9</div>
+		<div id="div10">10</div>	
+	</body>
+	<script type="text/javascript">
+		
+		for(var i=1;i<10;i++){
+			//挨个获取div
+			var div=document.getElementById("div"+i);
+			//得到div的内容,并转化成number类型
+			var num=Number(div.innerHTML);
+			if(num%2==0){
+				//将满足条件的div的点击事件绑定对应的函数体
+				div.onclick=function(){
+					alert("你丫找到我了！");
+				}
+			}
+		}
+	</script>
+</html>

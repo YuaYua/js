@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>放大镜</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+			}
+			div{
+				border: 1px solid gainsboro;
+				position: relative;
+				float: left;
+				/*border-radius: 10px;*/
+			}
+			.max_wrap{
+				width: 320px;
+				height: 320px;
+				overflow: hidden;
+				/*overflow: scroll;*/
+				display: none;
+			}
+			.slider{
+				width: 140px;
+				height:140px;
+				background-color: rgba(255,255,0,.3);
+				position: absolute;
+				top: 0;
+				left: 0;
+				border: none;
+				display: none;
+			}
+			.max_wrap>img{
+
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="min_wrap">
+			<img src="img/min.jpg" alt="" />
+			<div class="slider">
+				
+			</div>
+		</div>
+		<div class="max_wrap">
+			<img src="img/max.jpg"/>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var minWrap=document.querySelector('.min_wrap');
+		var maxWrap=document.querySelector('.max_wrap');
+		var slider=document.querySelector('.slider');
+		var maxImg=maxWrap.getElementsByTagName('img')[0];
+		//① slider跟随鼠标在minWrap上移动
+		
+		//② maxImg移动到相应位置，与slider区域内的内容一致
+		minWrap.onmousemove=function(e){
+			slider.style.display='block';
+			maxWrap.style.display='block';
+			var ev=e||event;
+			var x=ev.clientX-slider.offsetWidth/2;
+			var y=ev.clientY-slider.offsetHeight/2;
+			//slider的可活动距离
+			var maxWidth=minWrap.clientWidth-slider.offsetWidth;
+			var maxHeight=minWrap.clientHeight-slider.offsetHeight;
+			(x<0)&&(x=0);
+			(y<0)&&(y=0);
+			(x>maxWidth)&&(x=maxWidth);
+			(y>maxHeight)&&(y=maxHeight);
+//			if(x<0){
+//				x=0;
+//			}
+//			if(y<0){
+//				y=0;
+//			}
+//			if(x>maxWidth){
+//				x=maxWidth;
+//			}
+//			if(y>maxHeight){
+//				y=maxHeight;
+//			}
+//			var x=ev.clientX-slider.offsetWidth/2;
+//			var y=ev.clientY-slider.offsetHeight/2;
+			slider.style.left=x+'px';
+			slider.style.top=y+'px';
+			//大图移动
+		
+//			maxImg.style.left=-x*(16/7)+"px";
+//			maxImg.style.top=-y*(16/7)+'px';
+//			//控制大图移动
+			//  小图偏移/小图总宽（高）==大图偏移/大图总宽高
+			var scaleX=slider.offsetLeft/minWrap.clientWidth;
+			var scaleY=slider.offsetTop/minWrap.clientWidth;
+//			
+			maxWrap.scrollLeft=scaleX*maxImg.offsetWidth;
+			maxWrap.scrollTop=scaleY*maxImg.offsetHeight;
+//			或
+//			maxImg.style.left=-scaleX*maxImg.offsetWidth+"px";
+//			maxImg.style.top=-scaleY*maxImg.offsetHeight+'px';
+			
+			
+		}
+		minWrap.onmouseleave=function(){
+			slider.style.display='none';
+			maxWrap.style.display='none';
+		}
+		
+	</script>
+</html>

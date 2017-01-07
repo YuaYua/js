@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//str.match(reg)
+		//匹配正则，将结果存储在数组中返回出来
+		var str="abc123哈哈2"
+		var reg=/2/g;
+		var arr=str.match(reg);
+		alert(arr);
+		
+		//2.str.search(reg)
+		//查找正则，将查找到的第一个元素所在索引返回出来
+		//如果没查找到，返回-1
+		var num=str.search(reg);
+		alert(num)
+		
+		//3.str.replace(reg,newStr)
+		//用正则匹配字符串，匹配上后将匹配的特定字符串替换
+		var newStr=str.replace(reg,"two");
+		alert(newStr);
+		
+		//4. str.split(reg,limit)
+		//通过正则表达式将字符串进行分割
+		//limit是限制分割后的数组多大长度
+		var splitArr=str.split(reg,3);
+		alert(splitArr);
+//		console.log(splitArr)
+		
+		//5. reg.exec(str)
+		//拿正则去索引字符串，返回值是数组类型
+		//其返回值数组没有多大使用价值，只做有值无值判断
+		var regArr=reg.exec(str);
+		alert(regArr);
+		
+		//6. reg.test(str)
+		//只用于正则与字符串进行匹配
+		//匹配上结果为true，反之为false
+		var bol=reg.test(str);
+		alert(bol);
+		
+		
+	</script>
+</html>

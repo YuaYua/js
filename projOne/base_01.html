@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+		<h1>这是一个标题</h1>
+		<p>这是一个段落</p>
+	</body>
+	<!--js有三部分组成-->
+	<!--ES：ECMAScript，核心（JS的语法）-->
+	<!--②DOM：document object model,文档操作-->
+	<!--③BOM:browser object model 浏览器相关操作-->
+	<!--第一种嵌入JS语句-->
+	<script type="text/javascript">
+		document.write("<h1>这是一个标题</h1>");
+		document.write("<p>这是一个段落</p>");
+	</script>
+	
+	<!--第二种嵌入JS语句-->
+	<script src="js/base_01.js"></script>
+	
+	<script type="text/javascript">
+		alert("hellow world!");
+		console.log("你好，世界")
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--JS位置应该存放在body最低端（习惯body和html之间）-->
+	<!--利于JS语言在页面及页面节点加载完毕后进行DOM、BOM操作-->
+
+</html>

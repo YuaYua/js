@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		body{
+			margin: 0;
+		}
+			#login{
+				text-decoration: none;
+				color: black;
+				float: right;
+			}
+			#moban{
+				width: 100vw;
+				height: 100vh;
+				background-color: rgba(217,217,217,0.6);
+				position: relative;
+				top:0;
+				left: 0;		
+				display: none;	
+			}
+			#register{
+				width: 28%;
+				height: 68%;
+				background-color: white;
+				position: absolute;
+				top:16%;
+				left: 36%;	
+			}
+			#register input{
+				float: right;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<a id="login">登录</a>
+			<div id="moban">
+				<div id="register">
+					<input type="button" name="" id="btn" value="×" />
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var login=document.all.login;
+		var moban =document.all.moban;
+		var btn=document.all.btn;
+		login.onclick=function(){
+			moban.style.display="block";
+		}
+		btn.onclick=function(){
+			moban.style.display="none";
+		}
+	</script>
+</html>

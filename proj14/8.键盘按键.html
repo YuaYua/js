@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>键盘按键</title>
+	</head>
+
+	<body>
+		键盘按键
+	</body>
+	<script type="text/javascript">
+		document.onkeydown = function(e) {
+			var ev = e || event;
+			console.log(ev);
+			//我们一般用ev.keycode来判断所点击的按键
+			//一般可以通过if链实现按键匹配
+			//也可以通过switch语法实现按键匹配
+			switch(ev.keyCode) {
+				case 17:
+					console.log("按下ctrl");
+					break;
+				case 16:
+					console.log("按下shift");
+					break;
+			}
+		}
+		document.onkeyup = function(e) {
+			var ev = e || event;
+			//ctrlkey,altkey,shiftkey三个Boolean值
+			//代表三个状态，也就是说在按下不同的情况下，
+			//状态为true，抬起便变成false
+			//2、如果想在检测按键抬起时，判断是否是三个特殊按钮，必须用
+			//其所代表的keyCode
+			switch(ev.keyCode) {
+				case 17:
+					console.log("抬起ctrl");
+					break;
+				case 16:
+					console.log("抬起shift");
+					break;
+			}
+		}
+		
+	</script>
+
+</html>

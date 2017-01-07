@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>滚动懒加载</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			img {
+				width: 100vw;
+				/*height: 10px;*/
+			}
+			
+			#img1 {
+				margin-top: 100vh;
+				margin-bottom: 200px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<img id="img1" src="" date-src="img/img/Jinx.jpg" />
+		<img id="img2" src="" date-src="img/img/Jinx2.png" />
+
+	</body>
+	<script type="text/javascript">
+		//屏幕滑动事件（会监听屏幕滑动,相隔一段时间触发一次，并非一段距离，也不是1px）
+		window.onscroll = function() {
+			//(兼容不同浏览器)获取屏幕滑动距离  other||IE 
+			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+			var img1=document.getElementById('img1');
+			var img2=document.getElementById('img2');
+			console.log(scrollTop);
+			if(scrollTop>=200){
+//				var i=img1.getAttribute('date-src');
+//				img1.setAttribute('src',i);
+				img1.src=img1.getAttribute('date-src');
+				img1.style.height='auto';
+			}else{
+				img1.src=''
+			}
+			if(scrollTop>=220){
+//				var i=img1.getAttribute('date-src');
+//				img1.setAttribute('src',i);
+				img2.src=img1.getAttribute('date-src');
+				img2.style.height='auto';
+			}else{
+				img2.src=''
+			}
+			
+			
+		}
+	</script>
+
+</html>

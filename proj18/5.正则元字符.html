@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var str = "  12  34 	56\n78";
+		//		console.log(s)
+		var reg = /\s/g;
+
+//		var res = str.match(reg);
+		//		console.log(res);
+		var arr = str.split(reg);
+		//		alert(sArr);
+//		console.log(arr);
+		//
+		var newArr=[];
+		for(var i=0;i<arr.length;i++){
+//			if(arr[i]!=""){
+//				newArr.push(arr[i]);
+//			}
+			//或
+			
+			//数组的每一位和空字符串比较
+			if(arr[i]==""){
+				//将匹配上的i位删除
+				arr.splice(i,1);
+				//原来的i+1位在第i位被删除后变成新的第i位
+				//但仍然需要进行判断，故循环应返回一步仍然从第i位进行循环判断比较
+				i--;
+			}
+		}
+//		alert(arr);
+		
+		
+//		Array.prototype.indexOf = function(val) {
+//			for(var i = 0; i < this.length; i++) {
+//				if(this[i] == val) return i;
+//			}
+//			return -1;
+//		};
+//		Array.prototype.remove = function(val) {
+//			var index = this.indexOf(val);
+//			if(index > -1) {
+//				this.splice(index, 1);
+//			}
+//		};
+//		for(var i=0;i<sArr.length;i++){
+//			arr.remove("");
+//		}
+//		console.log(arr)
+
+		//1. . 匹配除\n(换行)外的所有字符
+		var str1="abc.ABC;123>哈哈\n{_}";
+		var reg1=/./g;
+		var arr1=str1.match(reg1);
+//		alert(arr1);//结果：[a,b,c,.,A,B,C,;,1,2,3,>,哈,哈,{,_,}]
+		
+		//2 \w,匹配a-z,A-Z,0~9,_(下划线)  \W 非\w所有的
+		var reg2=/\w/g;
+//		var reg2=new RegExp("\\w","g")//  \w是作为正则匹配符号，直接出现在字符串“”中，系统无法识别，需要将\n再通过\进行转义
+		var arr2=str1.match(reg2)
+//		alert(arr2);//结果：[a,b,c,A,B,C,1,2,3,_]
+		
+		//3 \d 匹配0~9
+		// \D:除0~9的所有字符
+		var reg3=/\d/g;
+		var arr3=str1.match(reg3);
+//		alert(arr3);
+		
+		//4. \s 匹配任意空白(空格\f\t\n\v)  \S 非\s所有的
+		var str4="  12  34 	56\n78";
+		var reg4=/\S/g;
+		var arr4=str4.match(reg4);
+//		alert(arr4);
+		
+		//5 \n:单独匹配换行
+		var str5="  12  34 	56\n78\n";
+		var reg5=/\n/g;
+		var arr5=str5.match(reg5);
+//		alert(arr5);
+		
+		//6 \uxxxx xxxx代表的是4个16进制位数
+		//注:Unicode编码
+		var str6="①②③④"
+		var reg6=/\u2460/;
+		var arr6=str6.match(reg6);
+		alert(arr6);
+		
+		//7 \xmm:  mm代表的是两个十六进制位数
+		//注：ASCII表数值
+		var str7="@a";
+		var reg7=/\x40\x61/;
+		var arr7=str7.match(reg7);
+		alert(arr7);
+		
+	</script>
+
+</html>

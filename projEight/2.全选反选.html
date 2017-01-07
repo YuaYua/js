@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn1">全选</button>
+		<button id="btn2">反选</button>
+		<form id="form">
+			<input type="checkbox" />
+			<input type="checkbox" />
+			<input type="checkbox" />
+			<input type="checkbox" />
+			<input type="checkbox" />
+			<input type="checkbox" checked="checked"/>
+			
+		</form>
+	</body>
+	<script type="text/javascript">
+		var btn1=document.all.btn1;
+		var btn2=document.all.btn2;
+		var form=document.all.form;
+		var ips=document.querySelectorAll("#form>input");
+//		console.log(ips[5].checked,ips[4].checked);
+		btn1.onclick=function(){
+			//for ..in..
+			//
+			//
+			for(var i=0;i<ips.length;i++){
+				ips[i].checked=true;
+			}
+		}
+		btn2.onclick=function(){
+			for (var i=0;i<ips.length;i++) {
+				if(ips[i].checked){
+					ips[i].checked=false;
+				}else{
+					ips[i].checked=true;
+				}
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: *;
+		}
+			#div{
+				width: 100vw;
+				height: 100vh;
+				background-color: paleturquoise;
+				font: bold 300px/100vh "微软雅黑";
+				text-align: center;
+				color: cadetblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div">1%</div>
+		<!--src先用占位符填充-->
+		<img id="img" src="img/Jinx.jpg" alt="" date-src = "http://scimg.jb51.net/allimg/160924/103-160924125P3526.jpg"/>
+	</body>
+	<script type="text/javascript">
+		var body=document.getElementsByTagName('body')[0];
+		var div=document.getElementById('div');
+		var img=document.all.img;
+		var timer=null;
+		var count=1;
+		var total=100;
+		//产生一到五之间的随机数
+		function random(){
+			return parseInt(Math.random()*5)+1;
+		}
+		timer=setInterval(function(){
+//			var numRandom=random();
+			count+=random();
+			if(count>=total){
+				count=100;
+				clearInterval(timer);
+			}
+			div.innerText=count+"%";
+			//模拟图片下载完毕，操作对应函数
+			if(count==100){
+				anything();
+			}	
+		},30)
+		//处理图片下载完毕后的事情
+		function anything(){
+			//1,把div干掉
+			div.parentElement.removeChild(div);
+			//2，把图片显示出来
+			var i=img.getAttribute("date-src");
+			img.setAttribute("src",i);
+		}
+		
+		
+	</script>
+</html>

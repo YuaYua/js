@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.div{
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				margin: 10px auto;
+				font:normal 20px/100px "微软雅黑";
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div" title="ahead">ahead</div>
+		<div class="div" title="Ahead">Ahead</div>
+		<div class="div" title="head">head</div>
+		<div class="div" title="head1">head1</div>
+		<div class="div" title="head2">head2</div>
+		<div class="div" id="div1">empty</div>
+	</body>
+	<script type="text/javascript">
+		//有title属性
+//		$('div[title]').on('click',function(){
+//			alert('有title');
+//		})
+//		//title全局属性值为head
+//		$('div[title=head]').on('click',function(){
+//			alert('title=head');
+//		})
+		//title全局属性值以head开头
+//		$('div[title^=head]').on('click',function(){
+//			alert('title以head开头');
+//		})
+		//title全局属性值以head结尾
+//		$('div[title$=head]').on('click',function(){
+//			alert('title以head结尾');
+//		})
+		//title全局属性值包含head
+//		$('div[title*=head]').on('click',function(){
+//			alert('title包含head');
+//		})
+		//有class且有id
+		$('div[class][id]').on('click',function(){
+			alert('有class且有id');
+		})
+	</script>
+</html>

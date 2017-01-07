@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>函数回调之四则运算</title>
+	</head>
+	<body>
+		函数回调之四则运算
+	</body>
+	<script type="text/javascript">
+		function compute(callback){
+			//完成两个数的四则运算
+			var num1=prompt("请输入第一个数");
+			var num2=prompt("请输入第二个数");
+			//获得的是字符串，转换成数字
+			num1=parseFloat(num1);
+			num2=parseFloat(num2);
+			//函数回调
+			var result=callback(num1,num2);
+			alert("结果为"+result);
+		}
+		//加
+		function apAdd(num1,num2){
+			return num1+num2;
+		}
+		//减
+		function apLow(num1,num2){
+			return num1-num2;
+		}
+		function apLeap(num1,num2){
+			return num1*num2;
+		}
+		function apFall(num1,num2){
+			return num1/num2;
+		}
+		var method=prompt('请输入运算法则','如+');
+		switch(method){
+			case '+':compute(apAdd);break;
+			case '-':compute(apLow);break;
+			case '*':compute(apLeap);break;
+			case '/':compute(apFall);break;
+			default:alert('看不懂提示吗？');break;
+			
+			
+		}
+	</script>
+</html>

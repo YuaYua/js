@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>test页面</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				btn.onclick = function(){
+					history.go(-1);//回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#btn {
+				width:97vw ;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">返回主页</div>
+	</body>
+	<script src="js/hammer.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var hammer=new Hammer(document);
+		hammer.on("press",function(ev){
+			console.log("长按了");
+		})
+		hammer.on("pressup",function(ev){
+			console.log("抬起了");
+		})
+	</script>
+</html>

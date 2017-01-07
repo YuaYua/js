@@ -1,0 +1,18 @@
+{
+	"index.html": {
+		"resources": [
+			"gesture.html"
+		],
+		"refer": [
+			"gesture.html"
+		]
+	},
+	"gesture.html": {
+		"resources": [
+			"index.html"
+		],
+		"refer": [
+			"index.html"
+		]
+	}
+}

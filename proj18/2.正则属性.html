@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>正则属性</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var str="abab";
+		//属性g:全局匹配，从头一直匹配到结束，将匹配删的结果一一存储到数组中，以备使用
+		var reg=new RegExp("ab","g");
+		var result=str.match(reg);
+//		console.log(result);//["ab", "ab"]
+//		alert(result);//ab,ab
+		
+		//属性i：匹配的字符串不区分大小写
+		var reg1=new RegExp("A","i");
+		var res1=str.match(reg1);
+//		console.log(res1);//null
+//		alert(res1);//null
+		
+		//练习:匹配出字符串中存在的四个“abc""
+//		并存储到数组中以备使用
+		var tempStr="abcAbcaBcabC";
+		var tempReg=new RegExp("abc","gi");
+		var tempRes=tempStr.match(tempReg);
+		console.log(tempRes);
+		
+	</script>
+</html>

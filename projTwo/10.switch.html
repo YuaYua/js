@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		/*格式
+						switch(变量){
+							case 常量1:语句体1;break;
+							case 常量2:语句体1;break;
+							...        ...   break;
+							case 常量n:语句体1;break;
+							default:语句体;break;
+						}
+						*/
+		//①break：只要遇到break，就结束switch，执行switch以下的语句
+		//②case 常量值作为匹配的入口，有了入口程序会依次往下执行到第一个break，作为出口。
+		//如果一直未找到出口就会执行完switch中的所有语句，然后自动出来。
+		//③break的有无根据实际情况而定，且break只能出现在某一个分支中。
+		//一般每个case（default）后都包含一个break
+		//④default分支为默认分支，出现在最后，表示当所有case都未匹配上，执行该分支
+		//⑤case后常量可以和switch（变量）为相同的任意类型
+		//⑥不同case具有相同语句体，可以简写
+		/*
+		var num = parseInt(prompt());
+		switch(num) {
+			case 1:
+			case 5:
+				alert("这是第一个case");
+				break;
+			case 2:
+				alert("这是第二个case");
+				break;
+			case 4:
+				alert("这是第四个case");
+				break;
+				//			case 5:alert("这是第五个case");break;
+			default:
+				alert("你输入的数字不在范围内");
+				break;
+		}
+		alert("switch执行完了");
+		*/
+
+		//练习：输入一个年份再输入一个月份，输出该年该月有多少天
+		var year = parseInt(prompt("请输入年份"));
+		var month = parseInt(prompt("请输入月份"));
+		
+		//循环输入
+		while(true){
+			if (month>=1 && month <= 12) {
+				//作为循环的出口（跳出循环）
+				break;
+			} else{
+				alert("你丫的月份输入有错误！");
+				month = parseInt(prompt("请重新输入月份"));
+			}
+		}
+		var day = 0;
+		switch(month) {
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+			case 8:
+			case 10:
+			case 12:
+				alert("本月有31天");
+				break;
+			case 2:
+				if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+					alert("本月有29天");
+				} else {
+					alert("本月有28天");
+				}
+				break;
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				alert("本月有30天");
+				break;
+			default:
+				alert("没有这个月");
+
+		}
+	</script>
+
+</html>

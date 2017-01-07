@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>事件绑定</title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+				margin: 30px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div onmouseenter="alert('enter')" onmouseleave="alert('leave')"></div>
+		<div id="div2" style=""></div>
+		<div onmouseenter="myEnter()"></div>
+	</body>
+	<script type="text/javascript">
+		var div2=document.getElementById("div2");
+		div2.onmouseenter=function(){
+			alert('enter');
+		}
+		div2.onmouseleave=function(){
+			alert('leave');
+		}
+		
+		function myEnter(){
+			alert('enter');
+		}
+	</script>
+
+</html>

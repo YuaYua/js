@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="wrap">
+			<p id="p1">001</p>
+			<p id="p2">002</p>
+			<p id="p3">003</p>
+			<p id="p4">004</p>
+			<p id="p5">005</p>
+			<p id="p6">006</p>
+			<p id="p7">007</p>
+			<p id="p8">008</p>
+			<p id="p9">009</p>
+			<p id="p10">010</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var wrap=document.all.wrap;
+		var pArr=wrap.children;
+		console.log(pArr);
+		
+		Object.prototype.firstChild=function(){
+//			if(this.constructor==Array){
+				//遇到return，整个函数将返回，之后的代码不在被执行
+//				return this[0];
+//			}
+			return this[0];
+		}
+		
+		//第一个元素（标签）节点
+		var p1=pArr[0];
+		console.log(p1);
+		p1=pArr.firstChild();
+		console.log(p1);
+		
+		
+		
+		//①String对象可以通过prototype来拓展属性及函数，
+		//拓展的函数及属性对于所有的String类型对象或是string类型变量都适用
+		//方法
+		String.prototype.appendBefore=function(str){
+			if(this.constructor==String){
+				return str.concat(this);
+			}
+		}
+//		alert("123".appendBefore("abc"));
+		//属性
+		String.prototype.type="string";
+		var a="123";
+//		alert(a.type);
+		//②对于变量str来演，可以直接给器添加属性，且只有str有该属性
+		var str1=new String();
+		var str2=new String();
+		str1.property="i am str1";
+//		alert(str1.property);
+//		alert(str2.property);
+		//③对于常量"string"而言，本身不具备储备其他数据的空间，自身暂且需要空间存储，故不能拓展任何东西
+		
+		
+		var ele=new String();
+		//作为对象变量类型匹配
+		if(ele.constructor==String){
+			alert("ele是字符串");
+		}
+		if(ele.constructor==Date){
+			alert("ele是时间");
+		}
+		if(ele.constructor==Array){
+			alert("ele是数组");
+		}
+	</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>子节点</title>
+	</head>
+	<body>
+		<!--问：sup有多少个子节点-->
+		<!--提示：文本（回车）也是文本-->
+		<!--答：5-->
+		<div id="sup">
+			这是一段普通的文字
+			<!--注释是节点吗-->
+			<p>我是p标签</p>
+		</div>
+		<div id="box">
+			<div id="div1"></div>
+			<div id="div2"></div>
+			<div id="div3"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var sup=document.getElementById('sup');
+		console.log(sup);
+		var childNodes=sup.childNodes;
+		console.log(childNodes);
+		var children=sup.children;
+		console.log(children);
+		
+		
+		//注，一般操作节点都是对于标签而言，所有常用children而非childNodes
+		var box=document.getElementById('box');
+		console.log(box.children);
+		
+	</script>
+</html>

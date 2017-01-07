@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function() {
+				btn.onclick = function() {
+					//					回到主页
+					history.go(-1);
+					//返回上一页
+					//					history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			#btn {
+				width: 97vw;
+				height: 30px;
+				padding-left: 3vw;
+				font: normal 20px/30px "微软雅黑";
+				color: orange;
+				background-color: orchid;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+			
+			#box {
+				width: 100px;
+				height: 100px;
+				/*position: absolute;*/
+				margin: 50px;
+				background: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="btn">touchJS</div>
+		<div id="box">
+
+		</div>
+	</body>
+	<script src="js/touchjs.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		box.ontouchstart=function(ev){
+			ev.preventDefault();
+		}
+		touch.on(box, "drag", callback);
+
+		var endX = 0;
+		var endY = 0;
+		var x = 0;
+		var y = 0;
+
+		function callback(obj) {
+			//obj是drag传回的对象参数
+			//ev事件是touchJS处理后的参数
+			//该参数拥有两个属性x,y分别代表手指的x,y坐标
+			x = obj.x+endX;//endX:上次的结束位置就是该次的起始位置
+			y = obj.y+endY;
+			box.style.webkitTransform = "translate(" + x + "px," + y + "px)";
+		}
+		touch.on("#box","dragend",function(){
+			endX=x;//endX:将本次的最后位置作为结束位置保存
+			endY=y;
+		})
+	</script>
+
+</html>

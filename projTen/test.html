@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>轮播图</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#wrap {
+				width: 500px;
+				height: 300px;
+				background-color: red;
+				margin: 50px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			#run {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 3000px;
+			}
+			
+			#run>div {
+				width: 500px;
+				height: 300px;
+				background-color: khaki;
+				font: bold 60px/300px "微软雅黑";
+				text-align: center;
+				float: left;
+			}
+			
+			#dian {
+				width: 500px;
+				height: 15px;
+				/*background-color: black;*/
+				box-sizing: border-box;
+				padding-left: 212px;
+				position: absolute;
+				bottom: 0;
+			}
+			
+			#dian>div {
+				
+				width: 15px;
+				height: 15px;
+				box-sizing: border-box;
+				padding: 5px;
+				border: 1px solid black;
+				margin-left: 5px;
+				/*background-color: white;
+				opacity: 0.5;*/
+				float: left;
+				border-radius: 50%;
+				/*position: absolute;*/
+			}
+			
+			.changeColor {
+				background-color: purple;
+				/*opacity: 0.5;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="run">
+				<div id="div1">1</div>
+				<div id="div2">2</div>
+				<div id="div3">3</div>
+				<div id="div4">4</div>
+				<div id="div5">5</div>
+				<div id="div6">1</div>
+			</div>
+			<div id="dian">
+				<div class="changeColor"></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div style="background-color: transparent!important;border: 1px solid transparent!important;"></div>
+			</div>
+		</div>
+	</body>
+	<script src="js/tween.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var wrap = document.getElementById('wrap');
+		var run = document.getElementById('run');
+		var divs = run.getElementsByTagName('div');
+		var dian = document.getElementById('dian');
+		var dians = dian.getElementsByTagName('div');
+		//		console.log(dians.length)
+		//		var slider=document.getElementById('slider');
+		//1，如何开始运动
+		var index = 0;
+		var scollTimer = setInterval(function() {
+				index++;
+				//			if(index<-4){
+				//				index=0
+				//			}
+				moveImg();
+			}, 3000)
+			//2，运动的主体
+		var imgTimer = null;
+
+		function moveImg() {
+
+			var t = 0;
+			var d = 30;
+			var b1 = run.offsetLeft;
+			var end1 = -divs[0].offsetWidth * index;
+			var c1 = end1 - b1;
+			clearInterval(imgTimer);
+			imgTimer = setInterval(function() {
+				t++;
+				if(t >= d) {
+					clearInterval(imgTimer);
+					imgTimer = null;
+				}
+				run.style.left = Tween.Back.easeIn(t, b1, c1, d) + 'px';
+				//循环轮播
+				var leftStr = run.style.left;
+				leftStr = parseFloat(run.style.left);
+				//				leftStr.split("p")[0]  截取p之前的
+				//				console.log(leftStr+'l');
+				if(leftStr <= -2500) {
+					run.style.left = 0;
+					index = 0;
+				}
+				for(var i = 0; i < dians.length; i++) {
+					dians[i].className = null;
+				}
+				dians[index].className = 'changeColor';
+			}, 30)
+		}
+		for(var i = 0; i < dians.length; i++) {
+			dians[i].index = i;
+
+			//			console.log(i);
+			dians[i].onclick = function() {
+				console.log('aaa');
+				index = this.index;
+				moveImg();
+				resetScoll();
+			}
+		}
+		//重置定时器，解决停留过短问题
+		function resetScoll() {
+			clearInterval(scollTimer);
+			scollTimer = setInterval(function() {
+				index++;
+				if(index > divs.length - 1) {
+					index = 0;
+				}
+				moveImg();
+			}, 3000);
+		}
+	</script>
+
+</html>

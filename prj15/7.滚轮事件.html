@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+	//滚轮可以和alt shift ctr结合使用
+		document.onmousewheel=function(e){
+			console.log("控制台在哪");
+			var ev=e||event;
+			console.log(ev);
+		}
+		//非火狐第二套事件绑定标准
+		document.addEventListener("mousewheel",function(){
+			console.log("控制台在这");
+		})
+		//火狐浏览器滚轮滚动事件
+		document.addEventListener("DOMMouseScroll",function(){
+			console.log("这是火狐");
+		})
+	</script>
+</html>

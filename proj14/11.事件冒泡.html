@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.sub{
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+			.sup{
+				width: 200px;
+				height: 200px;
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sup">
+			<div class="sub"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var sup=document.querySelector(".sup");
+		var sub=document.querySelector(".sub");
+		sub.onclick=function(){
+			alert("sub点击了");
+			//阻断事件冒泡，事件不再传给下一级
+//			e.cancelBubble=true;
+			//阻断冒泡是阻断，而事件屏蔽只是代表屏蔽系统默认事件
+//			e.preventDefault()
+			
+		}
+		sup.onclick=function(e){
+			//事件默认是冒泡，没有阻断冒泡，事件会传给父级
+			alert("sup点击了");
+			e.cancelBubble=true;
+		}
+		document.onclick=function(){
+			alert("文档点击了");
+		}
+	</script>
+</html>

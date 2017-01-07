@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script type="text/javascript">
+			window.onload=function(){
+				btn.onclick=function(){
+//					回到主页
+					history.go(-1);
+					//返回上一页
+//					history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			#btn{
+				width: 97vw;
+				height: 30px;
+				padding-left:3vw;
+				font: normal 20px/30px "微软雅黑";
+				color: orange;
+				background-color: orchid;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--ios特有的左划手势 -->
+		<div id="btn">原生手势</div>
+	</body>
+	<script type="text/javascript">
+		document.addEventListener("gesturestart",function(){
+			console.log(11);
+		},false);
+		document.addEventListener("gesturechange",function(){
+			console.log(22);
+		},false);
+		document.addEventListener("gestureend",function(){
+			console.log(33);
+		},false);
+	</script>
+</html>

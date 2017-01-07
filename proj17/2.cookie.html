@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		console.log("设置之前：",document.cookie);
+		
+		//key-value 键-值 对
+		//① cookie必须严格按照key=value形式进行赋值
+		//② 如果修饰不满足key=value，如value 或 key:value 会被解析为 键 为空 值为（value 或 key:value）
+		//③ key相同时，会更新value的值，key不同时会作为新的键值对添加到cookie中
+		
+		//key:空 value：STRING
+		document.cookie="STRING";
+		//key:name value:zhangsan
+		document.cookie="name=zhangsan";
+		document.cookie="age=18";
+		//key:空 value：STRING -> ooo
+		document.cookie="ooo";
+		//key:空 value： ooo -> gender:male
+		document.cookie="gender:male";
+		document.cookie="user=zhangsan";
+		//key:name value:zhangsan->lisi
+		document.cookie="name=lisi";0
+		
+		//直接通过浏览器或是js代码无法查看拥有httpOnly属性的键值对
+		document.cookie="person=chinese;httpOnly";
+		
+		
+		var ck=document.cookie;
+		
+		console.log("设置之后：",ck);
+		
+//		console.log(typeof ck);
+		
+//		console.log(document.cookie);
+	</script>
+
+</html>

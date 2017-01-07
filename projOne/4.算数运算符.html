@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	
+	<script>
+		var a = -5.2;
+		var b = 3;
+		
+		//加法
+		console.log(a + b);
+		
+		//减法
+		console.log(b - a);
+		
+		//乘法
+		console.log(a * b);
+		
+		//除法
+		console.log(a / b);
+		
+		//取余
+		//取值范围（0~b-1）符号与a相同，
+		console.log(a % b);
+		
+		// \"就是可以输出的字符串"
+		// \"就是可以输出的字符串"
+		
+		
+		//赋值符（=）
+		//将变量a与b的运算结果 赋值给c
+		var c;
+		c = a+ b;
+		console.log(c);
+		
+		// += 、-=、/=、*=、%=
+		
+		var d = 20;
+		var e = 10;
+		//当变量要参与运算，必须拥有初值
+		//一般在定义变量时，尽量直接做初始化操作
+		//当变量未做初始化操作，类型为undefined
+		//运算结果为NaN,非数值类型数
+		var f = 0;
+		f += d;
+		console.log(f);//0 + 20 =20
+		f -= e;
+		console.log(f);//20 - 10 = 10
+		f *= d;
+		console.log(f);//10 * 20 = 200
+		f /= e;
+		console.log(f);//200 / 10 =20
+		f %= f;
+		console.log(f);//20 % 20 = 0
+		//n %= m <==> n = n % m
+		
+	</script>
+</html>

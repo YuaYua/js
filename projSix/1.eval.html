@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		var str1="10+20";
+//		alert(str1);  //10+20
+//		alert(eval(str1));  //30
+		
+		var a=10,b=20;
+		alert("a+b");  //a+b
+		alert(eval("a+b"));  //30
+		
+		var fn=function(){alert("这是一个方法");} 
+//		fn();	
+		var fn="function() {alert(\"这是一个方法\")}";
+		eval("("+fn+")"+"()");//==>eval("("+fn+")")();==>fn=eval("("+fn+")");fn();
+//		(function() {alert(\"这是一个方法\")})
+		
+		//编译先于执行  编译过程26>32>29>27>28>30看课件JS基础6
+//		function testFn(a){
+//			console.log(a);
+//			var a=10;
+//			function a(){};//==> var a=function a(){}
+//			console.log(a);
+//		}
+//		testFn(300);
+
+
+		var a=200;
+		function testFn(c){
+			console.log(a);
+			var a=10;
+			function a(){};//==> var a=function a(){}
+			console.log(a);
+		}
+		testFn(300);
+		console.log(a);
+		
+		
+	</script>
+</html>

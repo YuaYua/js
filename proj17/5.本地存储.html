@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//浏览器窗口关闭，数据被清除
+//		sessionStorage.setItem("name",12);
+		var a1=sessionStorage.getItem("name");
+		console.log(a1);
+		var a2=sessionStorage.getItem("age");
+		console.log(a2);
+		
+		//赋值setItem("key","value")
+		//取值getItem("key")
+		
+		//本地存储，永久存储
+		//同样拥有setItem()、getItem()
+		localStorage.name="lisi";
+		console.log(localStorage.name)
+		localStorage.age=18;
+		console.log(localStorage.age)
+//		var b1=localStorage.name;
+//		console.log(b1);
+		//removeItem()清除key为name的键值对
+		localStorage.removeItem("name");
+		console.log(localStorage.name);
+		console.log(localStorage.age);
+		//clear（）清空本地存储
+		localStorage.clear();
+		console.log(localStorage.name);
+		console.log(localStorage.age)
+	</script>
+</html>

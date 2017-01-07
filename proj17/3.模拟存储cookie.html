@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		账号：<input id="user" name="user" type="text" />
+		密码：<input id="pw" name="pw" type="password" />
+		<button id="btn">保存信息</button>
+	</body>
+	<script type="text/javascript">
+		var user=document.getElementById('user');
+		var pw=document.getElementById('pw');
+		var btn=document.getElementById('btn');
+		
+		//cookie中不能直接存储中文，需要借助编码函数
+		//escape  unescape
+		//encodeURL decodeURL
+		btn.onclick=function(){
+			//设置过期时间为7天后
+			//1.获取时间
+			var apDate=new Date();
+			//2.设置过期时间
+			apDate.setDate(apDate.getDate()+7);
+			//3.转换为GMT时间字符串
+			apDate=apDate.toGMTString();
+			//4.拼接过期时间"key=value"+";expires="+date
+			document.cookie=user.name+"="+encodeURI(user.value)+";expires="+apDate;
+			
+			var apMunite=new Date();
+			apMunite.setMinutes(apMunite.getMinutes()+1);
+			apMunite=apMunite.toGMTString();
+			document.cookie=pw.name+"="+pw.value+";expires="+apMunite;
+		}
+//		console.log(decodeURI("%E5%BC%A0%E4%B8%89"));
+	</script>
+</html>

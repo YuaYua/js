@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>滚轮兼容</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var inf=window.navigator.userAgent;
+		
+		if(inf.indexOf('Firefox')>-1){
+			document.addEventListener("DOMMouseScroll",apWheelEvet);
+		}else{
+			document.addEventListener("mousewheel",apWheelEvet);
+		}
+		function apWheelEvet(e){
+			var ev=e||event;
+			if(inf.indexOf('Firefox')>-1){
+				if(ev.detail>0){
+					console.log("向下")
+				}else{
+					console.log("向上")
+				}
+			}else{
+				if(ev.wheelDelta<0){
+					console.log("向下");
+				}else{
+					console.log("向上")
+				}
+			}
+//			console.log();
+		}
+	</script>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/瀑布流.css" />
+	</head>
+
+	<body>
+		<div id="wrap"></div>
+	</body>
+	<script type="text/javascript">
+		//1、瀑布流分m列，每列的宽度相等，高度根据宽度自适应
+		//2、每出现一个新的子标签，都需要从第一列遍历到最后一列，找出最短列
+		//3、将新创建的子标签添加到最短列
+		var wrap = document.querySelector("#wrap")
+		var count = 1; //给元素添加innerHTML
+		var colArr = [0, 0, 0, 0]; //用来储存四列的高度
+		var randomHeight = 0; //一个生命周期中保留一次随机出来的高度
+		
+		function initSubs() {
+			for(var i = 0; i < 20; i++) {
+				//创建subDiv
+				creatSubDiv()
+			}
+		}
+
+		function creatSubDiv() {
+			var tempDiv = document.createElement("div");
+			//设置相关属性
+			setupAttribute(tempDiv);
+
+			//找出最短列
+			var minIndex = minCol();
+
+			//插入节点：根据最短列索引规定该插入的节点的left和top
+			insertDiv(minIndex, tempDiv);
+			//更新数组：插入节点后，四列中原最短列的长度会更新
+			colArr[minIndex] += randomHeight + 10;
+		}
+		//设置相关属性
+		function setupAttribute(obj) {
+			obj.className = "subDiv";
+			obj.style.width = "20vw"
+			obj.innerHTML = count++;
+			//保存随机高度，因为多处都要使用
+			randomHeight = randomNum();
+			//设置随机高度
+			obj.style.height = randomHeight + "px";
+			//			return randomHeight = minCol();
+		}
+
+		function randomNum() {
+			return parseInt(Math.random() * (400 - 100 + 1)) + 100;
+		}
+		//找出最短列
+		function minCol() {
+			var minIndex = 0;
+			for(var j = 1; j < colArr.length; j++) {
+				if(colArr[minIndex] > colArr[j]) {
+					minIndex = j;
+				}
+			}
+			return minIndex;
+		}
+		//插入节点
+		function insertDiv(index, obj) {
+			var insertTop = colArr[index];
+			var insertLeft = index * (parseInt(obj.style.width) + 1);
+			obj.style.top = insertTop + "px";
+			obj.style.left = insertLeft + "vw";
+			//			console.log(obj.style.left);
+			wrap.appendChild(obj);
+		}
+		initSubs();
+		//懒加载实现无限瀑布流
+		window.onscroll=function(){
+			//1.cTop :当前屏幕高度
+			var cTop=document.documentElement.clientHeight;
+			//2.oTop:文档中（document）可视内容的总高度
+			//注脱离文档流的不算
+			var oTop=document.documentElement.offsetHeight;
+			//此做法内容都脱离了文档流,数组中保留的数字就是文档的实际结束位置
+			oTop=colArr[0];
+			console.log(cTop,oTop,colArr[0]);
+			var sTop=document.documentElement.scrollTop||document.body.scrollTop;
+			console.log(sTop)
+			if(sTop>=(oTop-cTop-10)){
+				if(count>800){
+					return
+				}
+				initSubs();
+			}
+//			if(scrollTop)
+		}
+	</script>
+
+</html>

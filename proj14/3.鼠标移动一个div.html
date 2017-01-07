@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标移动一个div</title>
+		<style type="text/css">
+			.div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+	var div=document.querySelector('.div');
+		document.onmousemove=function(e){
+			var ev=e||event;
+//			var sLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+//			var sTop=document.documentElement.scrollTop||document.body.scrollTop;
+			
+			div.style.left=ev.clientX-50+'px';
+			div.style.top=ev.clientY-50+'px';
+		}
+	</script>
+</html>

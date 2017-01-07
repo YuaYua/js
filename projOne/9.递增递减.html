@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var i=4;
+		var j;
+		
+		//i++/++i 都相当于i= i+1
+		//自增（减）是针对与变量而言
+		//自增（减）在变量前，则先自增（减），再运算
+		//自增（减）在变量后，则先运算，再自增（减）
+//		j = i++
+		j = 3 + i++;
+		console.log(i);
+		console.log(j);
+		
+		
+		var a = 10;
+		var b = 20;
+		var c = 10;
+		var d = a + (b < c);
+//		b<c false ==>0,a+(b<c) ==>a+0;
+//		b>c true ==>1,a+(b>c) ==>a+1;
+//		即Boolean型参与运算 false为0 true为1
+		console.log(d);
+		
+		
+		//闰年练习
+		//prompt:弹出输入框
+		var year=prompt("请输入一个年份");
+		(year%4==0 && year%100!=0) || year%400==0? document.write("是闰年"):document.write("不是闰年");
+//		if(year%4==0 && year%100!=0 || year%400==0)
+//		{
+//			document.write("是闰年");
+//		}
+//		else{
+//			document.write("不是闰年")
+//		}
+		
+	</script>
+</html>

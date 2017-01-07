@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>闭包</title>
+		<style type="text/css">
+			a {
+				text-decoration: none;
+				font-size: 3em;
+				display: block;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--href="javascript:void(0)"  : JS空函数填充-->
+		<a href="javascript:void(0)"><span>第1个链接</span></a>
+		<a href="javascript:void(0)"><span>第2个链接</span></a>
+		<a href="javascript:void(0)"><span>第3个链接</span></a>
+		<a href="javascript:void(0)"><span>第4个链接</span></a>
+		<a href="javascript:void(0)"><span>第5个链接</span></a>
+	</body>
+	<script type="text/javascript">
+		var a = document.getElementsByTagName("a");
+		//		或 var a=document.querySelectorAll('a');
+		//或   var a=document.links;
+
+		//污染：节点循环
+		for(var i = 0; i < 5; i++) {
+			a[i].onclick = function(i) {
+				alert(i);
+			}
+		}
+
+		//闭包
+		//定义：在函数内部声明函数，子函数就称之为闭包
+		//①访问函数内部的局部变量，那么就作为该函数的闭包（子函数）
+		function outerFun() {
+			var num = 10;
+			(function innerFun(count) {
+				alert(num + count);
+			})(20);
+		}
+//		outerFun();
+
+		//注：函数必须在自己所在作用域或所在作用域的子作用域中被调用
+		//②将函数内部变量持久化
+		function outerFun2() {
+			var num = 10;
+			function innerFun2() {
+				return num;
+			};
+			return innerFun2;
+		}
+		var f2 = outerFun2();
+//		alert(f2());
+
+		//③解决“污染”问题
+		for(var i = 0; i < 5; i++) {			//全局i
+			//利用闭包实现循环绑定，解决污染
+			(function(i) {   				//局部i
+				a[i].onclick=function(){		//局部i
+					alert(i+1);    			//局部i
+				}
+			})(i);							//全局i
+		}
+		
+		//利用属性解决“污染问题”
+		for(var i = 0; i < 5; i++) {
+			a[i].index=i;
+//			console.log(a[i].index);
+			a[i].onclick = function() {
+				//该函数由谁激活，该this就代表谁（对象）
+//				console.log(this);
+				alert(this.index+1);
+
+				//下面方法不可
+				/*
+				a[i]=event.target;
+				console.log(a[i]);
+				console.log(a[i].index);
+				alert(a[i].index+ 1);
+				*/
+		
+			}
+		}
+		
+	</script>
+
+</html>

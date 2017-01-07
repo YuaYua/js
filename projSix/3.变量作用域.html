@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>变量作用域</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//变量分为全局变量和局部变量
+		//②两种变量都存在作用域，且出了自己所在的作用域会被销毁
+		//③同名的全局变量和局部变量之间是两个不同的变量
+		//④同名的局部变量之间也是不同的变量
+		
+		function fn1(){
+			var a=10;
+			console.log(a);
+		}
+		function fn2(a){
+			a=20;
+			console.log(a);
+		}
+		fn1();
+		fn2();
+//		console.log(a);//报错，原因是两个函数中的a都是局部变量，在函数外无法访问
+		
+		//⑤局部变量：在函数（function）内部用var声明的变量 或 函数参数列表中出现的变量
+		//⑥全局变量：
+		//1、在函数外用var声明的变量
+		var num1=10;
+		function f1(){
+			console.log("num1:"+num1);
+		}
+		f1();
+		//2、省略var的变量声明（不管他出现在什么位置）；
+		function f2(){
+			num2=20;
+		}
+		f2();
+		console.log("num2:"+num2);
+		//3、存在于for、while、if的()中的变量
+		for (var i=0;i<5;i++){
+			
+		}
+		console.log(i);//5
+		for(;i<10;i++){
+			console.log(i);//5,6,7,8,9
+		}
+	</script>
+</html>

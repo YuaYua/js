@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JQ与DOM</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="div1"></div>
+	</body>
+	<script type="text/javascript">
+		var p=$("<p style='color: red;'>你是p</p>");
+		console.log(p);
+		$('.div1').append(p);
+		
+		$("<p style='color: red;'>他也是p</p>").appendTo('.div1');
+	</script>
+</html>

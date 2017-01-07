@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>cookie过期时间</title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//不同浏览器获得时间对象不一样
+		//有些是当前时区时间，有的是格林尼治时间（GMT）
+		//①获取事件对象
+		var apDate = new Date();
+		
+		//②设置过期时间:例如七天后过期
+		apDate.setDate(apDate.getDate()+7);
+		
+		//"="右侧的apDate为时间对象类型，而左侧为字符串类型
+		//所以先设置② 再设置③
+		//③将获得的时间处理为GMT时间
+		apDate=apDate.toGMTString();
+		
+		
+		//设置过期时间需要的时间参数默认为GMT时间
+		//④设置cookie过期的时间参数
+		document.cookie = "name=xiaolizi;expires=" + apDate;
+		document.cookie = "age=18;";
+
+		console.log(document.cookie);
+	</script>
+
+</html>

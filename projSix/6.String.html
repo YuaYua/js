@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>String</title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var a=10;
+		console.log(typeof a,a);//number 10
+		
+		a=a.toString();//a.toString()有返回值，需要变量接收
+//	   	a=String(a);     强转
+		console.log(typeof a,a);//string 10
+		
+		a=[1,2,3,4,5];
+		console.log(typeof a,a);//object [1, 2, 3, 4, 5]
+		a=a.toString();
+//		a=String(a);
+//		a=a.join("==");
+		console.log(typeof a,a);//string 1,2,3,4,5
+		
+		//可以通过 变量.toString()及String（变量）将非string类型转换为string类型
+		//上面两种方法都有返回值，变量自身没有做任何变化，变化的是两函数的返回值
+		
+		//创建字符串对象
+		var str1="i am str1";
+		var str2=new String("i am str2");
+		var str3=String(str2);
+		console.log(str1,str1.length,typeof(str1));
+		console.log(str2,str2.length,typeof(str2));
+		console.log(str3,str3.length,typeof(str3));
+		
+		var str=new String("I like study");
+		console.log(str,str.length,typeof(str));
+		
+		//1、charAt(index) 索引index从0开始，函数返回的是对象在该索引下的单个字符
+		var temp =str.charAt(3);
+		console.log(temp);
+		temp=str.charAt(0);
+		console.log(temp);
+		
+		//2、search("字符串") 查找字符串，如果找到，返回最前的字符索引，且结束查找
+		//如果没有找到，返回-1
+		temp=str.search("like");
+		console.log(temp);
+		
+		//3、字符串截取
+		//一个数字参数时，三者一样：从索引为该数字位置截取到最后
+		//substring(3,5)从索引3开始截取到索引5前（3，4两位）
+		//substr(3,5)从索引3开始往后截取五位（3，4，5，6，7五位）
+		temp=str.substring(3,5);
+		console.log(temp);
+		temp=str.substr(3,5);
+		console.log(temp);
+		temp=str.slice(3,5);
+		console.log(temp);
+		
+		//④、替换
+		temp=str.replace("I","i");
+		console.log(temp);
+		//只替换满足条件的第一个
+		temp=temp.replace("i","丫");
+		console.log(temp);
+		
+		//5、拆分（string||string:object == array）
+		temp=str.split(" ");//以空格拆分，空格是拆分依据
+		console.log(temp);  //["I", "like", "study"]
+		temp=str.split("");//以字符拆分，单个字符是数组最小参数
+		console.log(temp); //["I", " ", "l", "i", "k", "e", " ", "s", "t", "u", "d", "y"]
+		temp=str.split("",3);//以字符拆分，单个字符是数组最小参数，且只取前三个
+		console.log(temp);//["I", " ", "l"]
+		
+		//6、拼接
+		temp=str.concat("000");
+		console.log(temp);
+		temp="000".concat(str);
+		console.log(temp);
+		
+		//7、正反索引
+		//效率高，返回结果为所在索引或-1
+		temp=str.indexOf(" ");
+		console.log(temp);
+		temp=str.lastIndexOf(" ");
+		console.log(temp);
+		temp=str.indexOf("#");
+		console.log(temp);
+		
+		
+		
+		
+		
+		
+	</script>
+
+</html>

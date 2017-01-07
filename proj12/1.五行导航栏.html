@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			li {
+				width: 80px;
+				font: normal 20px/40px "STSong";
+				float: left;
+				text-align: center;
+			}
+			
+			ul {
+				/*position: relative;*/
+				height: 40px;
+				list-style-type: none;
+			}
+			
+			.wrap {
+				position: relative;
+			}
+			
+			.slider {
+				width: 80px;
+				height: 3px;
+				background-color: khaki;
+				position: absolute;
+				left: 0;
+				top: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+		<div class="wrap">
+			<ul>
+				<li>第1栏</li>
+				<li>第2栏</li>
+				<li>第3栏</li>
+				<li>第4栏</li>
+				<li>第5栏</li>
+			</ul>
+			<div class="slider"></div>
+		</div>
+	</body>
+	<script src="js/tween.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var wraps=document.getElementsByClassName('wrap');
+		for(var i=0;i<wraps.length;i++){
+			move(i);
+		}
+	
+		function move(count) {
+			var wrap = document.getElementsByClassName('wrap')[count];
+			var lis = wrap.getElementsByTagName('li');
+			var slider = wrap.getElementsByClassName('slider')[0];
+
+			var timer = null;
+			console.log(wrap, lis, slider);
+			for(var i = 0; i < lis.length; i++) {
+				lis[i].index = i;
+				lis[i].onmouseenter = function() {
+					var t = 0;
+					var d = 30;
+					var b = slider.offsetLeft;
+					var end = this.index * slider.offsetWidth;
+					var c = end - b;
+					clearInterval(timer);
+					timer = setInterval(function() {
+						t++;
+						if(t >= d) {
+							clearInterval(timer);
+							timer = null;
+						}
+						slider.style.left = Tween.Elastic.easeOut(t, b, c, d) + "px";
+					}, 30)
+				}
+			}
+		}
+	</script>
+
+</html>

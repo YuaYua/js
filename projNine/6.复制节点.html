@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="div">
+			<p id="p">terwrt</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var div=document.all.div;
+		
+		//复制div节点
+		var ele=div.cloneNode(true);
+		console.log(ele);
+		//深拷贝：拷贝该节点，以及该节点的所有子节点
+		//浅拷贝：只拷贝该节点（包含节点属性样式）,默认是浅拷贝
+	</script>
+</html>

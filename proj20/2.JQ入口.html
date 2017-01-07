@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JQ入口</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//一定先于window-load执行
+			console.log("script-load-1");
+			//1.window.onload只能保留最后一次赋值函数
+			//2.必须等到DOM树加载完毕，且DOM中每一个节点资源已经加载完毕，才执行
+			window.onload=function(ev){
+				console.log("window-load-1");
+			}
+			window.onload=function(ev){
+				console.log("window-load-2");
+			}
+			//1.document.ready可以保留每一个函数入口，顺序从上至下
+			//必须等到DOM树加载完毕，无需管节点删的资源，便可执行
+			//可以简化书写
+			$(function($){
+				console.log("document-load-0")
+			})
+			$(document).ready(function($){
+				console.log("document-load-1");
+			})
+			$(document).ready(function($){
+				console.log("document-load-2");
+			})
+			$(function($){
+				console.log("document-load-3")
+			})
+		</script>
+	</head>
+	<body>
+		<img src="http://f.hiphotos.baidu.com/zhidao/pic/item/1b.jpg"/>
+	</body>
+</html>

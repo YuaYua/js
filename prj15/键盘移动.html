@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>键盘移动onkeydown</title>
+		<style type="text/css">
+			div {
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				background-color: red;
+				top: 50%;
+				/*margin-top: -25px;*/
+				left: 50%;
+				/*margin-left: -25px;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div></div>
+	</body>
+	<script type="text/javascript">
+		var div = document.querySelector('div');
+		var b=0;
+		//当按键按下时触发，且按键一直按住时连续触发该事件
+		//当第一个按键一直按住触发时，再次按住其他按键，则会触发第二次按下的按键事件，那么第一次按住的按键事件如何处理
+		//3,前一次按住的按键事件被第二次事件覆盖，不能再触发keydown,但抬起按键依旧可以触发keyup
+		document.onkeydown = function(e) {
+			var ev = e || event;
+//			console.log(ev.keyCode);
+
+			var numL = div.offsetLeft;
+			var numT = div.offsetTop;
+//			console.log(numL, numT);
+			switch(e.keyCode) {
+				case 37:
+					div.style.left = numL - 10 + "px";
+					break;
+				case 38:
+					div.style.top = numT - 10 + "px";
+					break;
+				case 39:
+					if(b){
+					div.style.top = numT + 10 + "px";
+						div.style.left = numL + 10 + "px";
+					}else{
+						div.style.left = numL + 10 + "px";
+					}
+					break;
+				case 40:
+					div.style.top = numT + 10 + "px";
+					b=true;
+					break;
+			}
+		}
+		document.onkeyup = function(e) {
+			console.log(e.keyCode)
+		}
+	</script>
+
+</html>

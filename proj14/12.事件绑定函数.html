@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>事件绑定函数</title>
+		<style type="text/css">
+			.sub{
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+			.sup{
+				width: 200px;
+				height: 200px;
+				background: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sup">
+			<div class="sub"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var sup=document.querySelector(".sup");
+		var sub=document.querySelector(".sub");
+		sub.addEventListener("click",function(e){
+			alert("sub");
+		},true);
+		sup.addEventListener("click",function(e){
+			alert("sup");
+		},true);
+	</script>
+</html>

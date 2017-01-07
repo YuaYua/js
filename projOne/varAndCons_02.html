@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		//常量：在程序运行过程中，不变的量
+		//变量：在程序运行过程中，可变的量
+		
+		//强类型语言
+		//int char long char* string array object
+		
+		
+		//弱类型语言
+		//数据类型：undefined
+		var a;//定义变量
+		//定义变量，未对变量初始化，数据类型为undefined
+		//直接弹出变量名，显示的是变量所存储的内容
+//		alert(a);
+//		alert(typeof(a));
+		
+		//数据类型：number
+		a = 10;//变量赋值，若是第一次赋值操作，可以叫初始化
+		//如果打印变量的数据类型，借助typeof()函数
+//		alert(a);
+//		alert(typeof(a));
+
+		//数据类型：number
+		var b=3.14;//定义变量并初始化
+//		alert(b);
+//		alert(typeof(b));
+		
+		var x;
+//		x=(84-4)/8;
+//		alert(x);
+
+
+		//变量名命名规范
+		//①可全部小写，也可采用驼峰命名法
+		//②变量名可以有字母，_，$及数字组成
+		//③只能以字母，_，$开头
+		//④变量名不能与系统保留字及关键词重名
+		//⑤变量名区分大小写
+		//⑥变量名之间不允许存在空格
+		
+		//数据类型string
+		b='123';
+//		alert(b)
+//		alert(typeof(b));
+		
+		//数据类型：boolean
+		b=true;
+//		alert(b)
+//		alert(typeof(b));
+
+		b=new Array(1,2, 3, 4, 5);
+//		alert(b);
+//		alert(typeof(b));
+
+		//数据类型：function
+		b=function(){};
+//		alert(b);
+//		alert(typeof(b));
+		//变量的类型不在于var，而在于变量所附的值代表的数据类型
+		//数据类型：underfined, number string boolean object function
+		
+		//数据类型：
+		b=null;
+//		alert(b);
+//		alert(typeof(b));
+
+		//需求：想页面打印"I" 'love' "you"
+		// \"就代表打印时的",因为""被系统占用，用户想用，必须转义
+		// \n 换行
+		b=' "I" \'Love\' "You"';
+		b=' "I"' + " 'Love'" + ' "You"';
+		alert(b);
+		
+	</script>
+</html>

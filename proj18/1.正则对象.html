@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>正则对象</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		//创建一个正则表达式对象
+		var reg=new RegExp("a");
+		//创建一个普通字符串
+		var str="abc123哈哈";
+		//字符串与正则表达式进行匹配
+		var result = str.match(reg);
+		//打印一下匹配结果
+		console.log(result);
+		//result四个结果属性：
+						//result[0]="a"//值
+						//result.index=0;//索引
+						//resule.length=1;//数组长度
+						//result.input="abc123哈哈"//所匹配的原字符串内容
+		//下列属性均用来作为匹配上后的后续取值使用
+		//强烈不建议用来作为判定是否匹配上的判定条件
+		console.log(result[0]);
+		console.log(result.index);
+		console.log(result.length);
+		console.log(result.input);
+		
+		//1或12代表的都是一个字符串
+		//abc123哈哈中有1、12、但没有13
+		var reg1=new RegExp('1');
+		var res1=str.match(reg1);
+//		alert(res1);
+		
+		//哈和3哈均可以与str进行匹配
+		var reg2=new RegExp('哈');
+		var res2=str.match(reg2);
+//		alert(res2);
+		
+		//可以匹配Unicode编码
+		var reg3=new RegExp('\u54c8');
+		var res3=str.match(reg3);
+		alert(res3);
+//		alert(escape("哈"));
+//		alert(encodeURI("哈"))
+		
+		//正则表达式中可以写 普通的 英文 数字 汉子 字符串
+		//也可以使用Unicode编码字符串
+		
+		
+		
+		
+		
+	</script>
+</html>

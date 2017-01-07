@@ -1,0 +1,1 @@
+document.write("<div>这是一个div</div>")

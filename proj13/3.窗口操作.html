@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>窗口操作 </title>
+	</head>
+	<body>
+		<a href="http://www.baidu.com" target="_blank">调到百度</a>
+		<input type="button" name="" id="btn" value="" alt=""/>
+	</body>
+	<script type="text/javascript">
+	var btn=document.getElementById('btn')
+		btn.onclick=function(){
+			//第一个参数是URLString
+//			window.open("http://www.baidu.com");
+//			close();
+			
+			//第二个参数是：新开窗口的名称,也可以是target
+//			window.open("http://www.baidu.com","_self");
+
+			//第三个参数是：属性列表，属性与属性之间以逗号分隔
+			window.open("http://www.baidu.com","","width=200,height=100,top=50,left=50");
+		}
+//		window.open("http://www.baidu.com");
+	</script>
+</html>

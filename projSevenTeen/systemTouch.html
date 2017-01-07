@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    		<!--<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />-->
+		
+		<title></title>
+		<script type="text/javascript">
+			window.onload=function(){
+				btn.onclick=function(){
+//					回到主页
+					history.go(-1);
+					//返回上一页
+//					history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			#btn{
+				width: 97vw;
+				height: 30px;
+				padding-left:3vw;
+				font: normal 20px/30px "微软雅黑";
+				color: orange;
+				background-color: orchid;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">返回主页</div>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box=document.getElementById('box');
+		var disX=0;
+		var disY=0;
+		box.ontouchstart=function(ev){
+			box.innerText="开始移动";
+			//设置一个手指移动box
+			if(ev.touches.length==2){
+				var finger=ev.touches[0];
+				disX=finger.clientX-box.offsetLeft;
+				disY=finger.clientY-box.offsetTop;
+			}
+		}
+		box.ontouchmove=function(ev){
+			if(ev.touches.length==2){
+				var finger=ev.touches[0];
+				box.style.left=finger.clientX-disX+'px';
+				box.style.top=finger.clientY-disY+'px';
+			}
+		}
+		box.ontouchend=function(){
+			box.innerText="结束运动";
+		}
+	</script>
+</html>
+

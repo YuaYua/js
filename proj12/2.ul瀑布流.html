@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ul瀑布流</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				width: 200px;
+				margin-right: 10px;
+				float: left;
+				list-style-type: none;
+			}
+			.li{
+				width: 100%;
+				background-color: paleturquoise;
+				font-size: 30px;
+				text-align: center;
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</body>
+	<script type="text/javascript">
+		var uls=document.querySelectorAll('ul');
+		var count=0;
+		
+		for(var i=0;i<200;i++){
+			var li=document.createElement('li');
+			li.className='li';
+			li.innerHTML=++count;
+			li.style.height=(parseInt(Math.random()*301)+100)+'px';
+			
+			var minIndex=0;
+			for(var j=0;j<uls.length;j++){
+				if(uls[minIndex].offsetHeight>uls[j].offsetHeight){
+					minIndex=j;
+				}
+			}
+			uls[minIndex].appendChild(li);
+		}
+	</script>
+</html>

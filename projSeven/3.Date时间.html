@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Date日期</title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var apDate=new Date();
+		console.log(apDate,typeof apDate);//Tue Oct 25 2016 17:29:27 GMT+0800 (CST) "object"
+		var year=apDate.getFullYear();
+		console.log(year);
+		//月份，从0开始，0表示1月
+		var month=apDate.getMonth();
+		console.log(month);
+		//天，从一开始
+		var day=apDate.getDate();
+		console.log(day);
+		//注：星期天为一周的第一天；从零开始
+		var week=apDate.getDay();
+		console.log(week);
+		
+		var hour=apDate.getHours();
+		var minute=apDate.getMinutes();
+		var secound=apDate.getSeconds()
+		var mSecond=apDate.getMilliseconds();
+		hour=hour>12? hour-12:hour;
+		console.log(hour,minute,secound,mSecond);
+		
+		//获得当前时间毫秒数
+		//毫秒数：从1970年1月1日00：00：00：000开始计算
+		var ms=apDate.getTime();
+		//14打头，13位
+		console.log(ms);
+		
+		//创建时间对象的方式
+		//2000年1月1日 12：00：00
+		var date1=new Date(2000,0,1);
+		console.log(date1);
+		var date2=new Date(2000,0,1,12,0,0);
+		console.log(date2);
+		var date3=new Date("jan 1,2000");
+		console.log(date3);
+		var date4=new Date("jan 1,2000,12:00:00");
+		console.log(date4);
+	</script>
+
+</html>

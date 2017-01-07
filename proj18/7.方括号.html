@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>方括号</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1、[abc] 只是匹配单个字符，a或b或c从左到右匹配到的第一个就输出
+		var str="abcABC";
+		var reg=/[abc]/;
+		var arr=str.match(reg);
+//		alert(arr);
+		
+		//2、[\s\S] 匹配所有单个字符
+		var str1=" abc.ABC;123>哈哈\n{_}";
+		var reg1=/[\s\S]/g;
+		var arr1=str1.match(reg1);
+//		alert(arr1);
+		
+		//3、[^abc]:只是匹配单个字符，除abc以外的都满足
+		var str2="abcABC";
+		var reg2=/[^abc]/;
+		var arr2=str2.match(reg2);
+		//做一次匹配，abc都不满足，A满足，则结果是A
+		//如果添加全局匹配g,结果为[A,B,C];
+//		alert(arr2);
+		
+		//4 [0-9]、[a-z]、[A-Z]
+		// 注：0-9中或a-z中或A-Z中任意一个字符
+		var str3="abc_ABC";
+		var reg3=/[A-Z]/ig;
+		var arr3=str3.match(reg3);
+		alert(arr3);
+	</script>
+</html>

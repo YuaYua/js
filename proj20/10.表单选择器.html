@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="">
+			<input type="text" />
+			<input type="password" />
+			<textarea></textarea>
+			<lable type="text">lable</lable>
+			<input type="submit" value="提交"/>
+			<select name="">
+				<option value=""></option>
+			</select>
+		</form>
+	</body>
+	<script type="text/javascript">
+//		$('input').click(function(){
+//			alert('点击了')
+//		})
+		//类型为text的输入框
+		$(':text').click(function(){
+			alert('点击了')
+		});
+		//类型为password的输入框
+//		$(':password').click(function(){
+//			alert('点击了')
+//		});
+		//匹配所有输入框
+		$(':input').click(function(){
+			alert('点击了')
+		});
+	</script>
+</html>

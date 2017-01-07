@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.wrap {
+				margin: 0 auto;
+				width: 70%;
+				border: 1px solid black;
+				overflow: hidden;
+			}
+			
+			.wrap ul {
+				float: left;
+				width: 24%;
+				margin: 0 0.5%;
+				list-style: none;
+			}
+			
+			.wrap ul li {
+				font-size: 50px;
+				text-align: center;
+				background-color: plum;
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var uls = document.getElementsByTagName('ul');
+
+		var count = 20; //初始个数
+		var total=100;
+		var num = 0; //li的内容
+//		var timer=null;
+//		var t=1;
+		//随机数获取列表项的高
+		function random(min, max) {
+			return parseInt(Math.random() * (max - min) + min);
+		}
+		//创建li,根据传入的count值创建count个
+		function createLi(count) {
+			for(var i = 0; i < count; i++) {
+				//创建li
+				num++;
+				var li = document.createElement('li');
+				lan(li,num);
+				
+				
+				li.style.height = random(100, 400) + 'px';
+				//把li 放在ul中，根据ul高度来选择，最短的
+				//创建一个变量记录ul高度最小的ul
+				var ulMinHeight = uls[0];
+				for(var j = 0; j < uls.length; j++) {
+					if(ulMinHeight.offsetHeight > uls[j].offsetHeight) {
+						ulMinHeight = uls[j];
+					}
+				}
+				//将li插入到高度最小的ul中
+				ulMinHeight.appendChild(li);
+			}
+		}
+		//懒加载
+		function lan(obj,text){
+			var t=random(0,10);
+			var timer = setInterval(function() {
+					t+=random(0,10);
+					if(t >= total) {
+						t = 100;
+						clearInterval(timer);
+					}
+					obj.innerHTML = t + "%";
+					if(t == 100) {
+						obj.innerHTML = text;
+					}
+				}, 300);	
+		}
+		createLi(count);
+		//如何获得高度最小的ul
+		
+		window.onscroll = function() {
+			
+			var oTop = document.documentElement.offsetHeight;
+			var cTop = document.documentElement.clientHeight;
+			var sTop = document.documentElement.scrollTop || document.body.scrollTop;
+//			console.log(oTop, cTop, sTop);
+			if(sTop >= (oTop - cTop)) {
+				createLi(20);
+			}
+//			console.log(minHeight);
+		}
+	</script>
+
+</html>

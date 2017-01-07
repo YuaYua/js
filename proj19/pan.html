@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>平移</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				btn.onclick = function(){
+					history.go(-1);//回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#btn {
+				width:97vw ;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			.box{
+				width: 150px;
+				height: 150px;
+				background-color: aquamarine;
+				position: absolute;
+				top: 100px;
+				left: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">平移</div>
+		<div class="box">
+			
+		</div>
+	</body>
+	<script src="js/hammer.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box=document.querySelector('.box');
+		var hammer=new Hammer(box);
+		//记录当前box所在的位置
+		var x=0
+		var y=0;
+		hammer.on("panstart",function(ev){
+			console.log("开始平移");
+			//组织默认事件
+			ev.srcEvent.preventDefault();
+//			x=box.offsetLeft;
+//			y=box.offsetTop;
+			//或
+			//getComputedStyle(element,null):获取css样式
+			
+			//①需要获取第一次原有位置，但是 是计算后的样式，应该用getComputedStyle
+			//②getComputedStyle获得的样式会实时更新，故满足第二次以及每一次移动，来获取初始位置的需求 
+			x=parseInt(getComputedStyle(box,null).left);
+			y=parseInt(getComputedStyle(box,null).top);
+			
+		});
+		//绑定pan事件，会绑定所有的偏移事件
+		//四个状态，四个方位
+		//习惯用pan事件代替panmove
+		
+		hammer.on("pan",function(ev){
+			//打印事件偏移所属方位
+//			console.log(ev.additionalEvent)
+			console.log(ev)
+			console.log("平移中");
+			//deltaX：手指前后移动的X轴 净距离
+			//deltaY：手指前后移动的Y轴 净距离
+			box.style.left=ev.deltaX+x+'px';
+			box.style.top=ev.deltaY+y+'px';
+		});
+		
+		hammer.on("panend",function(ev){
+			console.log("平移结束");
+		});
+		
+		//单一绑定平移方向
+		hammer.on("panleft",function(ev){
+//			console.log("左平移");
+		});
+		
+		
+	</script>
+</html>

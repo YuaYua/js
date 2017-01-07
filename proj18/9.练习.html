@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html id="html">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var html=document.getElementById('html');
+		var str=html.innerHTML;
+		console.log(str);
+		//？跟在*、+、？、{n}、{n,m}、{n,}之后，表示“非贪心的
+//		var reg=/<.+?>/g;//(这种会包含自身)
+		var reg=/<[^<>]+>/g;//不包含自身
+		var res=str.match(reg);
+		alert(res)
+		
+		var str1="aoooo";
+		var reg1=/ao+/;//匹配aoooo
+//		alert(str1.match(reg1));
+		reg1=/ao+?/;//匹配ao;
+//		alert(str1.match(reg1));
+		reg1=/ao*?/;//匹配a;
+//		alert(str1.match(reg1));
+		
+		
+		var str2="AbcdbcdAbcdA/";
+		var reg2=/A\w+A/;//匹配AbcdbcdAbcdbcdA
+//		alert(str2.match(reg2));
+		reg2=/A\w+?A/;//匹配AbcdbcdA
+//		alert(str2.match(reg2));
+		// A(\w+)A ():括号中的内容代表子项  bcdbcdAbcdbcd是AbcdbcdAbcdbcdA的子项 即括号内的是括号外的子项
+		//（（\w+）\w+） 自身是自身的子项
+		//在单一匹配中，直接匹配上的结果称之为主项，存储在数组第0位
+		//一级()中的表达式称之为第一子项，形参的第一子项结果存储在数组的第一位
+		//如果一级子项中还有().称之为第二子项，道理与第一子项相同
+		reg2=/A(\w+)A/;//AbcdbcdAbcdbcdA,bcdbcdAbcdbcd
+//		alert(str2.match(reg2));
+	</script>
+</html>

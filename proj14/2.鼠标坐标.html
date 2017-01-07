@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.sup{
+				width: 200px;
+				height: 200px;
+				background-color: khaki;
+			}
+			.sub{
+				width: 100px;
+				height: 100px;
+				background-color: navajowhite;
+			}
+			#move1{
+				width: 100px;
+				height: 100px;
+				background-color: hotpink;
+				position: absolute;
+				top: 0;
+				left: 0;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sup">
+			<div class="sub"></div>
+		</div>
+		<div id="move1">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.onclick=function(e){
+			var ev=e||event;
+			console.log(ev.clientX,ev.clientY);
+		}
+		var move1=document.getElementById('move1')
+		document.onmousemove=function(e){
+//			console.log('aaa')
+			var ev=e||event;
+//			console.log(ev.clientX,ev.clientY);
+			move1.style.top=ev.clientY-50+'px';
+			move1.style.left=ev.clientX-50+'px';
+		}
+	</script>
+</html>

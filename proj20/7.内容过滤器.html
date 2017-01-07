@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: deepskyblue;
+				margin: 10px auto;
+			}
+		</style>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div>hehe</div>
+		<div>
+			<p></p>
+		</div>
+		<div>
+			<p>hehe</p>
+		</div>
+		<div></div>
+	</body>
+	<script type="text/javascript">
+		$('div:empty').click(function(){
+			alert("没有内容，没有子标签")
+		});
+		//有特定的内容
+		$('div:contains("hehe")').click(function(){
+			alert("有内容(或子标签内容)包含'hehe'文本");
+		});
+		//有特定的标签
+		$('div:has(p)').click(function(){
+			alert("有特定的标签");
+		});
+		//有内容 或 子标签即可
+		$('div:parent').click(function(){
+			alert("有内容 或 子标签");
+		})
+	</script>
+</html>

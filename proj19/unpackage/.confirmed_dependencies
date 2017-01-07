@@ -1,0 +1,30 @@
+{
+	"index.html": {
+		"resources": [
+			"rotate.html",
+			"pinch.html"
+		],
+		"refer": [
+			"rotate.html",
+			"pinch.html"
+		]
+	},
+	"rotate.html": {
+		"resources": [
+			"index.html",
+			"js/hammer.min.js"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"pinch.html": {
+		"resources": [
+			"js/hammer.min.js",
+			"index.html"
+		],
+		"refer": [
+			"index.html"
+		]
+	}
+}

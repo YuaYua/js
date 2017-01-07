@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标点击汇总</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//单双击共存，双击屏蔽单击
+		var timer=null;
+		document.onclick=function(){
+			clearTimeout(timer);
+			timer=setTimeout(function(){
+				alert("单击了")
+				clearTimeout(timer);
+				timer=null
+			},300)
+			
+		}
+		document.ondblclick=function(){
+			clearTimeout(timer)
+			alert("双击了");
+		}
+		//右键事件，且屏蔽系统右键
+		document.oncontextmenu=function(){
+			alert('右键点击')
+			return false;//屏蔽系统右键单击
+		}
+	</script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//对象声明并初始化
+//		var obj={key1:value1, key2:value2}
+		var person={
+			name:"jiejie",
+			age:25,
+			gender:'female'
+		}
+		console.log(person.name);
+		console.log(person.age)
+		console.log(person.gender)
+		
+		person.eat=function(){
+			console.log('正在吃饭！');
+		}
+		person.eat();
+		
+		var p1={
+			name:"qq",
+			age:25,
+			gender:'female'
+		}
+		
+		var p2={
+			name:"kk",
+			age:25,
+			gender:'female'
+		}
+		
+		var p3={
+			name:"hh",
+			age:25,
+			gender:'female'
+		}
+		var pArr=[p1,p2,p3]
+		console.log(pArr);
+		//打印qq
+		console.log(pArr[1].name)
+		
+	</script>
+</html>

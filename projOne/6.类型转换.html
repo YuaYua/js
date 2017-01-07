@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		var num = "1 0";
+		document.write(num);
+		console.log(typeof(num));
+		
+		//弱类型转换
+//		num -= 0;
+		
+		//强类型转换
+		//强类型转换，内部不会改变参数的类型，
+		//而是将改变了类型的数作为函数值返回出来，需要变量来接收
+		num = Number(num);
+		
+		console.log(typeof(num));
+		
+		//弱类型转换
+		//数值和字符串直接做 加法 运算，得到的是组合起来的字符串
+		//如"10" + 20="1020";1000+""="1000"
+//		num += "";
+		console.log(typeof(num));
+		
+		//强类型转换
+		num = String(num);
+		console.log(typeof(num));
+		
+		num = Object(num);
+		console.log(typeof(num));
+		
+		//boolean型数值 非零(空)即真，非真即假
+		//空：0、null、NaN、""、undefiined、false
+		num = "a";
+		num = Boolean(num);
+		console.log(typeof(num));
+		console.log(num);
+		
+		var n="10.5";
+//		n = parseInt(n);
+//		console.log(typeof(n));
+//		console.log(n);
+		n = parseFloat(n);
+		console.log(typeof(n));
+		console.log(n);
+		
+		
+		//不管强类型转换还是弱类型转化，
+		//应该注意变量的值是可以互通的
+		var w = "1123abcdef";
+		w = Number(w);
+		console.log(typeof(w));//number
+		console.log(w);//NaN
+	</script>
+</html>

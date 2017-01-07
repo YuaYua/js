@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>轻拍单击</title>
+		<script type="text/javascript">
+			window.onload = function() {
+				btn.onclick = function() {
+					history.go(-1); //回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#btn {
+				width: 97vw;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			
+			.div {
+				width: 150px;
+				height: 150px;
+				background-color: orange;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="btn">轻拍(单击)</div>
+		<div class="div">
+
+		</div>
+	</body>
+	<script src="js/hammer.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//获取元素
+		var div = document.querySelector(".div");
+		var body=document.querySelector("body");
+		//1获取手势对象(根据元素节点创建对象)
+		var hammer = new Hammer(document);
+
+		function random(min, max) {
+			return parseInt(Math.random() * (max - min + 1) + min);
+		}
+		//2 通过对象给元素节点绑定事件
+		hammer.on('tap', function(ev) {
+			console.log("body")
+			var aR = random(0, 255);
+			var bR = random(0, 255);
+			var cR = random(0, 255);
+			//console.log(aR, bR, cR)
+			body.style.backgroundColor = "rgb(" + aR + "," + bR + "," + cR + ")";
+		});
+		
+		var h=new Hammer(div);
+		h.on('tap',function(ev){
+			//Hammer框架中的ev非系统原生事件对象，但包含了系统原生对象
+			//通过ev.srcEvent，可以操作系统原生事件的任何事情
+			//取消事件冒泡
+			ev.srcEvent.cancelBubble=true;
+			console.log(ev);
+			console.log("div");
+		});
+	</script>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<script type="text/javascript">
+			window.onload=function(){
+				btn.onclick=function(){
+//					回到主页
+					history.go(-1);
+					//返回上一页
+//					history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			#btn{
+				width: 97vw;
+				height: 30px;
+				padding-left:3vw;
+				font: normal 20px/30px "微软雅黑";
+				color: orange;
+				background-color: orchid;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">设备摇晃</div>
+		<p id="ctx"></p>
+	</body>
+	<script type="text/javascript">
+		
+		//判断设备是否支持摇晃
+		if(window.DeviceMotionEvent){
+			window.addEventListener("devicemotion",motionFn,false);
+		}else{
+			document.write("Nonsupport Motion Event")
+		}
+		//通过设置时间戳，达到多长时间内的时间算作一个事件
+		var passTime=0;
+		var x=y=z=pass_x=pass_y=pass_z=0;
+		var speed=20 ;
+		function motionFn(ev){
+			//该事件函数会一直触发
+			
+			//通过motion事件获得重力感应对象
+			var acceleration=ev.accelerationIncludingGravity;
+			
+			
+			
+			var curTime=new Date().getTime();
+			if(curTime-passTime>300){
+				passTime=curTime;
+				ctx.innerText="x:"+acceleration.x;
+				ctx.innerText+="\ny:"+acceleration.y;
+				ctx.innerText+="\nz:"+acceleration.z;
+				x=acceleration.x;
+				y=acceleration.y;
+				z=acceleration.z;
+				var disX=Math.abs(x-pass_x);
+				var disY=Math.abs(y-pass_y);
+				var disZ=Math.abs(z-pass_z);
+//				if(disX>speed&&disY>speed&&disZ>speed){
+//					alert("摇晃了")
+//				}
+				if((disX*disY*disZ)/30*10000>800){
+					alert("摇晃了")
+				}
+				pass_x=x;
+				pass_y= y;
+				pass_z=z;
+				
+				
+			}
+//			
+			
+			
+			
+			
+		}
+	</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.box div{
+				width: 100px;
+				height: 100px;
+				font: bold 20px/100px "微软雅黑";
+				margin: 1px;
+				float: left;
+				text-align: center;
+				background-color: dodgerblue;
+			}
+			.box{
+				width: 306px;
+				height: 306px;
+				margin: 50px auto;
+			}
+			.box div:nth-child(2n-1){
+				background-color: red;
+			}
+			.box div:nth-child(3n-1){
+				background-color: blueviolet;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="div1">1</div>
+			<div class="div2">2</div>
+			<div class="div3">3</div>
+			<div class="div4">4</div>
+			<div class="div5">5</div>
+			<div class="div6">6</div>
+			<div class="div7">7</div>
+			<div class="div8">8</div>
+			<div class="div9">9</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+//		$('.box div:first').click(function(){
+//			alert("第一个被点击了")
+//		});
+//		$('.box div:last').click(function(){
+//			alert("最后一个被点击了");
+//		});
+//		//索引从零开始，选择偶数
+//		$('.box div:even').click(function(){
+//			alert("偶数被点击了");
+//		});
+//		//索引从零开始，选择奇数
+//		$('.box div:odd').click(function(){
+//			alert("奇数被点击了");
+//		});
+//		//除了div5
+//		$('.box div:not(.div5)').click(function(){
+//			alert("除div5被点击了");
+//		})
+		$('.box div:eq(1)').click(function(){
+			alert("索引为1被点击了");
+		})
+		$('.box div:gt(7)').click(function(){
+			alert("索引大于7被点击了");
+		})
+		$('.box div:lt(2)').click(function(){
+			alert("索引小于2被点击了");
+		})
+	</script>
+</html>

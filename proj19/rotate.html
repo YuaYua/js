@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>test页面</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				btn.onclick = function(){
+					history.go(-1);//回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#btn {
+				width:97vw ;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			.box{
+				width: 50vw;
+				height: 50vh;
+				background-color: aquamarine;
+				margin: 25vh auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">返回主页</div>
+		<div class="box"></div>
+	</body>
+	<script src="js/hammer.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box=document.querySelector(".box");
+		var hammer=new Hammer(box);
+		//①记录手指一触碰屏幕形成的角度ev.rotation
+		//②旋转过程中再用实时更新的ev.rotation-tempAngular,得到净角度
+		//③box旋转的就是净角度
+		var tempAngular=0;
+		//记录每一次旋转后的最终角度
+		var endAngular=0;
+		var angular=0;
+		//打开旋转手势，添加到Hammer手势对象中
+		hammer.add(new Hammer.Rotate());
+		hammer.on("rotatestart",function(ev){
+			tempAngular=ev.rotation-endAngular;
+		});
+		hammer.on("rotate",function(ev){
+			angular=ev.rotation-tempAngular;
+			//移动端用webkit兼容
+			box.style.webkitTransform="rotate("+angular+"deg)";
+			
+		});
+		hammer.on("rotateend",function(ev){
+			var angStr=box.style.webkitTransform;
+			console.log(angStr);
+			var reg=/(-)?\d+(\.)?\d+/g;
+			endAngular=parseFloat(angStr.match(reg));
+//			endAngular=angular;
+		});
+		//-8.91412461619339
+//		var str="rotate(-1.914.1deg)";
+//		var reg=/(-)?\d+(\.)?\d+/g;
+//		alert(str.match(reg));
+	</script>
+</html>

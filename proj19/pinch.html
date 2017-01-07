@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>test页面</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				btn.onclick = function(){
+					history.go(-1);//回到主页
+					//用back也行，回到上一页
+					//history.back();
+				}
+			}
+		</script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#btn {
+				width:97vw ;
+				height: 30px;
+				padding-left: 3vw;
+				background-color: #ff7f50;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				font: normal 20px/30px "微软雅黑";
+				color: brown;
+			}
+			.box{
+				width: 50vw;
+				height: 50vh;
+				background-color: aquamarine;
+				margin: 25vh auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="btn">捏合</div>
+		<div class="box"></div>
+	</body>
+	<script src="js/hammer.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box=document.querySelector('.box');
+		var hammer=new Hammer(box);
+		hammer.add(new Hammer.Pinch());
+		/*hammer.on("pinchstart",function(ev){
+			
+		});
+		hammer.on("pinch",function(ev){
+			box.style.webkitTransform="scale("+ev.scale+")"
+		});
+		hammer.on("pinchend",function(ev){
+			//得到上一次缩放基准（宽、高）
+			var width=parseFloat(getComputedStyle(box,null).width);
+			var height=parseFloat(getComputedStyle(box,null).height);
+//			console.log(width);
+//			console.log(height);
+			//将box 的宽高按比例改变时，因为在pinch中box的scale已经改变并存储了，所以要将box的scale置为一，否则box的宽高是按scale*scale改变的
+			//因为缩放后，相当于盒子被套有“放大镜”显示效果，而下一次触发缩放又会重新套下一个放大镜，所以所有将 放大后的宽高，在没有放大镜效果下保存，
+			//用户看到的影像才不会发生形变。
+			
+			//重置放大镜
+			box.style.webkitTransform="scale(1)";
+			//更新下一次基准（宽、高）
+			box.style.width=width*ev.scale+'px';
+			box.style.height=height*ev.scale+'px';
+			//让盒子（box）永远出现在父盒子（屏幕）的中央；
+			box.style.marginLeft=(window.innerWidth-box.offsetWidth)/2+'px';
+			box.style.marginTop=(window.innerHeight-box.offsetHeight)/2+'px';
+		})*/
+		
+		var initScale=1;
+		var changeScale=1;
+		hammer.on("pinch",function(ev){
+			changeScale=ev.scale-1;
+			changeScale+=initScale;
+			box.style.webkitTransform="scale("+changeScale+")";
+		});
+		hammer.on("pinchend",function(ev){
+			initScale=changeScale;
+		});
+	</script>
+</html>

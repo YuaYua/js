@@ -1,0 +1,76 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var arr=[1,2,3];
+		document.write(arr+"<br />");
+		
+		//①从尾部插入
+		arr.push(4);
+		document.write(arr+"<br />");
+		document.write(arr.length+"<br />");
+		
+		//②从头部插入元素
+		arr.unshift(0);
+		document.write(arr+"<br />");
+		
+		//③从尾部删除元素
+		arr.pop();
+		document.write(arr+"<br />");
+		
+		//④从头部删除元素
+		arr.shift();
+		document.write(arr+"<br />");
+		
+		//
+		for(var i=1;i<=5;i+=2){
+			arr.push(i*10);
+			arr.unshift(i);
+		}
+//		arr.unshift(0,0,0);
+//		document.write(arr+"<br />");
+		for(var i=0;i<arr.length;i++){
+			document.write(arr[i]+" ");
+			//arr:5,3,1,1,2,3,10,30,50
+			//从头插入：后插的在前。从尾插入：后插的在后	
+		}
+
+		document.write("<br />")
+		var arr1=[1,2,3,4,5,6,7];
+		//从0位开始，往后删除两位
+		arr1.splice(0,2);
+		arr1.splice(1,2);
+		document.write(arr1+"<br />");
+		
+		var arr1=[1,2,3,4,5,6,7];
+		//从起始位置3，删除2个元素，再从起始位置3前从左往右依次插入元素10，20
+		//arr1：1，2，3，10，20，6，7
+		arr1.splice(3,2,10,20);
+		document.write(arr1+"<br />");
+		
+		arr=[1,2,3];
+		arr1=[4,5,6];
+		//数组1.concat(数组2)：是将数组2拼接到数组1之后，得到一个新的数组
+		var arr3=arr.concat(arr1);
+		document.write(arr+"<br />");
+		document.write(arr1+"<br />");
+		document.write(arr3+"<br />");
+		
+		//将 数组 转换成 字符串	
+		document.write(arr.join("#")+"<br />");
+		
+		var str = arr.join("");
+		document.write(str+"<br />");
+		
+		
+		
+		
+		
+		
+	</script>
+</html>

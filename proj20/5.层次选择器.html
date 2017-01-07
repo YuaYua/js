@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>层次选择器</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: dodgerblue;
+				margin: 10px auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="div1">1</div>
+		<div class="div2">2</div>
+		<div class="div3">3</div>
+		<div class="div4">4</div>
+		<div class="div5">5</div>
+	</body>
+	<script type="text/javascript">
+		//后代选择器
+		$('html .div1').on('click',function(){
+			alert('div1被点击了')
+		});
+		//子代
+		$('body>.div2').on('click',function(){
+			alert('div2被点击了')
+		})
+		//兄弟
+		//.div2后的第一个div,如果第一位非div则找不到
+		$('.div2+div').on('click',function(){
+			alert('div3被点击了')
+		});
+		//.div3后的所有div兄弟标签
+		$('.div3~div').on('click',function(){
+			alert('div3后的被点击了')
+		})
+	</script>
+
+</html>

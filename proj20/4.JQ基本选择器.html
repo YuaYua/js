@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jq基本选择器</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				margin: 10px auto;
+			}
+			.other{
+				width: 100px;
+				height: 100px;
+				background-color: aqua;
+				margin: 10px auto;
+				display: block;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id="divID"></div>
+		<div class="divClass">1</div>
+		<div class="divClass">2</div>
+		<p class="other"></p>
+		<box class="other"></box>
+	</body>
+	<script type="text/javascript">
+		//原生js
+//		var div=document.all.divID;
+//		div.onclick=function(){
+//			alert("点击了");
+//		}
+		//JQ
+		//id
+		$("#divID").click(function(){
+			alert("id点击了");
+		});
+		//class
+		$(".divClass").click(function(){
+			alert("class点击了");
+		});
+		//元素节点(方法发生叠加)
+		$('div').click(function(){
+			alert("div点击了");
+		})
+		//复合型
+		$('.other').click(function(){
+			alert("other点击了")
+		});
+		$('div,p,box').click(function(){
+			alert('最终点击')
+		})
+	</script>
+</html>

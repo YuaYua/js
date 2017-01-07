@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>矩形碰撞检测</title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+			.move{
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				font: normal 30px/100px "微软雅黑";
+				text-align: center;
+				color: blue;
+				position: absolute;
+				
+			}
+			.hit{
+				width: 130px;
+				height: 130px;
+				background-color: paleturquoise;
+				font: normal 30px/130px "微软雅黑";
+				text-align: center;
+				color: purple;
+				position: absolute;
+				left: 60%;
+				top: 40%;
+			}
+			.hit.ing{
+				background-color: darkcyan;
+				color:fuchsia;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="move">移动</div>
+		<div class="hit">目标</div>
+	</body>
+	<script type="text/javascript">
+		var move=document.querySelector('.move');
+		var hit=document.querySelector('.hit');
+		move.onmousedown=function(e){
+			var ev=e||event;
+			var disX=ev.clientX-move.offsetLeft;
+			var disY=ev.clientY-move.offsetTop;
+			document.onmousemove=function(e){
+				var ev=e||event;
+//				console.log(ev)
+				move.style.left=ev.clientX-disX+'px';
+				move.style.top=ev.clientY-disY+'px';
+				
+				//获得目标的上下左右
+				var hitT=hit.offsetTop;
+				var hitL=hit.offsetLeft;
+				var hitB=hit.offsetTop+hit.offsetHeight;
+				var hitR=hit.offsetLeft+hit.offsetWidth;
+				
+				//自身的上下左右
+				var selfT=move.offsetTop;
+				var selfL=move.offsetLeft;
+				var selfB=move.offsetTop+move.offsetHeight;
+				var selfR=move.offsetLeft+move.offsetWidth;
+				
+				//判断是否接触
+				if(!(selfT>hitB || selfL>hitR || selfB<hitT || selfR<hitL) ){
+					hit.className+=" ing";
+				}else{
+					hit.className='hit';
+				}
+			}
+			document.onmouseup=function(e){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+			//阻断默认事件：选中文本
+			//return false:只适合on事件
+			return false;
+		}
+	</script>
+</html>

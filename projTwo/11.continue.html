@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1-10之间循环，打印1，2，3，4，5
+		for(var i=1;i<=10;i++){
+			document.write(i+" ");
+			if(i==5){
+				break;
+			}
+		}
+		
+		document.write("<br />");
+		var max=1;
+		for(var i=1;i<=100;i++){
+			if(i%7==0){
+				max=i;
+			}
+		}
+		for(var i=100;i>=1;i--){
+			if(i%7==0){
+				max=i;
+				break;
+			}
+		}
+		document.write(max);
+		
+		document.write("<br />");
+		for(var i=1;i<=10;i++){
+			if(i==6){
+				continue;
+			}
+			document.write(i+" ");
+		}
+		document.write("<br />");
+		max = 1;
+		for(var i=100;i>=1;i--){
+			if(i%7==0){
+				continue;
+				max=i;
+				
+			}
+		}
+		document.write(max);
+		
+		//break:结束循环体，执行循环体外的语句
+		//continue；结束本次循环，进入下一次循环
+		
+	</script>
+</html>

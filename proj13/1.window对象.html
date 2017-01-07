@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>window对象</title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		//window对象是浏览器根对象，其他所有对象都是window的子对象
+		//document也是window的一个子对象，也可以说是window的一个全局属性
+	
+		document.write("123456"+"<br />");
+		window.document.write("654321")
+		
+		//类似alert()这样直接书写的函数，其实是省略window的（window的）全局方法（函数）
+//		alert("我是alert");
+//		window.alert("我是winAlert")
+		console.log('loglog');
+		window.console.log('windowwindow');
+		
+	</script>
+</html>

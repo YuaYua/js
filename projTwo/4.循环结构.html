@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//结构：顺序结构，分支结构，循环结构
+		//for循环执行顺序：① ② ④ ③。。。② ④ ③ ②
+
+		/*
+		for(①循环增量初始化;②循环增量条件表达式;③循环增量变化值){
+			④循环语句体;
+		}
+		循环外语句体
+		 */
+		console.log("哈哈哈");
+		console.log("哈哈哈");
+		console.log("哈哈哈");
+		console.log("哈哈哈");
+		console.log("哈哈哈");
+
+		for(var i = 0; i < 5; i++) {
+			console.log("啦啦啦" + (i + 1) + "次");
+		}
+		var m = 0;
+		for(var i = 0; i < 3; i++) {
+			m++;
+		}
+		//		alert(m);
+		
+		//练习一，1~5的和
+		var sum = 0;
+		var i=1;
+		//for ()中的三条语句都可以忽略，但是在其他相应的地方需要做同等条件处理
+		for(;;) {
+
+			sum += i;
+			i++;
+			if(i==6){
+				//结束作用域离他最近的循环体
+				break;
+			}
+		}
+		console.log(sum);
+		var sum1=0;
+		for(var i=1;i<100;i++){
+			if(i%2!=0){
+				sum1+=i;	
+			}
+		}
+		console.log(sum1);
+		
+		var sum2=0;
+		for(var i=1;i<100;i++){
+			if(i%3==0){
+				sum2+=i;	
+			}
+		}
+		console.log(sum2);
+		
+	</script>
+
+</html>

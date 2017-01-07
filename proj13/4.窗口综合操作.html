@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" value="新开窗口" /><br /><br />
+		<input type="button" value="关闭窗口" /><br /><br />
+		<input type="button" value="调整窗口" /><br /><br />
+		<input type="button" value="移动窗口" /><br /><br />
+		
+	</body>
+	<script type="text/javascript">
+		
+		var inps=document.querySelectorAll('input');
+		console.log(inps)
+		inps[0].onclick=function(){
+			newWindow= window.open("1.window对象.html"," ","width=200,height=200,top=100,left=100");
+//			console.log(newWindow);
+		}
+		inps[1].onclick=function(){
+			newWindow.close()
+		}
+		inps[2].onclick=function(){
+			newWindow.resizeTo(100,100);
+			newWindow.focus();
+		}
+		inps[3].onclick=function(){
+			newWindow.moveTo(500,500);
+			newWindow.focus();
+			
+		}
+	</script>
+</html>

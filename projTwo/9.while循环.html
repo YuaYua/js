@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1-100之间 ①是7的倍数，②个位是7，③十位是7
+		//④不是7的倍数且不含7的数
+		/*
+		 * while（条件表达式）{
+		 * 	循环体
+		 * }
+		 * 语句1；
+		 */
+		for(var i = 1; i <= 100; i++) {
+			if(i % 7 == 0) {
+				document.write(i + " ");
+			}
+		}
+		document.write("<br />")
+		var j = 1;
+		while(j <= 100) {
+			if(j % 7 == 0) {
+				document.write(j + " ");
+			}
+			j++;
+		}
+		document.write("<br />")
+		var j = 1;
+		while(j <= 100) {
+			if(j % 10 == 7) {
+				document.write(j + " ");
+			}
+			j++;
+		}
+
+		/*格式
+		do{
+			循环体
+		}while(条件表达式);
+		*/
+
+		document.write("<br />")
+		j = 1;
+		do {
+			document.write(j++ + " ");
+			//			j++;
+		} while (j <= 10);
+
+		document.write("<br />")
+		j = 1;
+		do {
+			if(parseInt(j / 10) == 7) {
+				document.write(j + " ");
+			}
+			j++;
+		} while (j <= 100);
+
+		document.write("<br />")
+		j = 1;
+		do {
+			if(!((parseInt(j / 10) == 7) || (j % 10 == 7) || (j % 7 == 0))) {
+				document.write(j + " ");
+			}
+			j++;
+		} while (j <= 100);
+		
+		//三种循环
+		//for循环：最常用的（万能）循环，但一般区别于其他两个是，在知道循环次数时用for，反正选择其他两个循环
+		//while循环：先判断后循环（但条件不满足，可能一次都不执行）
+		
+		//do...while循环：先循环后判断（至少会循环一次）
+		//但后两个循环中的出口（循环判断条件）一定和循环体有关系
+	</script>
+
+</html>

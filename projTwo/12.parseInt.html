@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//①Number :1.0~1.9 --- 1
+		//②string :1.0~1.9 --- 1
+		//③string ："普通字符串（如abc）" --- NaN
+		//④string ："12abc" --- 12
+		//⑤string ："abc12" --- NaN
+		//⑥string ："12abc12" --- 12
+		
+		var a=1.2;
+		var b=parseInt(a);
+//		document.write(b);
+
+		
+		//①string ："12.12" --- 12.12
+		//②string ："12.1.12" --- 12.12
+		
+		var c="12.1.12";
+		var d=parseFloat(c);
+		document.write(d);
+		
+		if(NaN == NaN){
+			alert("相等");
+		}else{
+			alert("不等");
+		}
+		
+		//如何判断一个被转换的数是否是NaN
+		var x="abc";
+		//isNaN()函数判断是否是NaN
+		if(isNaN(parseInt(x))){
+			alert("非数字");
+		}else{
+			alert("数字");
+		}
+	</script>
+</html>

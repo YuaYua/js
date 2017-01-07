@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>窗口宽高</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var h1=window.innerHeight;
+		var h2=document.documentElement.clientHeight;
+		var h3=document.body.clientHeight
+//		document.write(h1+'<br />');
+//		document.write(h2+'<br />');
+//		
+//		document.write(h3+'<br />');
+		//由于JS 或(||)运算的特点，对于兼容性差的属性，尽可能后移
+		var height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+		document.write(height+" ")
+		
+		var width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth
+		document.write(width+" ")
+		
+	</script>
+</html>

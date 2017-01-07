@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>hammer手势</title>
+		<script type="text/javascript">
+			//orientation 方位，方位 检测屏幕方向
+			document.addEventListener("plusready", function() {
+				//锁定横屏
+				//plus.screen.lockOrientation("landscape-primary");
+				plus.screen.lockOrientation("portrait-primary");
+			}, false);
+		</script>
+		<style type="text/css">
+			.wrap {
+				width: 100px;
+				height: 80vh;
+				margin: 10vh auto;
+				background-color: red;
+			}
+			
+			a {
+				font: normal 16px/30px "微软雅黑";
+				text-align: center;
+				color: black;
+				text-decoration: none;
+				display: block;
+				width: 100px;
+				height: 30px;
+				border-radius: 15px;
+				background-color: burlywood;
+				margin-bottom: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<a href="test.html">测试</a>
+			<a href="tap.html">轻拍（单拍）</a>
+			<a href="doubleTap.html">轻拍（双拍）</a>
+			<a href="press.html">长按</a>
+			<a href="pan.html">平移</a>
+			<a href="swipe.html">轻扫</a>
+			<a href="rotate.html">旋转</a>
+			<a href="pinch.html">捏合</a>
+		</div>
+	</body>
+
+</html>

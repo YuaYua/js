@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标拖拽</title>
+		<style type="text/css">
+			.div {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				border-radius: 50%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="div">
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		var div = document.querySelector('.div');
+
+		//div被按下时激活
+		div.onmousedown = function(e) {
+			var ev = e || event;
+			//获得横纵 鼠标点击点 与 div原点 之间的距离偏差值
+			//为了在移动时，节点不会出现原点找鼠标位置形成的瞬移
+			var disX = ev.clientX - div.offsetLeft;
+			var disY = ev.clientY - div.offsetTop;
+			//获得div原点可移动的最大范围
+			var maxWidth=window.innerWidth-div.offsetWidth;
+			var maxHeight=window.innerHeight-div.offsetHeight;
+			//在点击中触发移动，实现拖拽效果
+			document.onmousemove = function(e) {
+				var ev = e || event;
+				//div的位置移动是 鼠标所在坐标-点击时鼠标坐标与div原点的偏差
+				div.style.top = ev.clientY - disY + 'px';
+				div.style.left = ev.clientX - disX + 'px';
+				//但div出某一边时，需要将位置拉回该边临界点
+				//并实时更新dis的值
+				if(div.offsetLeft<0){
+					div.style.left="0";
+					disX = ev.clientX - div.offsetLeft;
+				}
+				if(div.offsetTop<0){
+					div.style.top="0";
+					disY = ev.clientY - div.offsetTop;
+				}
+				if(div.offsetLeft>maxWidth){
+					div.style.left=maxWidth+'px';
+					disX = ev.clientX - div.offsetLeft;
+				}
+				if(div.offsetTop>maxHeight){
+					div.style.top=maxHeight+'px';
+					disY = ev.clientY - div.offsetTop;
+				}
+//				||div.offsetLeft>=maxWidth)&&(div.offsetTop<=0||div.offsetTop>=maxHeight
+//				if(div.offsetLeft<0){
+//					document.onmousemove=null;
+////					div.style.top="0";
+//					div.style.left="0";
+////					disX = ev.clientX - div.offsetLeft;
+//				}
+//				if(div.offsetLeft>maxWidth){
+//					document.onmousemove=null;
+//					div.style.left=maxWidth+'px';
+////					disX = ev.clientX - div.offsetLeft;
+//				}
+//				if(div.offsetTop<0){
+//					document.onmousemove=null;
+//					div.style.top="0";
+////					disY = ev.clientY - div.offsetTop;
+//				}
+//				if(div.offsetTop>maxHeight){
+//					document.onmousemove=null;
+//					div.style.top=maxHeight+'px';
+////					disY = ev.clientY - div.offsetTop;
+//				}
+			}
+
+		}
+		document.onmouseup = function() {
+			document.onmousemove = null;
+		}
+	</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<span class="b_s">b_s1</span>
+		<span class="b_s">b_s2</span>
+		<span class="b_s">b_s3</span>
+		<!--ol#ol>li*10>span#l_s${l_s$}-->
+		<ol id="ol">
+			<li><span class="l_s">l_s1</span></li>
+			<li><span class="l_s">l_s2</span></li>
+			<li><span class="l_s">l_s3</span></li>
+			<li><span class="l_s">l_s4</span></li>
+			<li><span class="l_s">l_s5</span></li>
+			<li><span class="l_s">l_s6</span></li>
+			<li><span class="l_s">l_s7</span></li>
+			<li><span class="l_s">l_s8</span></li>
+			<li><span class="l_s">l_s9</span></li>
+			<li><span class="l_s">l_s10</span></li>
+		</ol>
+		<span class="l_s">b_s1</span>
+		<div id="div1">
+			123
+		</div>
+	</body>
+	<script type="text/javascript">
+		//查找出有序列表中的所有span
+		//第一种
+		//直接利用document获得的是DOM中的所有的span
+//		var spans=document.getElementsByTagName("span");
+		var ol=document.getElementById("ol");
+//		console.log(ol);
+		var spans = ol.getElementsByClassName("l_s");
+		console.log(spans);
+		
+		//第二种方式
+		var SPAN = document.querySelector("#ol .l_s");
+		console.log(SPAN);
+		var SPANS=document.querySelectorAll("#ol .l_s")
+		console.log(SPANS);
+//		
+//		//前者以函数名区分查找兑现，后者以选择器区分
+//		//前者只关心参数内容是否匹配，后者参数严格按照CSS选择器书写规范
+//		var div=document.getElementById("div1");
+//		console.log(div);
+//		var DIV=document.querySelector("#div1");
+//		console.log(DIV);
+	</script>
+
+</html>

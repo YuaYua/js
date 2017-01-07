@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<ul id="ul">
+			<li id="li1">第1项</li>
+			<li id="li2">第2项</li>
+			<li id="li3">第3项</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var ul=document.all.ul;
+		var li1=document.querySelector("#li1");
+		li1.innerHTML="第一项";
+		li1.innerText="第壹项";
+		
+		var li2=document.querySelector("#li2");
+		var li3=document.querySelector("#li3");
+		//innerText 只能 读改 节点内容
+		li2.innerText="<i>第二项</i>";
+		//innerHTML 不仅拥有innertext功能，且可以写节点
+		li3.innerHTML="<i>第三项</i>";
+		
+		li2.outerText="<i>第二项</i>"
+		li3.outerHTML="<i>第三项</i>"
+		
+	</script>
+</html>

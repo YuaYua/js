@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="sup">
+			<p>ppp</p>
+			<div>div</div>
+			<span>span</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var sup=document.getElementById('sup');
+		
+		//一般第一个和最后一个子节点都会索引出文本节点
+		var node1=sup.firstChild;//第一个子节点
+		console.log(node1);
+		var node2=sup.lastChild;//最后一个子节点
+		console.log(node2);
+		
+		//结合使用下一个节点才能找到想要的元素节点
+		var ele1=node1.nextSibling;//下一个兄弟子节点
+		console.log(ele1);
+		var ele2=node2.previousSibling//上一个兄弟节点
+		//firstElementChild：第一个标签（元素）子节点
+		var ele3=sup.firstElementChild;
+		console.log(ele3);
+		//最后一个标签（元素）子节点
+		var ele4=sup.lastElementChild;
+		console.log(ele4);
+		
+		var ele5=ele3.nextElementSibling;//下一个兄弟标签节点
+		console.log(ele5);
+		var ele6=ele4.previousElementSibling//上一个兄弟标签节点
+		console.log(ele6);
+		
+		
+		
+	</script>
+</html>

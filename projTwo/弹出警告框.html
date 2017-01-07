@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		a{
+			position: absolute;
+			z-index: 0;
+		}
+			#div1{
+				width: 100vw;
+				height: 100vh;
+				background-color: gainsboro;
+				opacity: 0.7;
+				position: relative;
+				z-index: 2;
+				display: none;
+			}
+			#div2{
+				width: 300px;
+				height: 500px;
+				background-color: white;
+				border: 1px solid black;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -250px;
+				margin-left: -150px;	
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<a href="" onmousedown="ale()">登录</a>
+		<div id="div1">
+			<div id="div2"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function ale(){
+			var div=document.getElementById("div1");
+			div.style.display="block";
+		}
+	</script>
+</html>

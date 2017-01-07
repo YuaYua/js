@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//setTimeout 单次定时器
+		//setInterval 重复定时器
+		//clearTimeout 清除单次定时器
+		//clearInterval 清除重复定时器
+		
+		//语法：setTimeout(函数,时间(ms));
+//		var time1=setTimeout(function(){
+//			alert("我是一次性定时器！");
+//		},1000);
+//		time1();
+		
+		//设置了定时器，一般都要手动去清除定时器
+//		document.onclick=function(){
+//			clearTimeout(time1);
+//		}
+//		var time2=setInterval(function(){
+//			alert("hhh");
+//		},3000);
+//		document.onclick=function(){
+//			clearInterval(time2);
+//		}
+		function tt(){
+			alert("auti tt");
+		}
+		//函数名代表函数的首地址，通过函数的首地址可以找到函数体的代码块
+		//故1.5s执行一次这个内存中的代码块
+		var time3=setInterval(tt,1500);
+		
+		document.onclick=function(){
+			clearInterval(time3);
+		}
+	</script>
+</html>

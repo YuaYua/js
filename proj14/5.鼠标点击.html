@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标点击</title>
+		<style type="text/css">
+			.div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				border-radius: 50%;
+			}
+			.div.down{
+				background-color: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+	var div=document.querySelector('.div');
+	var isClick=false
+		div.onmousedown=function(){
+			console.log('按下')
+			div.className+=" down";
+			isClick=true;
+			div.onmousemove=function(){
+				isClick=false;
+			}
+		}
+		document.onmouseup=function(){
+			console.log('抬起')
+			div.className='div';
+			if(isClick){
+				alert("点击了")
+			}
+		}
+	</script>
+</html>

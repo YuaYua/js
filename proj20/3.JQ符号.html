@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		//1,$ 可以理解为JQ的一个回调函数（返回函数|入口函数）
+			$(function($){
+				
+				console.log($);
+			})
+			//2.$可以理解为jQuery的缩写
+			jQuery(function($){
+				console.log(jQuery);
+			})
+			//3.$就是JQ声明的一个专用符号
+			//如果专用符号发生冲突，JQ提供了接口解决冲突
+			var ap=jQuery.noConflict();
+			ap(function($){
+				console.log($);
+			})
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

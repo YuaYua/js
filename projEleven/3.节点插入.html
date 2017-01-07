@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.sup{
+				width: 800px;
+				height: 600px;
+				background-color: #AFEEEE;
+				margin: 50px auto;
+				position: relative;
+			}
+			.sub{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="sup" class="sup">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var sup=document.getElementById('sup')
+		//1.创建sub
+		var sub1=document.createElement('div');
+		sub1.className='sub';
+		sub1.style.width='100px';
+		sub1.style.height='100px';
+		sub1.style.backgroundColor='red';
+		//2.sup插入sub
+		sup.appendChild(sub1);
+		
+		//1.创建sub
+		var sub2=document.createElement('div');
+		sub2.className='sub';
+		sub2.style.width='200px';
+		sub2.style.height='200px';
+		sub2.style.backgroundColor='black';
+		sub2.style.left='100px';
+		sub2.style.top='0';
+		//2.sup插入sub
+		sup.appendChild(sub2);
+		
+		
+	</script>
+</html>

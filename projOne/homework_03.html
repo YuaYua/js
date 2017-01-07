@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 80px;
+				height: 40px;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="i1"/>
+		+
+		<input type="text" id="i2"/>
+		<div id="d" onclick="text()"></div>
+	</body>
+	<script type="text/javascript">
+		function text(){
+			var a1=document.getElementById("i1");
+			var a2=document.getElementById("i2");
+			var b1=document.getElementById("d");
+			b1.innerHTML=(a1.value-0)+(a2.value-0);
+		}
+	</script>
+</html>

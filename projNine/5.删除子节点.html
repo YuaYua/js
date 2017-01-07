@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>djfegoirgjoierjg</div>
+		<p>dfgsergsdfgoij</p>
+		<span>etegdfjgpoerjg</span>
+		<h1>oiergneorgj</h1>
+	</body>
+	<script type="text/javascript">
+		//删除h1标签
+		var body=document.getElementsByTagName('body')[0];
+		var h1=document.getElementsByTagName('h1')[0];
+		h1.onclick=function(){
+			body.removeChild(h1);
+		}
+		//点击div，删除所有子节点（标签）
+		var div=document.getElementsByTagName('div')[0];
+		div.onclick=function(){
+			//hasChildNodes()是否拥有子节点，返回值时Boolean
+			while(body.hasChildNodes()){
+				//父节点 删除（父节点的第一个子节点）
+				body.removeChild(body.firstChild);
+			}
+		}
+	</script>
+</html>

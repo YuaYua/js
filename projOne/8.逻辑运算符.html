@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script type="text/javascript">
+		//与&&，或|| ， 非！
+		//格式：表达式1 &&/|| 表达式2
+		//逻辑表达式结果为Boolean类型值
+		
+		//表达式：有数字或是数字与运算符组成的合法式子
+		
+		
+		//①逻辑与
+		var a = 10;
+		var b = 20;
+		var c = 10;
+		
+		var d = a && b;
+		console.log(d);
+		
+		d = a < b && b > c;
+		//true && true == true
+		console.log(d);
+		
+		d = a > b && b < c;
+		//false && false == false
+		console.log(d);
+		
+		d = a < b && b<c;
+		//true && false == false
+		console.log(d);
+		
+		d = a > b && b > c;
+		//false && true == false
+		console.log(d);
+		
+		//短路
+		//逻辑与的短路现象：左侧为假，整个表达式结果就为假，则无需判断右侧的表达式
+		d = (a > b) && (c = 200);
+		console.log(a);
+		console.log(b);
+		console.log(c);
+		console.log(d);
+		//当 && 左侧为false或是NaN null 0 "" undefined等，则整个表达式的值就等于左侧的值
+		//当 && 左侧为true时，则这个表达式的值等于右侧的值
+		
+		
+		//逻辑或
+		//TT->t  TF->T  FT->T  FF->F
+		d = a < b || b < c;
+		console.log(d);
+		
+		d = a == b || b < c;
+		console.log(d);
+		
+		//逻辑或短路现象：左侧有真 ，则这个表达式则为真，无需判断右侧
+		d = a < b || (c = 200);
+		console.log(a);
+		console.log(b);
+		console.log(c);
+		console.log(d);
+		
+		
+		//逻辑非
+		//!真 => 假，!假 =>真
+		//负负得正
+		d = !false
+		console.log(d);
+		d=!true;
+		console.log(d);
+		
+		
+	</script>
+</html>

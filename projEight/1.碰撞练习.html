@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#outer {
+				width: 800px;
+				height: 500px;
+				border: 10px solid darkblue;
+				position: relative;
+			}
+			
+			#inner {
+				width: 100px;
+				height: 100px;
+				background-color: khaki;
+				border: 10px solid red;
+				/*transition: 2s;*/
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="outer">
+			<div id="inner">
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var outer = document.getElementById('outer');
+		var inner = document.getElementById('inner');
+
+		//获得纵向横向可以运动的最大范围
+		var maxX = outer.clientWidth - inner.offsetWidth;
+		var maxY = outer.clientHeight - inner.offsetHeight;
+		console.log(maxX, maxY);
+		//		inner.style.animationName='move';
+		//运动速率
+		//		var speedX = 100;
+		//		var speedY = 100;
+		var speed = 5;
+		var timer = null;
+		//获得inner在outer中的初始位置（outer已定位）
+		var osTop = inner.offsetTop;
+		var osLeft = inner.offsetLeft;
+		var ttb = true;
+		var ltr = true;
+
+		outer.onmouseenter = function() {
+			timer = setInterval(function() {
+
+				if(ttb) {
+					osTop += speed;
+					inner.style.top = osTop + 'px';
+					if(osTop >= maxY) {
+						ttb = false;
+					}
+				} else {
+					osTop -= speed;
+					inner.style.top = osTop + 'px';
+					if(osTop == 0) {
+						ttb = true;
+					}
+				}
+				if(ltr) {
+					osLeft += speed;
+					inner.style.left = osLeft + 'px';
+					if(osLeft == maxX) {
+						ltr = false;
+					}
+				} else {
+					osLeft -= speed;
+					inner.style.left = osLeft + 'px';
+					if(osLeft <= 0) {
+						ltr = true;
+					}
+				}
+			}, 30)
+		}
+		outer.onmouseleave = function() {
+			clearInterval(timer);
+		}
+	</script>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var str="ort foot booooom force tfop";
+		//fo+匹配fo /foo /fo...o
+		var reg=/fo+/g;
+		var arr=str.match(reg);
+//		alert(arr);
+		
+		var str="fire foot booooom force tfop";
+		//fo*匹配f /fo /foo /fo...o
+		var reg=/fo*/g;
+		var arr=str.match(reg);
+//		alert(arr);
+		
+		var str="fire foot booooom force tfop";
+		//fo?匹配f /fo 
+		var reg=/fo?/g;
+		var arr=str.match(reg);
+//		alert(arr);
+		
+		var str="fire foot booooom force tfop";
+		//o{2}匹配 oo
+		var reg=/o{2}/g;
+		var arr=str.match(reg);
+		alert(arr);
+		
+		var str="fire foot booooom force tfop";
+		//o{2,5}匹配 oo/ooo/oooo/ooooo
+		//o{1,}匹配 o/oo/ooo...o
+		//o{0,2}匹配 f/fo/foo
+		var reg=/fo{0,2}/g;
+		var arr=str.match(reg);
+		alert(arr);
+		
+		var str="fire food\nfood fire food";
+		//^fo匹配 以fo开头
+		//属性m: 以\n为一句话的分割标准，匹配每一句话的开头或结尾
+		//^:匹配开头
+		//$:匹配结尾
+		var reg=/od$/gm;
+		var arr=str.match(reg);
+		alert(arr);
+		
+		var str="food toddle";
+		//\b:判断单词的结尾
+		//od\b：只匹配food的od,不匹配toddle的od
+		var reg=/od\b/g;
+		var arr=str.match(reg);
+		alert(arr);
+		
+		
+		
+	</script>
+</html>
