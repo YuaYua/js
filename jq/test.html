@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.mousewheel.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				overflow-x: hidden;
+			}
+			
+			div {
+				width: 100vw;
+			}
+			
+			.div1 {
+				height: 30vh;
+				background-color: orange;
+			}
+			
+			.div2 {
+				height: 40vh;
+				background-color: rosybrown;
+			}
+			
+			.div3 {
+				height: 100vh;
+				background-color: greenyellow;
+			}
+			
+			.div4 {
+				height: 100vh;
+				background-color: darkblue;
+			}
+			
+			.div5 {
+				height: 100vh;
+				background-color: darkmagenta;
+			}
+			
+			.div6 {
+				height: 100vh;
+				background-color: blueviolet;
+			}
+			
+			.div7 {
+				height: 30vh;
+				background-color: aqua;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="div1"></div>
+		<div class="div2"></div>
+		<div class="div3"></div>
+		<div class="div4"></div>
+		<div class="div5"></div>
+		<div class="div6"></div>
+		<div class="div7"></div>
+	</body>
+	<script type="text/javascript">
+		document.addEventListener('mousewheel', hh, false);
+		var i = 0;
+		var lock = false;
+		var t = 0;
+		var timer = null;
+		$("body").animate({
+			"scrollTop": 0
+		}, 1)
+
+		function hh() {
+			$(document).mousewheel(function(ev) {
+				//			ev.preventDefault();
+				//				console.log(ev.deltaY);
+				//ev.deltaY正值是上滑，负值是下滑，可为零
+				if(!lock) {
+					if(ev.deltaY < 0) {
+						//下滑
+//						i++;
+						t += $('div').eq(i).height();
+						$("body").animate({
+							"scrollTop": t
+						}, 500)
+						i++;
+					} else {
+						t -= $('div').eq(i).height();
+						$("body").animate({
+							"scrollTop": t
+						}, 500)
+						i--;
+					}
+				}
+				if(i>6){
+					i=0
+				}
+				console.log(i);
+				clearTimeout(timer);
+				timer = setTimeout(function() {
+					lock = false
+				}, 500)
+			})
+		}
+	</script>
+
+</html>

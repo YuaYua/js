@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<p>Hello, <span>Person</span>
+			<a href="#">and person</a>
+		</p>
+		<button>删除</button>
+		<button>恢复</button>
+	</body>
+	<script type="text/javascript">
+		//清空p中所有东西（content+子节点）
+		//		$('p').empty();
+		$('p').click(function() {
+			alert(11);
+		})
+		var temp;
+		$('button').eq(0).click(function(){
+//			temp=$('p').remove();
+			temp=$('p').detach();
+		});
+		$('button').eq(1).click(function(){
+			$('body').append(temp);
+		})
+	</script>
+
+</html>

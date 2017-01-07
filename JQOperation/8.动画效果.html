@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>动画效果</title>
+		<style type="text/css">
+			.div{
+				width: 100px;
+				height: 100px;
+				background: red;
+				display: none;
+			}
+		</style>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="div"></div>
+	</body>
+	<script type="text/javascript">
+		// 函数在动画结束后，进行调用
+		//
+//		$('.div').show(3000,function(){
+//			$('.div').hide(3000)
+//		});
+//		$(document).click(function(){
+//			$('.div').toggle('fast');
+//		});
+		//卷帘
+//		$('.div').slideDown(3000,function(){
+//			$('.div').slideUp(3000);
+//		});
+//		$(document).click(function(){
+//			$('.div').slideToggle('fast');
+//		});
+		//淡入淡出
+//		$('.div').fadeIn(3000,function(){
+//			$('.div').fadeOut(3000);
+//		});
+		// 淡入到透明度为0.5（0~1）
+		$('.div').fadeTo(3000,0.5);
+		$(document).click(function(){
+			$('.div').fadeToggle('fast');
+		});
+		
+		
+	</script>
+</html>

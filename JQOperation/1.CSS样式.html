@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>CSS样式</title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body>
+		<div class="div1"></div>
+		<div class="div1"></div>
+		<p style="width: 400px;"></p>
+	</body>
+	<script type="text/javascript">
+		//css四种赋值方式
+		$('.div1').css({
+			"width": "100px",
+			'height':'100px',
+			'background-color':'red'
+		});
+		$('.div1').css({width:200});
+		$('.div1').css({height:'200px'});
+		$('.div1').css("background-color","yellow");
+		
+		//回调函数有两个参数 n是$('.div1')对象的索引，v是属性值
+		$('.div1').css('background-color',function(n,v){
+			//更改索引为一的.div1
+			if(n==1){
+				return "red";
+			}
+		});
+		$('.div1').css('width',function(n,v){
+			//更改索引为一的.div1
+			if(n==1){
+				//回调函数的存在在与可以处理逻辑
+				var newV=$('p').width()+parseInt(v);
+				//同时函数也是赋值作用，需要有值
+				//而函数返回值就是函数的值
+				return newV;
+			}
+		});
+		//只有属性没有赋值，是取值操作
+		var color=$('.div1').css('background-color');
+		alert(color);
+	</script>
+
+</html>

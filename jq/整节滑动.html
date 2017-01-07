@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.mousewheel.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				overflow-x: hidden;
+			}
+			
+			div {
+				width: 100vw;
+			}
+			
+			.div1 {
+				height: 30vh;
+				background-color: orange;
+			}
+			
+			.div2 {
+				height: 40vh;
+				background-color: rosybrown;
+			}
+			
+			.div3 {
+				height: 100vh;
+				background-color: greenyellow;
+			}
+			
+			.div4 {
+				height: 100vh;
+				background-color: darkblue;
+			}
+			
+			.div5 {
+				height: 100vh;
+				background-color: darkmagenta;
+			}
+			
+			.div6 {
+				height: 100vh;
+				background-color: blueviolet;
+			}
+			
+			.div7 {
+				height: 30vh;
+				background-color: aqua;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="div1"></div>
+		<div class="div2"></div>
+		<div class="div3"></div>
+		<div class="div4"></div>
+		<div class="div5"></div>
+		<div class="div6"></div>
+		<div class="div7"></div>
+	</body>
+	<script type="text/javascript">
+		//原生Js
+		//		document.onmousewheel=function(ev){
+		//			//判断上滑下滑
+		//			console.log(ev.deltaY);
+		//			//取消系统默认滑动
+		//			ev.preventDefault();
+		//		}
+		//JQ
+		//		$(document).on("mousewheel",function(ev){
+		//			console.log(ev.pageX,ev.pageY)
+		////			ev.preventDefault();
+		//		})
+		var num=0;
+		var lock = false;
+		var timer=null;
+		//刷新界面返回顶部
+		$('body').animate({
+			"scrollTop":0
+		},1)
+		//存储一个运动距离的数组
+		var topArr=[];
+		$('div').each(function(){
+			console.log($(this).offset().top);
+			
+			topArr.push($(this).offset().top)
+		})
+		console.log(topArr);
+		//JQ-mousewheel
+		var index=0;
+		$(document).mousewheel(function(ev) {
+			ev.preventDefault();
+			console.log(ev.deltaY);
+			//ev.deltaY正值是上滑，负值是下滑，可为零
+			if(!lock) {
+				lock=true;
+				if(ev.deltaY < 0) {
+					//下滑
+					$("body").animate({
+						"scrollTop": topArr[++index]
+					}, 500)
+				} else {
+					$("body").animate({
+						"scrollTop":  topArr[--index]
+					}, 500)
+				}
+			}
+			//两端越界处理
+			if(index>topArr.length-1){
+				index=topArr.length-1;
+			}else if(index<0){
+				index=0;
+			}
+			clearTimeout(timer);
+			timer=setTimeout(function(){
+				lock=false;
+				console.log("解锁")
+			},60)
+		})
+		
+	</script>
+
+</html>

@@ -1,0 +1,17 @@
+//变量都是@打头，且@符号是变量的一部分
+@num:100px;
+@color:#112233;
+
+//变量
+div{
+    width: @num;
+    height: @num;
+    background-color:@color;
+}
+//变量运算
+p{
+    width: @num*2;
+    height: @num*4/3;
+    background-color: @color*2;//#112233*2=#224466
+    
+}

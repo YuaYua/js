@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.div1{
+				margin: 15px;
+				padding: 50px;
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div1">111</div>
+	</body>
+	<script type="text/javascript">
+		$(document).click(function(){
+			//1、获取高度
+			var height=$('.div1').height();
+			//通过函数设置高度
+			$('.div1').height(function(n,v){
+				return v+height;
+			})
+			//直接设置高度
+			$('.div1').height(100);
+			
+			//2、宽度等同高度
+			
+			
+			//3、innerWidth:padding+width
+//			alert($('.div1').innerWidth());
+			//4、innerHeight:padding+Height
+//			alert($('.div1').innerHeight());
+			
+			//5、outerWidth:赋值true，代表margin+border+padding+width
+			alert($('.div1').outerWidth(true));
+			//6、outerHeight:赋值true，代表margin+border+padding+height
+			alert($('.div1').outerHeight(true))
+		})
+		
+	</script>
+</html>

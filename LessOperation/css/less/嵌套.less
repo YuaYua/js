@@ -1,0 +1,21 @@
+@num:100px;
+@maxNum:300px;
+
+.outer{
+    width: @maxNum;
+    height: @maxNum;
+    //1.在内部直接使用的&代表自己（outer）
+    &{
+        background-color: blue;
+    }
+    //2、按照DOM树结构嵌套属性CSS
+    .inner{
+        width: @num;
+        height: @num;
+        background-color: aqua;
+        //3、直接可以内部嵌套伪类
+        &:hover {
+            background-color: chartreuse;
+        }
+    }
+}

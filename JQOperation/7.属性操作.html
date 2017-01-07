@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.div111{
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div title="DIV"></div>
+	</body>
+	<script type="text/javascript">
+//		alert($('div').attr('title'));
+		$('div').attr('title','title');
+		$('div').attr({
+			class:'div',
+			suibian:'wang'
+		});
+//		alert($('div').attr('suibian'));
+		$('div').removeAttr('suibian');
+		var inp=$("<input type='checkbox' />");
+		inp.appendTo($('body'));
+		// 给元素直接prop属性名，为添加属性值
+		// 如果该属性名已存在，那么就是取值，等同attr()
+		// 如果该属性名不存在，那么就添加该属性，并赋系统默认值
+		inp.prop('checked','true')
+		//$('div').addClass('div111 div222');
+		//$('div').addClass('div333');
+		
+//		$('div').removeClass('div111')
+		$(document).click(function(){
+			$('div').toggleClass('div111');
+		})
+	</script>
+</html>

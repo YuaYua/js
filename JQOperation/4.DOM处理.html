@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="div1">我是div</div>
+		<div class="div1">我是div</div>
+	</body>
+	<script type="text/javascript">
+		var newDiv = $('<div>我是添加的div</div>');
+	
+		$('.div1').click(function() {
+			//一、主$('.div1')，子newDiv
+			//1.把newDiv添加到.div后
+			//$('.div1').append(newDiv);
+//			newDiv.appendTo($('.div1'));
+
+			//2.把newDiv添加到.div1前
+//			newDiv.prependTo($('.div1'));
+			$('.div1').prepend(function(n){
+				//插入到两个div1中间：index0：之后，index:1之后
+				if(n==1){
+//					return "<hr />"
+				}
+			});
+			//二、兄弟
+			$('.div1').after("<p>你是p</p>");
+			$('.div1').before("<p>ta是p</p>");
+		})
+	</script>
+
+</html>

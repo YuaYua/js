@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			a{
+				text-decoration: none;
+			}
+			video{
+				margin: 10px auto;
+				display: block;
+				background: gainsboro;
+			}
+			.control{
+				width: 600px;
+				height: 32px;
+				margin: 0 auto;
+				text-align: center;
+				position: relative;
+				background: orchid;
+			}
+			.btnPlay{
+				width: 32px;
+				height: 32px;
+				background:url(img/pause.png) ;
+				display: block;
+				float: left;
+				border-radius: 50%;
+			}
+			.control span{
+				display: block;
+				float: left;
+				font: normal 16px/32px "微软雅黑";
+			}
+			.current{
+				margin-left: 10px;
+			}
+			.progressBar{
+				float: left;
+				position: relative;
+				top: 50%;
+				margin-top: -5px;
+				margin-left: 10px;
+				width: 50%;
+				height: 10px;
+				background: black;
+			}
+			.timerBar{
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				height: 100%;
+				background: red;
+			}
+			.dian{
+				width: 10px;
+				height: 10px;
+				z-index: 2;
+				border-radius: 50%;
+				background-color: white;
+				position: absolute;
+				left: -5px;
+			}
+			.bufferBar{
+				position: absolute;
+
+				width: 0;
+				height: 100%;
+				background-color: gold;
+			}
+			.muted{
+				width: 25px;
+				height: 25px;
+				display: block;
+				margin-top: 3px;
+				margin-left: 10px;
+				float: left;
+				background:url(img/vopen.png) no-repeat;
+			}
+			.volumeBar{
+				width: 10%;
+				height: 5px;
+				background: chartreuse;
+				position: relative;
+				float: left;
+				margin-left: 5px;
+				margin-top: 13px;
+			}
+			.volume{
+				height: 5px;
+				background-color: aqua;
+			}
+			.vdian{
+				width: 8px;
+				height: 8px;
+				background-color: white;
+				position: absolute;
+				left: -4px;
+				top: -2px;
+				border-radius: 50%;
+			}
+			.sp{
+				float: left;
+				display: block;
+				width: 10px;
+				height: 10px;
+				/*background-color: royalblue;*/
+				margin-left: 5px;
+				margin-top: 11px;
+			}
+		</style>
+		<script src="js/JQuery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body style="-webkit-user-select: none;">
+		<video id="myVideo" controls="controls" width="600" height="400">
+			<source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+			<source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+			<source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+			<!--<source src="vi/HTML5.mp4" type="video/mp4"></source>
+			<source src="vi/HTML5.ogv" type="video/ogg"></source>
+			<source src="vi/HTML5.webm" type="video/webm"></source>-->
+			<!--<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+				<param name="movie" value="myvideo.swf" />
+				<param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+			</object>-->
+			当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+		</video>
+		
+		<div class="control">
+			<!--播放和暂停-->
+			<a href="#" class="btnPlay"></a>
+			<!--播放时间和持续时间-->
+			<!--已播放时间-->
+			<span class="current">0:00</span>
+			<!--分割线-->
+			<span class="f">/</span>
+			<!--总时间-->
+			<span class="duration"></span>
+			<!--快退-->
+			<a href="#" class="slow sp">-</a>
+			<!--进度条-->
+			<div class="progressBar">
+				<!--已播放-->
+				<div class="timerBar">
+					
+				</div>
+				<!--点-->
+				<div class="dian">
+					
+				</div>
+				<!--缓冲栏-->
+				<div class="bufferBar">
+					
+				</div>
+			</div>
+			<!--快进-->
+			<a href="#" class="fast sp">+</a>
+			<!--倒带-->
+			<a href="#" class="rewind sp">←</a>
+			<!--音量-->
+			<!--静音-->
+			<a href="#" class="muted"></a>
+			<!--音量条-->
+			<div class="volumeBar">
+				<div class="volume">
+					
+				</div>
+				<div class="vdian">
+					
+				</div>
+			</div>
+			<!---->
+		</div>
+	</body>
+	<script type="text/javascript">
+		//播放和暂停
+		var playctl=false;
+		$('.btnPlay').on('click',function(){
+			if(playctl){
+				$('video')[0].pause();
+				$('.btnPlay').css({
+					backgroundImage: "url(img/pause.png)"
+				});
+				playctl=false;
+			}else{
+				$('video')[0].play();
+				$('.btnPlay').css({
+					backgroundImage: "url(img/play.png)"
+				});
+				playctl=true;
+			}
+		})
+		//播放时间和持续时间
+		//为了得到视频的总时间,我们要确保视频元数据已经加载.这个时候我们要用到Html5 Video的loadedmetadata事件
+		$('video').on('loadedmetadata',function(){
+			//$('video')[0].duration获取的是秒数
+			var mi=parseInt($('video')[0].duration/60);
+			console.log(mi)
+			var se=parseInt($('video')[0].duration%60);
+			console.log(se)
+			var dText=mi+":"+se;
+			console.log(dText)
+			$('.duration').text(dText);
+		});
+		//对于当前的视频播放时间.我们可以用Html5 Video timeupdate事件来保证他的更新.
+		$('video').on('timeupdate',function(){
+			//$('video')[0].duration获取的是秒数
+			var mi=parseInt($('video')[0].currentTime/60);
+			var se=parseInt($('video')[0].currentTime%60);
+			if(se<10){
+				se='0'+se;
+			}
+			var cText=mi+":"+se;
+			$('.current').text(cText);
+			//进度条
+			var percentage=100*$('video')[0].currentTime/$('video')[0].duration;
+			$('.timerBar').css('width',percentage+'%');
+			$('.dian').css({
+				left:$('.timerBar').width()-5
+			})
+		});
+		//拖拽进度条
+		var timeDrag=false;
+		$('.progressBar').mousedown(function(e){
+			timeDrag=true;
+			updatebar(e.pageX);
+		});
+		$(document).mouseup(function(e){
+			if(timeDrag){
+				timeDrag=false;
+				updatebar(e.pageX);
+			}
+		});
+		$(document).mousemove(function(e){
+			if(timeDrag){
+				updatebar(e.pageX);
+			}
+		});
+		var updatebar=function(x){
+			var progress=$('.progressBar');
+			var max=$('video')[0].duration;
+			var position=x-progress.offset().left;
+			var percentage=100*position/progress.width();
+			if (percentage>100){
+				percentage=100;
+			}
+			if(percentage<0){
+				percentage=0;
+			}
+			$('video')[0].currentTime=max*percentage/100;
+			$('.timerBar').css('width',percentage+'%');
+			$('.dian').css({
+				left:$('.timerBar').width()-5
+			})
+			
+		}
+		//缓冲Video缓冲属性将返回一个对象的缓存范围.因此,我们将使用缓存数据的最后一个值.
+//		var startBuffer=function(){
+//			var max=$('video')[0].duration;
+//			var currentBuffer=$('video')[0].buffered.end(0);
+//			console.log(currentBuffer);
+//			var percentage=100*currentBuffer/max;
+//			$('.bufferBar').css('width',percentage+'%');
+//			if(currentBuffer<max){
+//				setTimeout(startBuffer,500);
+//			}
+//		}
+		//setTimeout(startBuffer,500);
+		var timer=setInterval(function(){
+			var max=$('video')[0].duration;
+			var currentBuffer=$('video')[0].buffered.end(0);
+//			console.log(currentBuffer);
+			var percentage=100*currentBuffer/max;
+			$('.bufferBar').css('width',percentage+'%');
+			if(currentBuffer>=max){
+				clearInterval(timer,500);
+				console.log("缓存完成")
+			}
+		},500)
+		//声音控制
+		//静音
+		$('.muted').css({
+					backgroundImage:'url(img/vopen.png)'
+				})
+		$('.muted').click(function(){
+			$('video')[0].muted=!$('video')[0].muted;
+			if($('video')[0].muted){
+				$('.muted').css({
+					backgroundImage:'url(img/voff.png)'
+				})
+			}else{
+				$('.muted').css({
+					backgroundImage:'url(img/vopen.png)'
+				})
+			}
+			return false;
+		});
+		//音量条
+		$('.vdian').css({
+				left:$('.volumeBar').width()-2
+		})
+		$('.volumeBar').on('mousedown',function(e){
+		
+			var position=e.pageX-$('.volumeBar').offset().left;
+			var per=100*position/$('.volumeBar').width();
+			$('.volume').css('width',per+'%');
+			$('video')[0].volume=per/100;
+			$('.vdian').css({
+				left:$('.volume').width()-2
+			})
+		})
+		//快退
+		$('.slow').on('click',function(){
+			console.log("退")
+			$('video')[0].playbackRate=0.1;
+			return false;
+		})
+		//快进
+		$('.fast').on('click',function(){
+			console.log("进")
+			$('video')[0].playbackRate=10;
+			return false;
+		})
+		//倒带
+		$('.rewind').on('click',function(){
+			console.log("倒")
+			$('video')[0].playbackRate=-10;
+			return false;
+		})
+		//快进快退不好使
+
+		
+	</script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1. 初识
+//		function add(a,b){
+//			alert(a+b);
+//		}
+//		function low(a,b){
+//			alert(a-b);
+//		}
+//		//①call、apply改变函数（对象）指向
+//		//②call，apply第一个参数都是函数（对象），但apply第二个参数必须是数组，call没有限制
+//		add.call(low,10,20);//==add(10,20)，add替low调用
+//		add.apply(low,[10,20])
+//		add(10,20)//函数调用
+		
+		//2. this指向
+		function People(){
+			//this：通过People实例化出的一个对象
+			this.name="人类";
+			this.showName=function(){
+				alert("姓名："+this.name);
+			}
+		}
+		var p=new People();
+//		alert (p.name);
+//		p.showName();
+		function Chinese(){
+			this.name="中国人";
+		}
+		var c=new Chinese();
+		//理解
+		//1. 该showName方法由c调用，但方法属于p,p替c去调用
+		//2. 调用showName的this还是p,但p是替c调用，所以在showName函数体中出现的this指向的是c
+		//3. 由于没携带参数，call和apply性质一样
+//		p.showName.call(c);
+//		p.showName.apply(c);
+		
+		//3. 继承
+		function People(){
+			//this：通过People实例化出的一个对象
+			this.name="人类";
+			this.showName=function(){
+				alert("姓名："+this.name);
+			}
+		}
+		function Chinese(){
+			//先把“父亲”的属性及方法（特征与行为）继承过来
+			People.call(this);
+			//如果需要有特性，可以再定义（重新规定）自己的特性
+			this.name="中国人";
+		}
+		var c=new Chinese();
+//		c.showName();
+		
+		//4  绑定
+		//普通对象
+		var obj={
+			name:"对象"
+		}
+		function test(){
+			alert(this.name);
+		}
+		//将test函数中的this与对象obj进行绑定
+		//那么test中出现的this均是对象obj
+		var fn=test.bind(obj);
+		fn();
+		
+		
+	</script>
+</html>

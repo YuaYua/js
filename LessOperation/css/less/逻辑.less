@@ -1,0 +1,35 @@
+.div1{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    margin: 10px auto;
+}
+.div2{
+    //包含所有.div1的css样式
+    .div1;
+    padding: 10px;
+}
+
+
+//均以.开头，且.与参数列表均是变量（函数）的一部分
+.borderRadius(@value){
+    border-radius: @value;
+    -moz-border-radius: @value;
+    -webkit-border-radius: @value;
+}
+.div1{
+    .borderRadius(10px);
+}
+//@width必填变量，后两个是选填变量
+//100px red 是默认值
+.setP(@width;@height:100px;@bColor:red){
+    width: @width;
+    height: @height;
+    background-color: @bColor;
+}
+p{
+    //200px覆盖100px
+    //第三个参数没写，则会取默认值
+    .setP(200px;200px);
+    margin: 10px auto;
+}
